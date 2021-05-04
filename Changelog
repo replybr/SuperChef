@@ -1,0 +1,4 @@
+[*]=Change, [!]=Fix, [%]=Optimization, [+]=Addition, [-]=Removal, [;]=Comment
+2021-05-04 09:00 ivanil.marcelino@yahoo.com.br
+    + Criação do Projeto, adicionado o projeto original retirado do Samples\application\Super da Minigui Extend
+
