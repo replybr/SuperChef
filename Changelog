@@ -1,4 +1,10 @@
 [*]=Change, [!]=Fix, [%]=Optimization, [+]=Addition, [-]=Removal, [;]=Comment
+2021-05-04 18:35 ivanil.marcelino@yahoo.com.br
+    + Adicionado a pasta MigracaoSQL com os arquivos a serem convertidos
+    + Extraido a estrutura dos DBF ScriptInicial.sql
+    * Renomeado as tabelas para o seu respectivo alias do sistema
+    + Criado o arquivo var.ch para mapear as variaveis a serem trocadas nos formularios gerenciados pelo Designer.
+
 2021-05-04 09:00 ivanil.marcelino@yahoo.com.br
     + Criação do Projeto, adicionado o projeto original retirado do Samples\application\Super da Minigui Extend
 
