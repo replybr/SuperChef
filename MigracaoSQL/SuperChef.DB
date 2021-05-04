@@ -8,15 +8,18 @@
     Compilador : MinGW GNU C 11.1 (32-bit)
     ----------------------------------------------------------------------------------------------
     SOBRE ESTE CÓDIGO GERADO:
-    Última alteração : 04/05/2021-17:08:43 Máquina: IMA2018 Usuário:ivani
+    Última alteração : 04/05/2021-17:20:17 Máquina: IMA2018 Usuário:ivani
     Código configuração banco de dados
     ----------------------------------------------------------------------------------------------
-    Projeto : SuperChef
+    Projeto : SuperChefSQL
     */
 
     //Este arquivo é criado automaticamente pelo sistema, não altere aqui diretamente
 
-    /*
-    Reservoir space for future connection
-    Espaço reservado para futura conexão
-    */
+    Memvar Connection
+    Private Connection //Variáveis globais de conexão
+    Connection := TadoConnection():New() //Cria o objeto ADO
+    Connection:ConnectString := 'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=E:\Prgplus\Git\SuperChef\MigracaoSQL\Database.mdb;Persist Security Info=False' //String de Conexão
+    if !Connection:Open() //Abre o banco de dados
+        Return .F.
+    Endif

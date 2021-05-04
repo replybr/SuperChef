@@ -8,15 +8,13 @@
     Compilador : MinGW GNU C 11.1 (32-bit)
     ----------------------------------------------------------------------------------------------
     SOBRE ESTE CÓDIGO GERADO:
-    Última alteração : 04/05/2021-17:08:43 Máquina: IMA2018 Usuário:ivani
-    Código configuração banco de dados
+    Última alteração : 04/05/2021-17:15:54 Máquina: IMA2018 Usuário:ivani
+    Código Formulário Main
     ----------------------------------------------------------------------------------------------
-    Projeto : SuperChef
+    Projeto : SuperChefSQL
     */
 
-    //Este arquivo é criado automaticamente pelo sistema, não altere aqui diretamente
+*{Name:Main}
 
-    /*
-    Reservoir space for future connection
-    Espaço reservado para futura conexão
-    */
+DEFINE WINDOW TEMPLATE AT 208, 299 WIDTH 600 HEIGHT 549  TITLE "" MAIN 
+END WINDOW

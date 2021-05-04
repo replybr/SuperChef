@@ -1,0 +1,26 @@
+[PROJETO]
+Main=SuperChef.prg
+TipoProjeto=1
+nomeprojeto=SuperChefSQL
+database=
+comments=
+companyname=Ima Solutions Apoio Tec/Adm em Informática
+filedescription=
+fileversion=00  ,00  ,00  ,00
+internalname=SuperChef.Exe
+legalcopyright=Copyright © 2021
+legaltrademarks=
+originalfilename=
+privatebuild=
+productname=
+productversion=ALFA
+specialbuild=
+
+[FORMULARIOS]
+FRM0001=%PROJETO%\form\SuperChef.FMG
+
+[MODULOS]
+MOD0001=%PROJETO%\SuperChef.PRG
+
+
+[LIBS]
