@@ -1,0 +1,4 @@
+Original: Nenhuma alteração, apenas ajuste para compilação com o Designer.
+
+MigracaoSQL: Alterações para suportar Access;
+Nota: foi escolhido o Access como ponto de partida em virtude da facilidade de manipulação e não requer instalação de nenhum produto, sendo suportado pelo pelo proprio SO;
