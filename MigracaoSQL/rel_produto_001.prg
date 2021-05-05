@@ -135,7 +135,7 @@ static function relatorio()
        local pagina  := 1
 
        local x_soma_qtd := 0
-       local x_codigo_produto := space(10)
+       *local x_codigo_produto //:= space(10)
 
        x_nome_pizza := alltrim(form_pizzas_001.cbo_001.item(x_pizza))
 
@@ -148,7 +148,7 @@ static function relatorio()
        produtos->(dbgotop())
        produtos->(dbseek(x_nome_pizza))
        if found()
-          x_codigo_produto := produtos->codigo
+          *x_codigo_produto := produtos->codigo
        endif
        
        SELECT PRINTER DIALOG PREVIEW

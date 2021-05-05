@@ -119,7 +119,7 @@ function relatorio_cpag_002()
 *-------------------------------------------------------------------------------
 static function relatorio()
 
-       local x_codigo_fornecedor := 0
+       local x_codigo_fornecedor //:= 0
        local x_de                := form_mov_cpag_forn.dp_inicio.value
        local x_ate               := form_mov_cpag_forn.dp_final.value
        local x_fornecedor        := form_mov_cpag_forn.cbo_001.value
@@ -131,7 +131,7 @@ static function relatorio()
 
        local x_soma_dia   := 0
        local x_soma_geral := 0
-       local x_old_data   := ctod('  /  /  ')
+       local x_old_data  // := ctod('  /  /  ')
 
        x_codigo_fornecedor := val(substr(form_mov_cpag_forn.cbo_001.item(x_fornecedor),1,6))
        
@@ -212,7 +212,7 @@ static function cabecalho(p_pagina)
 
        local x_de                := form_mov_cpag_forn.dp_inicio.value
        local x_ate               := form_mov_cpag_forn.dp_final.value
-       local x_codigo_fornecedor := 0
+       local x_codigo_fornecedor // := 0
        local x_fornecedor        := form_mov_cpag_forn.cbo_001.value
        x_codigo_fornecedor       := val(substr(form_mov_cpag_forn.cbo_001.item(x_fornecedor),1,6))
 

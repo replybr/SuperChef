@@ -133,7 +133,7 @@ function valor_coluna(xObj,xForm,nCol)
 function acha_unidade(parametro)
 
          local area_aberta := select()
-         local retorno     := space(10)
+         local retorno     //:= space(10)
          
          if empty(parametro)
             return('---')
@@ -157,7 +157,7 @@ function acha_unidade(parametro)
 function acha_banco(parametro)
 
          local area_aberta := select()
-         local retorno     := space(20)
+         local retorno     //:= space(20)
 
          if empty(parametro)
             return('---')
@@ -181,7 +181,7 @@ function acha_banco(parametro)
 function acha_tamanho(parametro)
 
          local area_aberta := select()
-         local retorno     := space(20)
+         local retorno     //:= space(20)
 
          if empty(parametro)
             return('---')
@@ -205,7 +205,7 @@ function acha_tamanho(parametro)
 function acha_mprima(parametro)
 
          local area_aberta := select()
-         local retorno     := space(20)
+         local retorno     //:= space(20)
 
          if empty(parametro)
             return('---')
@@ -230,7 +230,7 @@ function acha_mprima(parametro)
 function acha_vmprima(parametro)
 
          local area_aberta := select()
-         local retorno     := space(20)
+         local retorno    // := space(20)
 
          if empty(parametro)
             return('---')
@@ -254,7 +254,7 @@ function acha_vmprima(parametro)
 function acha_fornecedor(parametro)
 
          local area_aberta := select()
-         local retorno     := space(40)
+         local retorno     //:= space(40)
 
          if empty(parametro)
             return('---')
@@ -278,7 +278,7 @@ function acha_fornecedor(parametro)
 function acha_fornecedor_2(parametro)
 
          local area_aberta := select()
-         local retorno     := space(40)
+         local retorno    // := space(40)
 
          if empty(parametro)
             return('---')
@@ -302,7 +302,7 @@ function acha_fornecedor_2(parametro)
 function acha_produto(parametro)
 
          local area_aberta := select()
-         local retorno     := space(40)
+         local retorno    // := space(40)
 
          if empty(parametro)
             return('---')
@@ -326,7 +326,7 @@ function acha_produto(parametro)
 function acha_forma_pagamento(parametro)
 
          local area_aberta := select()
-         local retorno     := space(40)
+         local retorno     //:= space(40)
 
          if empty(parametro)
             return('---')
@@ -350,7 +350,7 @@ function acha_forma_pagamento(parametro)
 function acha_forma_recebimento(parametro)
 
          local area_aberta := select()
-         local retorno     := space(40)
+         local retorno     //:= space(40)
 
          if empty(parametro)
             return('---')
@@ -374,7 +374,7 @@ function acha_forma_recebimento(parametro)
 function acha_cliente(parametro)
 
          local area_aberta := select()
-         local retorno     := space(40)
+         local retorno     //:= space(40)
 
          if empty(parametro)
             return('---')
@@ -398,7 +398,7 @@ function acha_cliente(parametro)
 function acha_motoboy(parametro)
 
          local area_aberta := select()
-         local retorno     := space(20)
+         local retorno    // := space(20)
 
          if empty(parametro)
             return('---')
@@ -422,7 +422,7 @@ function acha_motoboy(parametro)
 function acha_atendente(parametro)
 
          local area_aberta := select()
-         local retorno     := space(20)
+         local retorno     //:= space(20)
 
          if empty(parametro)
             return('---')

@@ -102,7 +102,7 @@ static function relatorio()
        local pagina  := 1
        
        local x_saldo := 0
-       local x_old_data := ctod('  /  /  ')
+       local x_old_data //:= ctod('  /  /  ')
 
        dbselectarea('caixa')
        caixa->(ordsetfocus('data'))

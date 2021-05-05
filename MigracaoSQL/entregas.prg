@@ -229,7 +229,7 @@ static function mudar_situacao()
 *-------------------------------------------------------------------------------
 static function mostra_situacao()
 
-	   local i := 0
+	   local i// := 0
 	   local n_tamanho := len(a_situacao)
 	   
        delete item all from grid_situacao of form_situacao

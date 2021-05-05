@@ -420,8 +420,8 @@ function venda_delivery()
 *-------------------------------------------------------------------------------
 static function procura_cliente(cform,ctextbtn)
 
-       local flag    := .F.
-       local creg    := ''
+*       local flag    := .F.
+       local creg   // := ''
        local nreg_01 := getproperty(cform,ctextbtn,'value')
        local nreg_02 := nreg_01
 
@@ -504,7 +504,7 @@ static function procura_cliente(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_clientes(value)
+static function getcode_clientes(/*value*/)
 
        local creg := ''
        local nreg := 1
@@ -1437,10 +1437,10 @@ static function verifica_zero()
 *-------------------------------------------------------------------------------
 static function fecha_pedido()
 
-       local x_old_pizza      := space(10)
-       local x_old_valor      := 0
-       local x_total_pedido   := 0
-       local x_total_recebido := 0
+       local x_old_pizza      //:= space(10)
+       local x_old_valor      //:= 0
+*       local x_total_pedido   //:= 0
+*       local x_total_recebido //:= 0
 
 	   local x_borda := form_delivery.cbo_bordas.value
 	   local x_preco := 0
@@ -1762,16 +1762,16 @@ static function fecha_pedido()
 *-------------------------------------------------------------------------------
 static function calcula_final(p_borda)
 
-       local x_val_001  := 0
-       local x_val_002  := 0
-       local x_val_003  := 0
-       local x_val_004  := 0
-       local x_val_005  := 0
-       local x_val_006  := 0
-       local x_val_007  := 0
-       local x_total    := 0
-       local x_recebido := 0
-       local x_troco    := 0
+       local x_val_001  //:= 0
+       local x_val_002  //:= 0
+       local x_val_003  //:= 0
+       local x_val_004  //:= 0
+       local x_val_005  //:= 0
+       local x_val_006  //:= 0
+       local x_val_007  //:= 0
+       local x_total    //:= 0
+       local x_recebido //:= 0
+       local x_troco    //:= 0
        
        x_val_001 := x_valor_pizza
        x_val_002 := x_valor_prod
@@ -1792,19 +1792,19 @@ static function calcula_final(p_borda)
 *-------------------------------------------------------------------------------
 static function fechamento_geral(p_borda)
 
-       local x_val_001  := 0
-       local x_val_002  := 0
-       local x_val_003  := 0
-       local x_val_004  := 0
-       local x_val_005  := 0
-       local x_val_006  := 0
-       local x_val_007  := 0
-       local x_total    := 0
-       local x_recebido := 0
-       local x_cod_forma_1 := 0
-       local x_cod_forma_2 := 0
-       local x_cod_forma_3 := 0
-       local x_dias := 0
+       local x_val_001 // := 0
+       local x_val_002 // := 0
+       local x_val_003 // := 0
+       local x_val_004 // := 0
+       local x_val_005 // := 0
+       local x_val_006 // := 0
+       local x_val_007 // := 0
+       local x_total   // := 0
+       local x_recebido// := 0
+       local x_cod_forma_1// := 0
+       local x_cod_forma_2// := 0
+       local x_cod_forma_3// := 0
+       local x_dias //:= 0
 
        ******************************
        
@@ -2164,11 +2164,11 @@ static function adiciona_montagem()
 
 	   return(nil)
 *-------------------------------------------------------------------------------
-static function transfere_produto_pedido(p_codigo,p_nome,p_unitario)
+static function transfere_produto_pedido(p_codigo,p_nome) //,p_unitario)
 
 	   local p_qtd := alltrim(str(form_pquantidade.tbox_quantidade.value))
 	   local x_unitario := 0
-	   local total_geral := 0
+*	   local total_geral// := 0
 	   
 	   if p_qtd == '0'
 	      msginfo('Quantidade não pode ser zero','Atenção')
@@ -2246,9 +2246,9 @@ static function excluir_sabor()
 static function excluir_item_pedido()
 
 	   local n_seq := tmp_tela->seq
-	   local x_old_seq := 0
-	   local x_valor := 0
-	   local x_menos := 0
+	   local x_old_seq //:= 0
+	   local x_valor //:= 0
+	   local x_menos// := 0
 	   
        If DbfVazio('tmp_tela')
        	  Return(Nil)
@@ -2312,11 +2312,11 @@ static function excluir_item_pedido()
 *-------------------------------------------------------------------------------
 static function fecha_montagem_pizza()
 
-	   local x_valor := 0
-	   local x_maior_valor := 0
-	   local x_soma := 0
-	   local x_qtd := 0
-	   local x_valor_cobrado := 0
+	   local x_valor //:= 0
+	   local x_maior_valor //:= 0
+	   local x_soma //:= 0
+	   local x_qtd //:= 0
+	   local x_valor_cobrado //:= 0
 	   local a_nome_pizza := {}
 
 	   static x_sequencia := 1
@@ -2457,7 +2457,7 @@ static function fecha_montagem_pizza()
 
 	   return(nil)
 *-------------------------------------------------------------------------------
-static function imprimir_cupom(p_entregador,p_pedido,p_entrega,p_borda,p_desconto,p_total)
+static function imprimir_cupom(p_entregador,p_pedido,p_entrega,p_borda,p_desconto/*,p_total*/)
 
 	   local x_observacao_1 := form_delivery.tbox_obs_1.value
 	   local x_observacao_2 := form_delivery.tbox_obs_2.value
@@ -2468,7 +2468,7 @@ static function imprimir_cupom(p_entregador,p_pedido,p_entrega,p_borda,p_descont
        local x_endereco_1 := alltrim(form_delivery.label_endereco_001.value)
        local x_endereco_2 := alltrim(form_delivery.label_endereco_002.value)
        local x_endereco_3 := alltrim(form_delivery.label_endereco_003.value)
-       local x_total := alltrim(form_delivery.label_total.value)
+*       local x_total := alltrim(form_delivery.label_total.value)
 
        dbselectarea('empresa')
        empresa->(dbgotop())
@@ -2570,7 +2570,7 @@ static function imprimir_cupom(p_entregador,p_pedido,p_entrega,p_borda,p_descont
 static function adiciona_borda()
 
 	   local x_borda := form_delivery.cbo_bordas.value
-	   local x_preco := 0
+	   local x_preco // := 0
 	   
 	   dbselectarea('bordas')
 	   go top
@@ -2583,3 +2583,29 @@ static function adiciona_borda()
        _preco_antes_borda := x_preco
        
 	   return(nil)
+
+Function A_Verificar()
+//venda_delivery.prg(2586) Warning W0034  STATIC Function 'PROCURA_PRODUTO' defined but never used
+PROCURA_PRODUTO()
+
+//venda_delivery.prg(2586) Warning W0034  STATIC Function 'PROCURA_PIZZA' defined but never used
+PROCURA_PIZZA()
+
+//venda_delivery.prg(2586) Warning W0034  STATIC Function 'GRAVAR_ADICIONAR' defined but never used
+GRAVAR_ADICIONAR()
+
+//venda_delivery.prg(2586) Warning W0034  STATIC Function 'GRAVAR_PRODUTO' defined but never used
+GRAVAR_PRODUTO()
+
+//venda_delivery.prg(2586) Warning W0034  STATIC Function 'EXCLUIR_PIZZA' defined but never used
+EXCLUIR_PIZZA()
+
+//venda_delivery.prg(2586) Warning W0034  STATIC Function 'EXCLUIR_PRODUTO' defined but never used
+EXCLUIR_PRODUTO()
+
+//venda_delivery.prg(2586) Warning W0034  STATIC Function 'FECHA_PIZZA' defined but never used
+FECHA_PIZZA()
+
+//venda_delivery.prg(2586) Warning W0034  STATIC Function 'VERIFICA_ZERO' defined but never used
+VERIFICA_ZERO()
+REturn .t.

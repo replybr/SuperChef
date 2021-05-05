@@ -8,6 +8,7 @@
 
 #include 'minigui.ch'
 #include 'super.ch'
+Memvar Connection
 
 function main()
 
@@ -91,23 +92,33 @@ function main()
          REQUEST DBFCDX
          RDDSETDEFAULT('DBFCDX')
 
-         set autoadjust on
-         set deleted on
-         set interactiveclose off
-         set date british
-         set century on
-         set epoch to 1960
+         #include <superchef.ch>
+         
+         *set autoadjust on
+         *set deleted on
+         *set interactiveclose off
+         *set date british
+         *set century on
+         *set epoch to 1960
          set browsesync on
-         set multiple off warning
-         set tooltipballoon on
-         set navigation extended
-         set codepage to portuguese
-         set language to portuguese
+         *set multiple off warning
+         *set tooltipballoon on
+         *set navigation extended
+         *set codepage to portuguese
+         *set language to portuguese
 
-	      SET MENUSTYLE EXTENDED
-	      SET MENUCURSOR FULL
-	      SET MENUSEPARATOR SINGLE RIGHTALIGN
-	      SET MENUITEM BORDER 3D
+	     * SET MENUSTYLE EXTENDED
+	     * SET MENUCURSOR FULL
+	     * SET MENUSEPARATOR SINGLE RIGHTALIGN
+	     * SET MENUITEM BORDER 3D
+         
+        * #include <superchef.db>
+         Private Connection //Variáveis globais de conexão
+         Connection := TadoConnection():New() //Cria o objeto ADO
+         Connection:ConnectString := 'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=.\Database.mdb;Persist Security Info=False' //String de Conexão
+         if !Connection:Open() //Abre o banco de dados
+            Return .F.
+         Endif
 
 	      aColors := GetMenuColors()
 
@@ -1957,8 +1968,8 @@ static function tamanhos_pizza()
 *-------------------------------------------------------------------------------
 static function altera_tamanho()
 
-       local x_nome   := space(15)
-       local x_pedaco := 0
+       local x_nome   //:= space(15)
+       local x_pedaco //:= 0
        
        define window form_altera_tamanho;
               at 000,000;
@@ -2336,7 +2347,7 @@ static function libera(parametro)
 *-------------------------------------------------------------------------------
 static function configurar_venda()
 
-	   local x_tipo  := 0
+	   local x_tipo // := 0
 	   local a_tipos := {'Calcular pelo MAIOR preço','Calcular pela MÉDIA de preços'}
 	   
        dbselectarea('config')
@@ -2519,8 +2530,8 @@ static function bordas_pizza()
 *-------------------------------------------------------------------------------
 static function altera_borda()
 
-       local x_nome  := space(15)
-       local x_preco := 0
+       local x_nome  //:= space(15)
+       local x_preco //:= 0
 
        define window form_altera_borda;
               at 000,000;

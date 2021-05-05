@@ -368,8 +368,8 @@ function venda_balcao()
 *-------------------------------------------------------------------------------
 static function procura_cliente(cform,ctextbtn)
 
-       local flag    := .F.
-       local creg    := ''
+      * local flag    //:= .F.
+       local creg    //:= ''
        local nreg_01 := getproperty(cform,ctextbtn,'value')
        local nreg_02 := nreg_01
 
@@ -452,7 +452,7 @@ static function procura_cliente(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_clientes(value)
+static function getcode_clientes(/*value*/)
 
        local creg := ''
        local nreg := 1
@@ -1385,12 +1385,12 @@ static function verifica_zero()
 *-------------------------------------------------------------------------------
 static function fecha_pedido()
 
-       local x_old_pizza      := space(10)
-       local x_old_valor      := 0
-       local x_total_pedido   := 0
-       local x_total_recebido := 0
-       private x_valor_pizza  := 0
-       private x_valor_prod   := 0
+       local x_old_pizza      //:= space(10)
+       local x_old_valor      //:= 0
+*       local x_total_pedido   //:= 0
+*       local x_total_recebido //:= 0
+       private x_valor_pizza  //:= 0
+       private x_valor_prod   //:= 0
 
        dbselectarea('tmp_pizza')
        tmp_pizza->(dbgotop())
@@ -1644,16 +1644,16 @@ static function fecha_pedido()
 *-------------------------------------------------------------------------------
 static function calcula_final()
 
-       local x_val_001  := 0
-       local x_val_002  := 0
-       local x_val_003  := 0
-       local x_val_004  := 0
-       local x_val_005  := 0
-       local x_val_006  := 0
-       local x_val_007  := 0
-       local x_total    := 0
-       local x_recebido := 0
-       local x_troco    := 0
+       local x_val_001 // := 0
+       local x_val_002 // := 0
+       local x_val_003 // := 0
+       local x_val_004 // := 0
+       local x_val_005 // := 0
+       local x_val_006 // := 0
+       local x_val_007 // := 0
+       local x_total   // := 0
+       local x_recebido// := 0
+       local x_troco   // := 0
        
        x_val_001 := x_valor_pizza
        x_val_002 := x_valor_prod
@@ -1674,19 +1674,19 @@ static function calcula_final()
 *-------------------------------------------------------------------------------
 static function fechamento_geral()
 
-       local x_val_001  := 0
-       local x_val_002  := 0
-       local x_val_003  := 0
-       local x_val_004  := 0
-       local x_val_005  := 0
-       local x_val_006  := 0
-       local x_val_007  := 0
-       local x_total    := 0
-       local x_recebido := 0
-       local x_cod_forma_1 := 0
-       local x_cod_forma_2 := 0
-       local x_cod_forma_3 := 0
-       local x_dias := 0
+       local x_val_001 // := 0
+       local x_val_002 // := 0
+       local x_val_003 // := 0
+       local x_val_004 // := 0
+       local x_val_005 // := 0
+       local x_val_006 // := 0
+       local x_val_007 // := 0
+       local x_total   // := 0
+       local x_recebido// := 0
+       local x_cod_forma_1// := 0
+       local x_cod_forma_2// := 0
+       local x_cod_forma_3// := 0
+       local x_dias //:= 0
 
        ******************************
        

@@ -455,7 +455,7 @@ static function procura_fornecedor(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_fornecedor(value)
+static function getcode_fornecedor(/*value*/)
 
        local creg := ''
        local nreg := 1
@@ -573,7 +573,7 @@ static function procura_forma_pagamento(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_forma_pagamento(value)
+static function getcode_forma_pagamento(/*value*/)
 
        local creg := ''
        local nreg := 1
@@ -763,7 +763,7 @@ static function mostra_informacao_produto_2()
        if found()
           x_preco := produtos->vlr_venda
        endif
-
+       ((x_preco))
        form_pesquisa.release
 
        return(nil)
@@ -802,7 +802,7 @@ static function procura_mprima_2(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_materia_prima_2(value)
+static function getcode_materia_prima_2(/*value*/)
 
        local creg := ''
        local nreg := 1
@@ -1018,14 +1018,14 @@ static function gravar_compras()
 
        local x_dbf_1            := 0
        local x_dbf_2            := 0
-       local x_fornecedor       := 0
-       local x_forma_pagamento  := 0
-       local x_numero_documento := space(15)
-       local x_numero_parcelas  := 0
-       local x_data_vencimento  := ctod('  /  /  ')
-       local x_dias             := 0
-       local x_total            := 0
-       local x_i                := 0
+       local x_fornecedor       //:= 0
+       local x_forma_pagamento  //:= 0
+       local x_numero_documento //:= space(15)
+       local x_numero_parcelas  //:= 0
+       local x_data_vencimento  //:= ctod('  /  /  ')
+       local x_dias             //:= 0
+       local x_total            //:= 0
+       local x_i                //:= 0
        
        dbselectarea('tmp_cpa1')
        tmp_cpa1->(dbgotop())

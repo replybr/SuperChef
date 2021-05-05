@@ -21,8 +21,8 @@
          public _pedaco_005  := 0
          public _pedaco_006  := 0
          
-         public path_dbf     := GetStartUpFolder() + '\tabelas\'
-         public path_imagens := GetStartUpFolder() + '\imagens\'
+         public path_dbf     :=  '.\'
+         public path_imagens := ""
 
          * cores para labels, botões e janelas
          public _branco_001     := {255,255,255}
@@ -48,7 +48,7 @@
          public _amarelo_002    := {255,255,121}
          public _marrom_001     := {143,103,080}
          public _ciano_001      := {215,255,255}
-         public _grid_001       := _branco_001
+         public _grid_001       :=  {255,255,255}
          public _grid_002       := {210,233,255}
          public _super          := {128,128,255}
          public _acompanhamento := {255,255,220}

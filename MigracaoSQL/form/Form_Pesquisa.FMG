@@ -1,0 +1,196 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210430 1823"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 05/05/2021-15:31:55 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_Pesquisa}
+*{Modulo:atendentes.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 191, 307 WIDTH 800 HEIGHT 605  TITLE "" ICON "icone" MODAL NOSIZE ON INIT (MontaGrid(aHeader))
+
+    DEFINE BUTTONEX button_incluir
+        ACTION (dados(1))
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "F5 Incluir"
+        COL 5
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "incluir"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_alterar
+        ACTION (dados(2))
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "F6 Alterar"
+        COL 107
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "alterar"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_excluir
+        ACTION (excluir())
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "F7 Excluir"
+        COL 209
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "excluir"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_imprimir
+        ACTION (relacao())
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "F8 Imprimir"
+        COL 311
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "imprimir"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_atualizar
+        ACTION (atualizar())
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "Atualizar"
+        COL 413
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "atualizar"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_sair
+        ACTION (thiswindow.release)
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "ESC Voltar"
+        COL 515
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "sair"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE GRID Grid_Pesquisa
+        BACKCOLOR { 255 , 255 , 225 }
+        COL 0
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 430
+        ONDBLCLICK (dados(2))
+        ROW 105
+        VALUE 0
+        WIDTH 791
+    END GRID
+
+    DEFINE LABEL rodape_001
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 128 , 128 , 128 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 545
+        TRANSPARENT TRUE
+        VALUE "Digite sua pesquisa"
+        WIDTH 120
+    END LABEL
+
+    DEFINE BTNTEXTBOX tbox_pesquisa
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 160
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 40
+        ONENTER (pesquisar())
+        ACTION (pesquisar())
+        ROW 540
+        UPPERCASE TRUE
+        WIDTH 300
+    END BTNTEXTBOX
+
+    DEFINE LABEL rodape_002
+        AUTOSIZE TRUE
+        COL 530
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 89 , 45 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 545
+        TRANSPARENT TRUE
+        VALUE "DUPLO CLIQUE : Alterar informação"
+        WIDTH 120
+    END LABEL
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+

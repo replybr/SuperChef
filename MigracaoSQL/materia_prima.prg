@@ -632,7 +632,7 @@ static function procura_unidade(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_unidade(value)
+static function getcode_unidade(/*value*/)
 
        local creg := ''
        local nreg := 1
@@ -783,7 +783,7 @@ static function fornecedores_mprima()
 *-------------------------------------------------------------------------------
 static function filtra_fornecedor(parametro)
 
-       local x_old_fornecedor := 0
+       local x_old_fornecedor //:= 0
 
        delete item all from grid_fornecedor_mprima of form_fornecedor_mprima
 

@@ -1,4 +1,12 @@
 [*]=Change, [!]=Fix, [%]=Optimization, [+]=Addition, [-]=Removal, [;]=Comment
+2021-05-05 20:26 ivanil.marcelino@yahoo.com.br
+    * Carga das imagens ao projeto
+    ; algumas imagens deram erros ao serem adicionadas como recurso, foram abertas e [salvas como] pelo aplicativo Infarview, eliminando o conflito.
+    * Ajustado o arquivo var.ch
+    * Foram eliminados os warnings dos Modulos, mantido a configuração para otimização
+    * Migrado o modulo atendentes.prg para SQL
+    * Desmembrado os formularios do modulo atendentes.prg
+
 2021-05-04 18:35 ivanil.marcelino@yahoo.com.br
     + Adicionado a pasta MigracaoSQL com os arquivos a serem convertidos
     + Extraido a estrutura dos DBF ScriptInicial.sql

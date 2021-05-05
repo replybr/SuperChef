@@ -545,7 +545,7 @@ static function procura_cliente(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_clientes(value)
+static function getcode_clientes(/*value*/)
 
        local creg := ''
        local nreg := 1
@@ -664,7 +664,7 @@ static function procura_forma_recebimento(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_formas_recebimento(value)
+static function getcode_formas_recebimento(/*value*/)
 
        local creg := ''
        local nreg := 1

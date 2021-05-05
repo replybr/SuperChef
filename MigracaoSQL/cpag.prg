@@ -544,7 +544,7 @@ static function procura_fornecedor(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_fornecedores(value)
+static function getcode_fornecedores(/*value*/)
 
        local creg := ''
        local nreg := 1
@@ -662,7 +662,7 @@ static function procura_forma_pagamento(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_formas_pagamento(value)
+static function getcode_formas_pagamento(/*value*/)
 
        local creg := ''
        local nreg := 1

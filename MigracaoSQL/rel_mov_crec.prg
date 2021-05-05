@@ -103,7 +103,7 @@ static function relatorio()
 
        local x_soma_dia   := 0
        local x_soma_geral := 0
-       local x_old_data   := ctod('  /  /  ')
+       local x_old_data   //:= ctod('  /  /  ')
 
        dbselectarea('contas_receber')
        contas_receber->(ordsetfocus('data'))

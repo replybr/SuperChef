@@ -578,7 +578,7 @@ static function procura_banco(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_banco(value)
+static function getcode_banco(/*value*/)
 
        local creg := ''
        local nreg := 1

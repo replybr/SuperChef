@@ -119,7 +119,7 @@ function movimentacao_bancaria()
 *-------------------------------------------------------------------------------
 static function relatorio()
 
-       local x_codigo_banco := 0
+       local x_codigo_banco //:= 0
        local x_de           := form_mov_banco.dp_inicio.value
        local x_ate          := form_mov_banco.dp_final.value
        local x_banco        := form_mov_banco.cbo_001.value
@@ -130,7 +130,7 @@ static function relatorio()
        local pagina  := 1
        
        local x_saldo := 0
-       local x_old_data := ctod('  /  /  ')
+       local x_old_data //:= ctod('  /  /  ')
 
        x_codigo_banco := val(substr(form_mov_banco.cbo_001.item(x_banco),1,4))
        
@@ -194,7 +194,7 @@ static function relatorio()
 *-------------------------------------------------------------------------------
 static function cabecalho(p_pagina)
 
-       local x_codigo_banco := 0
+       local x_codigo_banco //:= 0
        local x_de           := form_mov_banco.dp_inicio.value
        local x_ate          := form_mov_banco.dp_final.value
        local x_banco        := form_mov_banco.cbo_001.value

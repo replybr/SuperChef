@@ -811,10 +811,10 @@ static function fecha_pedido()
        local x_nome_mesa := valor_coluna('grid_mesas','form_vda_mesas',3)
        local x_mesa      := 0
 
-       local x_old_pizza      := space(10)
-       local x_old_valor      := 0
-       local x_total_pedido   := 0
-       local x_total_recebido := 0
+       local x_old_pizza      //:= space(10)
+       local x_old_valor      //:= 0
+*       local x_total_pedido   //:= 0
+*       local x_total_recebido //:= 0
 
        private x_valor_pizza  := 0
        private x_valor_prod   := 0
@@ -1145,16 +1145,16 @@ static function fecha_pedido()
 *-------------------------------------------------------------------------------
 static function calcula_final()
 
-       local x_val_001  := 0
-       local x_val_002  := 0
-       local x_val_003  := 0
-       local x_val_004  := 0
-       local x_val_005  := 0
-       local x_val_006  := 0
-       local x_val_007  := 0
-       local x_total    := 0
-       local x_recebido := 0
-       local x_troco    := 0
+       local x_val_001  //:= 0
+       local x_val_002  //:= 0
+       local x_val_003  //:= 0
+       local x_val_004  //:= 0
+       local x_val_005  //:= 0
+       local x_val_006  //:= 0
+       local x_val_007  //:= 0
+       local x_total    //:= 0
+       local x_recebido //:= 0
+       local x_troco    //:= 0
        
        x_val_001 := x_valor_pizza
        x_val_002 := x_valor_prod
@@ -1179,19 +1179,19 @@ static function fechamento_geral(parametro)
        local x_comissao
        local x_codigo
 
-       local x_val_001  := 0
-       local x_val_002  := 0
-       local x_val_003  := 0
-       local x_val_004  := 0
-       local x_val_005  := 0
-       local x_val_006  := 0
-       local x_val_007  := 0
-       local x_total    := 0
-       local x_recebido := 0
-       local x_cod_forma_1 := 0
-       local x_cod_forma_2 := 0
-       local x_cod_forma_3 := 0
-       local x_dias := 0
+       local x_val_001  //:= 0
+       local x_val_002  //:= 0
+       local x_val_003  //:= 0
+       local x_val_004  //:= 0
+       local x_val_005  //:= 0
+       local x_val_006  //:= 0
+       local x_val_007  //:= 0
+       local x_total    //:= 0
+       local x_recebido //:= 0
+       local x_cod_forma_1 //:= 0
+       local x_cod_forma_2 //:= 0
+       local x_cod_forma_3 //:= 0
+       local x_dias //:= 0
 
        ******************************
        
@@ -1282,7 +1282,7 @@ static function fechamento_geral(parametro)
 
        x_percentual := 0
        x_comissao   := 0
-       x_codigo     := 0
+*       x_codigo     := 0
        x_codigo     := form_fecha_pedido.combo_motoboy.value
        dbselectarea('atendentes')
        atendentes->(ordsetfocus('codigo'))
@@ -1465,7 +1465,7 @@ static function abrir_mesa()
        local x_minuto    := substr(time(),4,2)
        local x_segundo   := substr(time(),7,2)
        local x_gera_id   := alltrim(x_id_mesa)+x_dia+x_mes+x_ano+x_hora+x_minuto+x_segundo
-       local x_mesa      := 0
+       local x_mesa      //:= 0
 
        if empty(x_nome_mesa)
           msgalert('Escolha uma mesa primeiro','Atenção')
@@ -1501,9 +1501,9 @@ static function abrir_mesa()
 static function limpar_mesa()
 
        local x_nome_mesa := valor_coluna('grid_mesas','form_vda_mesas',3)
-       local x_id        := valor_coluna('grid_mesas','form_vda_mesas',1)
-       local x_id_mesa   := valor_coluna('grid_mesas','form_vda_mesas',2)
-       local x_mesa      := 0
+*       local x_id        := valor_coluna('grid_mesas','form_vda_mesas',1)
+*       local x_id_mesa   := valor_coluna('grid_mesas','form_vda_mesas',2)
+       local x_mesa     // := 0
 
        if empty(x_nome_mesa)
           msgalert('Escolha uma mesa primeiro','Atenção')

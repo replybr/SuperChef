@@ -790,7 +790,7 @@ static function procura_grupo_fornecedores(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_grupo_fornecedores(value)
+static function getcode_grupo_fornecedores(/*value*/)
 
        local creg := ''
        local nreg := 1

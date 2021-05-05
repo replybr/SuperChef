@@ -498,7 +498,7 @@ static function gravar(parametro)
 static function atualizar()
 
        local x_banco        := form_movban.cbo_001.value
-       local x_codigo_banco := 0
+       local x_codigo_banco //:= 0
        local x_data_001     := form_movban.dp_inicio.value
        local x_data_002     := form_movban.dp_final.value
 
@@ -556,7 +556,7 @@ static function procura_banco_2(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_banco_2(value)
+static function getcode_banco_2(/*value*/)
 
        local creg := ''
        local nreg := 1

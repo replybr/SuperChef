@@ -1,0 +1,202 @@
+Ord	Arquivo;date;Size
+1	atendentes.prg {18/07/2012;17715}
+1	1	[  ]	form_atendentes;(19)	form_atendentes;
+1	2	[  ]	form_dados;(227)	form_dados;
+1	
+2	backup.prg {18/07/2012;5851}
+2	1	[  ]	form_backup;(18)	form_backup;
+2	
+3	bancos.prg {18/07/2012;23607}
+3	1	[  ]	form_bancos;(19)	form_bancos;
+3	2	[  ]	form_dados;(239)	form_dados;
+3	
+4	caixa.prg {18/07/2012;16153}
+4	1	[  ]	form_caixa;(14)	form_caixa;
+4	2	[  ]	form_dados;(226)	form_dados;
+4	
+5	categoria_produtos.prg {18/07/2012;17127}
+5	1	[  ]	form_categoria_produtos;(19)	form_categoria_produtos;
+5	2	[  ]	form_dados;(225)	form_dados;
+5	
+6	clientes.prg {18/07/2012;29050}
+6	1	[  ]	form_clientes;(19)	form_clientes;
+6	2	[  ]	form_dados;(249)	form_dados;
+6	
+7	compras.prg {18/07/2012;44931}
+7	1	[  ]	form_compras;(14)	form_compras;
+7	2	[  ]	form_pesquisa;(467)	form_pesquisa;
+7	3	[  ]	form_pesquisa;(585)	form_pesquisa;
+7	4	[  ]	form_pesquisa;(694)	form_pesquisa;
+7	5	[  ]	form_pesquisa;(814)	form_pesquisa;
+7	
+8	cpag.prg {18/07/2012;26792}
+8	1	[  ]	form_cpag;(14)	form_cpag;
+8	2	[  ]	form_dados;(225)	form_dados;
+8	3	[  ]	form_pesquisa;(556)	form_pesquisa;
+8	4	[  ]	form_pesquisa;(674)	form_pesquisa;
+8	
+9	crec.prg {18/07/2012;26765}
+9	1	[  ]	form_crec;(14)	form_crec;
+9	2	[  ]	form_dados;(225)	form_dados;
+9	3	[  ]	form_pesquisa;(557)	form_pesquisa;
+9	4	[  ]	form_pesquisa;(676)	form_pesquisa;
+9	
+10	empresa.prg {18/07/2012;13084}
+10	1	[  ]	form_empresa;(42)	form_empresa;
+10	
+11	entregas.prg {18/07/2012;10493}
+11	1	[  ]	form_entrega;(14)	form_entrega;
+11	2	[  ]	form_escolhe;(87)	form_escolhe;
+11	3	[  ]	form_situacao;(170)	form_situacao;
+11	
+12	formas_pagamento.prg {18/07/2012;23362}
+12	1	[  ]	form_formas_pagamento;(19)	form_formas_pagamento;
+12	2	[  ]	form_dados;(229)	form_dados;
+12	3	[  ]	form_pesquisa;(590)	form_pesquisa;
+12	
+13	formas_recebimento.prg {18/07/2012;23629}
+13	1	[  ]	form_formas_recebimento;(19)	form_formas_recebimento;
+13	2	[  ]	form_dados;(229)	form_dados;
+13	3	[  ]	form_pesquisa;(590)	form_pesquisa;
+13	
+14	fornecedores.prg {18/07/2012;32334}
+14	1	[  ]	form_fornecedores;(19)	form_fornecedores;
+14	2	[  ]	form_dados;(247)	form_dados;
+14	3	[  ]	form_pesquisa;(802)	form_pesquisa;
+14	
+15	funcoes.prg {24/11/2013;12703}
+15	
+16	grupo_fornecedores.prg {18/07/2012;17129}
+16	1	[  ]	form_grupo_fornecedores;(19)	form_grupo_fornecedores;
+16	2	[  ]	form_dados;(225)	form_dados;
+16	
+17	impostos.prg {18/07/2012;17672}
+17	1	[  ]	form_impostos;(19)	form_impostos;
+17	2	[  ]	form_dados;(227)	form_dados;
+17	
+18	materia_prima.prg {18/07/2012;28307}
+18	1	[  ]	form_materia_prima;(19)	form_materia_prima;
+18	2	[  ]	form_dados;(248)	form_dados;
+18	3	[  ]	form_pesquisa;(644)	form_pesquisa;
+18	4	[  ]	form_fornecedor_mprima;(729)	form_fornecedor_mprima;
+18	
+19	mesas.prg {18/07/2012;16118}
+19	1	[  ]	form_mesas;(19)	form_mesas;
+19	2	[  ]	form_dados;(225)	form_dados;
+19	
+20	motoboys.prg {18/07/2012;27377}
+20	1	[  ]	form_motoboys;(19)	form_motoboys;
+20	2	[  ]	form_dados;(247)	form_dados;
+20	
+21	movimento_bancario.prg {18/07/2012;23033}
+21	1	[  ]	form_movban;(24)	form_movban;
+21	2	[  ]	form_dados;(259)	form_dados;
+21	3	[  ]	form_pesquisa;(568)	form_pesquisa;
+21	
+22	operadores.prg {18/07/2012;54787}
+22	1	[  ]	form_operadores;(19)	form_operadores;
+22	2	[  ]	form_dados;(244)	form_dados;
+22	3	[  ]	form_acesso;(620)	form_acesso;
+22	
+23	produtos.prg {18/07/2012;66985}
+23	1	[  ]	form_produtos;(19)	form_produtos;
+23	2	[  ]	form_dados;(298)	form_dados;
+23	3	[  ]	form_compor;(780)	form_compor;
+23	4	[  ]	form_inccpo;(871)	form_inccpo;
+23	5	[  ]	form_pesquisa;(1317)	form_pesquisa;
+23	6	[  ]	form_pesquisa;(1435)	form_pesquisa;
+23	7	[  ]	form_pesquisa;(1553)	form_pesquisa;
+23	8	[  ]	form_pesquisa;(1671)	form_pesquisa;
+23	9	[  ]	form_fornecedor_produto;(1756)	form_fornecedor_produto;
+23	
+24	promocao.prg {18/07/2012;19662}
+24	1	[  ]	form_promocao;(39)	form_promocao;
+24	
+25	reajuste.prg {18/07/2012;18320}
+25	1	[  ]	form_reajuste;(39)	form_reajuste;
+25	
+26	rel_cpag_forn.prg {18/07/2012;9122}
+26	1	[  ]	form_mov_cpag_forn;(25)	form_mov_cpag_forn;
+26	
+27	rel_crec_cli.prg {18/07/2012;9048}
+27	1	[  ]	form_mov_crec_cli;(25)	form_mov_crec_cli;
+27	
+28	rel_estoque_minimo.prg {18/07/2012;6521}
+28	1	[  ]	form_est_minimo;(15)	form_est_minimo;
+28	
+29	rel_fechamento_dia.prg {18/07/2012;26204}
+29	1	[  ]	form_fechamento;(24)	form_fechamento;
+29	
+30	rel_garcon.prg {18/07/2012;8003}
+30	1	[  ]	form_comissao_garcon;(25)	form_comissao_garcon;
+30	
+31	rel_motoboy.prg {18/07/2012;8846}
+31	1	[  ]	form_comissao_motoboy;(25)	form_comissao_motoboy;
+31	
+32	rel_mov_banco.prg {18/07/2012;8251}
+32	1	[  ]	form_mov_banco;(25)	form_mov_banco;
+32	
+33	rel_mov_caixa.prg {18/07/2012;6651}
+33	1	[  ]	form_mov_caixa;(15)	form_mov_caixa;
+33	
+34	rel_mov_cpag.prg {18/07/2012;7452}
+34	1	[  ]	form_mov_cpag;(15)	form_mov_cpag;
+34	
+35	rel_mov_crec.prg {18/07/2012;7487}
+35	1	[  ]	form_mov_crec;(15)	form_mov_crec;
+35	
+36	rel_pizza_001.prg {18/07/2012;9871}
+36	1	[  ]	form_pizzas_001;(31)	form_pizzas_001;
+36	
+37	rel_posicao_estoque.prg {18/07/2012;6200}
+37	1	[  ]	form_estoque_produtos;(15)	form_estoque_produtos;
+37	
+38	rel_posicao_mprima.prg {18/07/2012;5544}
+38	1	[  ]	form_estoque_mprima;(15)	form_estoque_mprima;
+38	
+39	rel_produto_001.prg {18/07/2012;9953}
+39	1	[  ]	form_pizzas_001;(31)	form_pizzas_001;
+39	
+40	subcategoria_produtos.prg {18/07/2012;17373}
+40	1	[  ]	form_subcategoria_produtos;(19)	form_subcategoria_produtos;
+40	2	[  ]	form_dados;(225)	form_dados;
+40	
+41	SuperChef.prg {04/05/2021;103965}
+41	1	[  ]	form_main;(145)	form_main;
+41	2	[  ]	form_tamanhos;(1894)	form_tamanhos;
+41	3	[  ]	form_altera_tamanho;(1963)	form_altera_tamanho;
+41	4	[  ]	form_login;(2066)	form_login;
+41	5	[  ]	form_configurar;(2345)	form_configurar;
+41	6	[  ]	form_bordas;(2456)	form_bordas;
+41	7	[  ]	form_altera_borda;(2525)	form_altera_borda;
+41	
+42	unidades_medida.prg {18/07/2012;16824}
+42	1	[  ]	form_unidade_medida;(19)	form_unidade_medida;
+42	2	[  ]	form_dados;(225)	form_dados;
+42	
+43	venda_balcao.prg {18/07/2012;78166}
+43	1	[  ]	form_balcao;(22)	form_balcao;
+43	2	[  ]	form_pesquisa;(464)	form_pesquisa;
+43	3	[  ]	form_pesquisa;(574)	form_pesquisa;
+43	4	[  ]	form_pesquisa;(686)	form_pesquisa;
+43	5	[  ]	form_incluir_novo_cliente;(782)	form_incluir_novo_cliente;
+43	6	[  ]	form_finaliza_pizza;(1229)	form_finaliza_pizza;
+43	7	[  ]	form_fecha_pedido;(1421)	form_fecha_pedido;
+43	
+44	venda_delivery.prg {18/07/2012;98629}
+44	1	[  ]	form_delivery;(58)	form_delivery;
+44	2	[  ]	form_pesquisa;(516)	form_pesquisa;
+44	3	[  ]	form_pesquisa;(626)	form_pesquisa;
+44	4	[  ]	form_pesquisa;(738)	form_pesquisa;
+44	5	[  ]	form_incluir_novo_cliente;(834)	form_incluir_novo_cliente;
+44	6	[  ]	form_finaliza_pizza;(1281)	form_finaliza_pizza;
+44	7	[  ]	form_fecha_pedido;(1485)	form_fecha_pedido;
+44	8	[  ]	form_pquantidade;(2097)	form_pquantidade;
+44	
+45	venda_mesas.prg {18/07/2012;62927}
+45	1	[  ]	form_vda_mesas;(40)	form_vda_mesas;
+45	2	[  ]	form_pesquisa;(348)	form_pesquisa;
+45	3	[  ]	form_pesquisa;(460)	form_pesquisa;
+45	4	[  ]	form_finaliza_pizza;(649)	form_finaliza_pizza;
+45	5	[  ]	form_fecha_pedido;(876)	form_fecha_pedido;
+45	

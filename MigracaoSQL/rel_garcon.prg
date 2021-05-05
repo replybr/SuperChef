@@ -131,7 +131,7 @@ static function relatorio()
        
        local x_subtotal := 0
        local x_total    := 0
-       local x_old_data := ctod('  /  /  ')
+       local x_old_data //:= ctod('  /  /  ')
 
        x_codigo_garcon := val(substr(form_comissao_garcon.cbo_001.item(x_garcon),1,4))
 
@@ -191,7 +191,7 @@ static function relatorio()
 *-------------------------------------------------------------------------------
 static function cabecalho(p_pagina)
 
-       local x_codigo_garcon := 0
+       local x_codigo_garcon //:= 0
        local x_de            := form_comissao_garcon.dp_inicio.value
        local x_ate           := form_comissao_garcon.dp_final.value
        local x_garcon        := form_comissao_garcon.cbo_001.value

@@ -781,7 +781,7 @@ static function relatorio()
           START PRINTPAGE
           pagina ++
           cabecalho(pagina)
-          linha := p_linha
+          *linha := p_linha
        endif
 
        * FINAL

@@ -1,8 +1,10 @@
+--Definido atendentes código auto-incremento e primary key
 Create Table atendentes(
-   codigo INTEGER,
+   codigo COUNTER  primary key,
    nome Varchar(20),
    comissao Decimal(10,2)
    );
+---------------------------------------------------------
 
 Create Table bancos(
    codigo INTEGER,
@@ -87,6 +89,7 @@ Create Table config(
    tipo INTEGER
    );
 
+--Rever a tabela Conta, os recurso Sum do SQL pode prover esta informação automaticamente.
 Create Table conta(
    c_clientes INTEGER,
    c_fornec INTEGER,

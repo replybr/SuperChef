@@ -11,18 +11,18 @@
 
 function empresa()
 
-         local x_nome     := ''
-         local x_fixo_1   := ''
-         local x_fixo_2   := ''
-         local x_endereco := ''
-         local x_numero   := ''
-         local x_complem  := ''
-         local x_bairro   := ''
-         local x_cidade   := ''
-         local x_uf       := 'PR'
-         local x_cep      := ''
-         local x_email    := ''
-         local x_site     := ''
+         local x_nome   //  := ''
+         local x_fixo_1 //  := ''
+         local x_fixo_2 //  := ''
+         local x_endereco// := ''
+         local x_numero  // := ''
+         local x_complem // := ''
+         local x_bairro  // := ''
+         local x_cidade  // := ''
+         local x_uf      // := 'PR'
+         local x_cep     // := ''
+         local x_email   // := ''
+         local x_site    // := ''
 
          dbselectarea('empresa')
          empresa->(dbgotop())

@@ -1305,7 +1305,7 @@ static function procura_categoria(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_categoria_produtos(value)
+static function getcode_categoria_produtos(/*value*/)
 
        local creg := ''
        local nreg := 1
@@ -1423,7 +1423,7 @@ static function procura_subcategoria(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_subcategoria_produtos(value)
+static function getcode_subcategoria_produtos(/*value*/)
 
        local creg := ''
        local nreg := 1
@@ -1541,7 +1541,7 @@ static function procura_imposto(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_impostos(value)
+static function getcode_impostos(/*value*/)
 
        local creg := ''
        local nreg := 1
@@ -1659,7 +1659,7 @@ static function procura_mprima(cform,ctextbtn)
 
        return(nil)
 *-------------------------------------------------------------------------------
-static function getcode_materia_prima(value)
+static function getcode_materia_prima(/*value*/)
 
        local creg := ''
        local nreg := 1
@@ -1810,7 +1810,7 @@ static function fornecedores_produto()
 *-------------------------------------------------------------------------------
 static function filtra_fornecedor(parametro)
 
-       local x_old_fornecedor := 0
+       local x_old_fornecedor // := 0
        
        delete item all from grid_fornecedor_produto of form_fornecedor_produto
 
