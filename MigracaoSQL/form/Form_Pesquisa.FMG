@@ -22,7 +22,7 @@
 *{Modulo:atendentes.prg}
 
 
-DEFINE WINDOW TEMPLATE AT 191, 307 WIDTH 800 HEIGHT 605  TITLE "" ICON "icone" MODAL NOSIZE ON INIT (MontaGrid(aHeader))
+DEFINE WINDOW TEMPLATE AT 191, 307 WIDTH 800 HEIGHT 605  TITLE "" ICON "icone" MODAL NOSIZE ON INIT (MontaGrid(aHeader,{||Atualizar()}))
 
     DEFINE BUTTONEX button_incluir
         ACTION (dados(1))
@@ -168,8 +168,8 @@ DEFINE WINDOW TEMPLATE AT 191, 307 WIDTH 800 HEIGHT 605  TITLE "" ICON "icone" M
         FONTSIZE 10
         HEIGHT 27
         MAXLENGTH 40
-        ONENTER (pesquisar())
-        ACTION (pesquisar())
+        ONENTER (atualizar())
+        ACTION (atualizar())
         ROW 540
         UPPERCASE TRUE
         WIDTH 300
