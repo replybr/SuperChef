@@ -7,9 +7,30 @@
 */
 
 #include 'minigui.ch'
-
 memvar path_dbf
 memvar _nome_unidade
+
+//Add
+******************************************************
+Declare window &(cName)
+function MontaGrid(aHeader,bFunc)
+   Local cCaption,nColIndex,cName:=ThisWindow.Name
+   For nColIndex=0 to &(cName).Grid_Pesquisa.ColumnCount 
+      &(cName).Grid_Pesquisa.DeleteColumn(nColIndex)
+   Next
+   nColIndex:=0
+   For each cCaption in aHeader
+      nColIndex++
+      &(cName).Grid_Pesquisa.AddColumn(nColIndex,cCaption,10,0)
+   Next
+   if valtype(bFunc)="B"
+      Eval(bFunc)
+   endif
+   Return .T.
+******************************************************
+
+
+
 
 function open_dbf(nome,apelido,modo)
 
