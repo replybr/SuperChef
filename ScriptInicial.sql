@@ -1,13 +1,15 @@
 --Definido atendentes código auto-incremento e primary key
+--Executado
 Create Table atendentes(
    codigo COUNTER  primary key,
    nome Varchar(20),
    comissao Decimal(10,2)
    );
 ---------------------------------------------------------
-
+--Definido atendentes código auto-incremento e primary key
+--Executado
 Create Table bancos(
-   codigo INTEGER,
+   codigo COUNTER primary key,
    nome Varchar(20),
    banco Varchar(10),
    agencia Varchar(10),
@@ -17,7 +19,7 @@ Create Table bancos(
    gerente Varchar(20),
    telefone Varchar(10)
    );
-
+---------------------------------------------------------
 Create Table bordas(
    nome Varchar(15),
    preco Decimal(10,2)
