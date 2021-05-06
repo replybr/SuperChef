@@ -39,6 +39,22 @@ Create Table clientes(
    aniv_mes INTEGER
    );
 ---------------------------------------------------------
+Create Table empresa(
+   nome Varchar(40),
+   fixo_1 Varchar(10),
+   fixo_2 Varchar(10),
+   endereco Varchar(40),
+   numero Varchar(6),
+   complem Varchar(20),
+   bairro Varchar(20),
+   cidade Varchar(20),
+   uf Varchar(2),
+   cep Varchar(8),
+   email Varchar(50),
+   site Varchar(50)
+   );
+---------------------------------------------------------
+
 Create Table bordas(
    nome Varchar(15),
    preco Decimal(10,2)
@@ -134,21 +150,6 @@ Create Table contas_receber(
    numero Varchar(15),
    obs Varchar(30),
    baixa BIT
-   );
-
-Create Table empresa(
-   nome Varchar(40),
-   fixo_1 Varchar(10),
-   fixo_2 Varchar(10),
-   endereco Varchar(40),
-   numero Varchar(6),
-   complem Varchar(20),
-   bairro Varchar(20),
-   cidade Varchar(20),
-   uf Varchar(2),
-   cep Varchar(8),
-   email Varchar(50),
-   site Varchar(50)
    );
 
 Create Table entrega(
