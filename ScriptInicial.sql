@@ -20,6 +20,25 @@ Create Table bancos(
    telefone Varchar(10)
    );
 ---------------------------------------------------------
+--Definido atendentes código auto-incremento e primary key
+--Executado
+Create Table clientes(
+   codigo Counter primary key,
+   nome Varchar(40),
+   fixo Varchar(10),
+   celular Varchar(10),
+   endereco Varchar(40),
+   numero Varchar(6),
+   complem Varchar(20),
+   bairro Varchar(20),
+   cidade Varchar(20),
+   uf Varchar(2),
+   cep Varchar(8),
+   email Varchar(50),
+   aniv_dia INTEGER,
+   aniv_mes INTEGER
+   );
+---------------------------------------------------------
 Create Table bordas(
    nome Varchar(15),
    preco Decimal(10,2)
@@ -56,22 +75,7 @@ Create Table ultimas_compras(
    valor Decimal(12,2)
    );
 
-Create Table clientes(
-   codigo INTEGER,
-   nome Varchar(40),
-   fixo Varchar(10),
-   celular Varchar(10),
-   endereco Varchar(40),
-   numero Varchar(6),
-   complem Varchar(20),
-   bairro Varchar(20),
-   cidade Varchar(20),
-   uf Varchar(2),
-   cep Varchar(8),
-   email Varchar(50),
-   aniv_dia INTEGER,
-   aniv_mes INTEGER
-   );
+
 
 Create Table comissao_mesa(
    id INTEGER,

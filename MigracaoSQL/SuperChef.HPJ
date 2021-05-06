@@ -49,7 +49,8 @@ NaoIncluiResourceHmg=FALSE
 [FORMULARIOS]
 Frm0001=%PROJETO%\Form\atendentes_form_dados.FMG
 Frm0002=%PROJETO%\Form\bancos_form_dados.FMG
-Frm0003=%PROJETO%\form\Form_Pesquisa.FMG
+Frm0003=%PROJETO%\Form\clientes_form_dados.FMG
+Frm0004=%PROJETO%\form\Form_Pesquisa.FMG
 
 [MODULOS]
 MOD0001=%PROJETO%\backup.prg
