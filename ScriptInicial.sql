@@ -54,6 +54,30 @@ Create Table empresa(
    site Varchar(50)
    );
 ---------------------------------------------------------
+Create Table grupo_apoio(
+   codigo COUNTER primary key,
+   tabela integer not null,
+   nome Varchar(20)
+   );
+
+--Create Table categoria_produtos(
+--   codigo INTEGER,
+--   nome Varchar(20)
+--   );
+--Create Table subcategoria_produtos(
+--   codigo INTEGER,
+--   nome Varchar(20)
+--   );
+--Create Table unidade_medida(
+--   codigo INTEGER,
+--   nome Varchar(10)
+--   );
+--Create Table grupo_fornecedores(
+--   codigo INTEGER,
+--   nome Varchar(20)
+--   );
+
+
 
 Create Table bordas(
    nome Varchar(15),
@@ -68,10 +92,7 @@ Create Table caixa(
    saida Decimal(12,2)
    );
 
-Create Table categoria_produtos(
-   codigo INTEGER,
-   nome Varchar(20)
-   );
+
 
 Create Table detalhamento_compras(
    id_cliente INTEGER,
@@ -194,10 +215,7 @@ Create Table formas_recebimento(
    dias_receb INTEGER
    );
 
-Create Table grupo_fornecedores(
-   codigo INTEGER,
-   nome Varchar(20)
-   );
+
 
 Create Table impostos(
    codigo INTEGER,
@@ -391,10 +409,6 @@ Create Table produtos(
    val_tm_006 Decimal(10,2)
    );
 
-Create Table subcategoria_produtos(
-   codigo INTEGER,
-   nome Varchar(20)
-   );
 
 Create Table tamanhos(
    nome Varchar(15),
@@ -468,8 +482,5 @@ Create Table temp_vendas(
    subtotal Decimal(12,2)
    );
 
-Create Table unidade_medida(
-   codigo INTEGER,
-   nome Varchar(10)
-   );
+
 
