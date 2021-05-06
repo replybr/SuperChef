@@ -6,10 +6,23 @@
   programador : marcelo neves
 */
 
-//#include 'minigui.ch'
-//#include 'miniprint.ch'
-//#include 'super.ch'
-
+/*  SOBRE A IDE
+    ==============================================================================================
+    IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO:
+    Alteração : 05/05/2021-15:41:31 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    Conversão de DBF para SQL
+    */
+    
 #include <hmg.ch>
 #include <SQLAdo.ch>
 Declare Cursor SQLADO rs
@@ -30,19 +43,6 @@ function atendentes()
     form_atendentes.activate
     
     return(nil)
-    *-------------------------------------------------------------------------------
-Static function MontaGrid(aHeader)
-    Local cCaption,nColIndex
-    For nColIndex=0 to Form_atendentes.Grid_Pesquisa.ColumnCount 
-        Form_Atendentes.Grid_Pesquisa.DeleteColumn(nColIndex)
-    Next
-    nColIndex:=0
-    For each cCaption in aHeader
-        nColIndex++
-        Form_atendentes.Grid_Pesquisa.AddColumn(nColIndex,cCaption,10,0)
-    Next
-    Atualizar()
-    Return .T.
     *-------------------------------------------------------------------------------
 static function dados(parametro)
     local cId := Form_Atendentes.Grid_Pesquisa.Item(Form_Atendentes.Grid_Pesquisa.value)[1]
@@ -176,29 +176,10 @@ static function gravar(parametro)
     atualizar()
     return TRUE
     *-------------------------------------------------------------------------------
-static function pesquisar()
-    form_atendentes.Grid_Pesquisa.disableupdate
-    
-    delete item all from Grid_Pesquisa of form_atendentes
-    Rs.SQL := "Select top 100 * from atendentes where nome like '"+form_atendentes.tbox_pesquisa.value+"%'"
-    Rs.Open()
-    if Rs.ErrorSQL()
-        Return .F.
-    endif
-    while !Rs.Eof()
-        add item {str(Rs.Field.codigo.value),alltrim(Rs.Field.nome.value),trans(Rs.Field.comissao.value,'@R 999.99')} to Grid_Pesquisa of form_atendentes
-        Rs.MoveNext()
-    end
-    form_atendentes.Grid_Pesquisa.ColumnsAutoFit()
-    form_atendentes.Grid_Pesquisa.ColumnsAutoFitH()    
-    form_atendentes.Grid_Pesquisa.enableupdate
-    
-    return(nil)
-    *-------------------------------------------------------------------------------
 static function atualizar()
     form_atendentes.Grid_Pesquisa.disableupdate
     delete item all from Grid_Pesquisa of form_atendentes
-    Rs.SQL := "Select top 100 * from atendentes where nome like '"+form_atendentes.tbox_pesquisa.value+"%'"
+    Rs.SQL := "Select top 100 * from atendentes where nome like '"+form_atendentes.tbox_pesquisa.value+"%' order by nome"
     Rs.Open()
     if Rs.ErrorSQL()
         Return .F.
