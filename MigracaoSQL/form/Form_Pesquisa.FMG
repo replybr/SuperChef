@@ -168,7 +168,7 @@ DEFINE WINDOW TEMPLATE AT 191, 307 WIDTH 800 HEIGHT 605  TITLE "" ICON "icone" M
         FONTSIZE 10
         HEIGHT 27
         MAXLENGTH 40
-        ONENTER (atualizar())
+        ONENTER (atualizar(),Domethod(ThisWindow.name,"Grid_Pesquisa","Setfocus"))
         ACTION (atualizar())
         ROW 540
         UPPERCASE TRUE
