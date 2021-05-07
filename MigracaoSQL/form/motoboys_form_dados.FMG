@@ -1,0 +1,271 @@
+*Form extraido do arquivo E:\Prgplus\Git\SuperChef\MigracaoSQL\motoboys.prg
+* linha 247 à 512
+
+#include <Var.ch>
+Local xxxxwidth := 585
+Local xxxHeight := 360
+
+*{Name:form_dados}
+*{Modulo:motoboys.prg}
+
+define window form_dados; 
+at 000,000; 
+width 585; 
+height 360; 
+title (titulo); 
+icon path_imagens+'icone.ico'; 
+modal; 
+nosize 
+@ 010,005 label lbl_001; 
+of form_dados; 
+value 'Nome'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 030,005 textbox tbox_001; 
+of form_dados; 
+height 027; 
+width 310; 
+value x_nome; 
+maxlength 040; 
+font 'tahoma' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+uppercase 
+@ 010,325 label lbl_002; 
+of form_dados; 
+value 'Telefone fixo'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 030,325 textbox tbox_002; 
+of form_dados; 
+height 027; 
+width 120; 
+value x_fixo; 
+maxlength 010; 
+font 'tahoma' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+uppercase 
+@ 010,455 label lbl_003; 
+of form_dados; 
+value 'Telefone celular'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 030,455 textbox tbox_003; 
+of form_dados; 
+height 027; 
+width 120; 
+value x_celular; 
+maxlength 010; 
+font 'tahoma' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+uppercase 
+@ 060,005 label lbl_004; 
+of form_dados; 
+value 'Endereço'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 080,005 textbox tbox_004; 
+of form_dados; 
+height 027; 
+width 310; 
+value x_endereco; 
+maxlength 040; 
+font 'tahoma' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+uppercase 
+@ 060,325 label lbl_005; 
+of form_dados; 
+value 'Número'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 080,325 textbox tbox_005; 
+of form_dados; 
+height 027; 
+width 060; 
+value x_numero; 
+maxlength 006; 
+font 'tahoma' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+uppercase 
+@ 060,395 label lbl_006; 
+of form_dados; 
+value 'Complemento'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 080,395 textbox tbox_006; 
+of form_dados; 
+height 027; 
+width 180; 
+value x_complem; 
+maxlength 020; 
+font 'tahoma' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+uppercase 
+@ 110,005 label lbl_007; 
+of form_dados; 
+value 'Bairro'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 130,005 textbox tbox_007; 
+of form_dados; 
+height 027; 
+width 180; 
+value x_bairro; 
+maxlength 020; 
+font 'tahoma' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+uppercase 
+@ 110,195 label lbl_008; 
+of form_dados; 
+value 'Cidade'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 130,195 textbox tbox_008; 
+of form_dados; 
+height 027; 
+width 180; 
+value x_cidade; 
+maxlength 020; 
+font 'tahoma' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+uppercase 
+@ 110,385 label lbl_009; 
+of form_dados; 
+value 'UF'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 130,385 textbox tbox_009; 
+of form_dados; 
+height 027; 
+width 040; 
+value x_uf; 
+maxlength 002; 
+font 'tahoma' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+uppercase 
+@ 110,435 label lbl_010; 
+of form_dados; 
+value 'CEP'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 130,435 textbox tbox_010; 
+of form_dados; 
+height 027; 
+width 080; 
+value x_cep; 
+maxlength 008; 
+font 'tahoma' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+uppercase 
+@ 160,005 label lbl_011; 
+of form_dados; 
+value 'e-mail'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 180,005 textbox tbox_011; 
+of form_dados; 
+height 027; 
+width 450; 
+value x_email; 
+maxlength 050; 
+font 'tahoma' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+lowercase 
+@ 210,005 label lbl_013; 
+of form_dados; 
+value 'Diária (R$)'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 230,005 getbox tbox_013; 
+of form_dados; 
+height 027; 
+width 140; 
+value x_diaria; 
+font 'tahoma' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+picture '@E 9,999.99' 
+define label linha_rodape 
+col 000 
+row xxxHeight-090
+value '' 
+width xxxxWidth 
+height 001 
+backcolor _preto_001 
+transparent .F. 
+end label 
+define buttonex button_ok 
+picture path_imagens+'img_gravar.bmp' 
+col xxxxWidth-225
+row xxxHeight-085
+width 120 
+height 050 
+caption 'Ok, gravar' 
+action gravar(parametro) 
+fontbold .T. 
+tooltip 'Confirmar as informações digitadas' 
+flat .F. 
+noxpstyle .T. 
+end buttonex 
+define buttonex button_cancela 
+picture path_imagens+'img_voltar.bmp' 
+col xxxxWidth-100
+row xxxHeight-085
+width 090 
+height 050 
+caption 'Voltar' 
+action form_dados.release 
+fontbold .T. 
+tooltip 'Sair desta tela sem gravar informações' 
+flat .F. 
+noxpstyle .T. 
+end buttonex 
+end window 
+
+
