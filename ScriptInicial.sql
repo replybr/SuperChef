@@ -132,7 +132,7 @@ Insert into operadores (nome,senha,acesso) values ('SChef','9999','1111111111111
 --Executado
 
 Create Table forma_pag_rec(
-   codigo INTEGER,
+   codigo COUNTER primary key,
    tipo char(1),
    nome Varchar(20),
    banco INTEGER,
