@@ -154,23 +154,34 @@ static function rodape()
     *-------------------------------------------------------------------------------
 static function gravar(parametro)
     
-    local cMsg:=""
+    local cMsg:="",cFocus
     
     if empty(form_dados.tbox_001.value)
         cMsg += "Falta preencher nome "+CRLF
+        cFocus:="tbox_001"
     endif
     if empty(form_dados.tbox_002.value)
         cMsg += "Falta preencher banco "+CRLF
+        if empty(cFocus)
+            cFocus:="tbox_002"
+        endif
     endif
     if empty(form_dados.tbox_003.value)
         cMsg += "Falta preencher Agência"+CRLF
+        if empty(cFocus)
+            cFocus:="tbox_003"
+        endif
     endif
     if empty(form_dados.tbox_004.value)
         cMsg += "Falta preencher a Conta"+CRLF
+        if empty(cFocus)
+            cFocus:="tbox_004"
+        endif
     endif
     
     if !Empty(cMsg)
         msgalert(cMsg,'Atenção')
+        form_dados.&(cFocus).Setfocus()
         return(nil)
     endif
     
