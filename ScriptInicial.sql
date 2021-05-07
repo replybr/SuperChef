@@ -115,13 +115,17 @@ Create Table motoboys(
    );
    
 --Definido atendentes código auto-incremento e primary key
+--Eliminado a tabela acesso, campo incluido acesso substitui a tabela.
 --Executado
 Create Table operadores(
    codigo COUNTER Primary key,
    nome Varchar(10),
    senha Varchar(10),
-   acesso varchar(100) --Eliminado a tabela acesso, este campo substitui a tabela.
+   acesso varchar(43) 
    );   
+ 
+CREATE UNIQUE INDEX IDXOperadoresNome ON operadores (nome) ;
+Insert into operadores (nome,senha,acesso) values ('SChef','9999','1111111111111111111111111111111111111111111');
 ---------------------------------------------------------
 Create Table bordas(
    nome Varchar(15),
