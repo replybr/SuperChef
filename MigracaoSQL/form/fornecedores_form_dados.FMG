@@ -1,0 +1,391 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 06/05/2021-21:06:08 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_dados}
+*{Modulo:SQLfornecedores.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 251, 313 WIDTH 585 HEIGHT 360  TITLE "(titulo)" ICON "icone.ico" MODAL NOSIZE
+
+    DEFINE LABEL lbl_001
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 10
+        TRANSPARENT TRUE
+        VALUE "Nome"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_001
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 40
+        ROW 33
+        UPPERCASE TRUE
+        WIDTH 310
+    END TEXTBOX
+
+    DEFINE LABEL lbl_002
+        AUTOSIZE TRUE
+        COL 325
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 10
+        TRANSPARENT TRUE
+        VALUE "Telefone fixo"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_002
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 325
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 10
+        ROW 33
+        UPPERCASE TRUE
+        WIDTH 120
+    END TEXTBOX
+
+    DEFINE LABEL lbl_003
+        AUTOSIZE TRUE
+        COL 455
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 10
+        TRANSPARENT TRUE
+        VALUE "Telefone celular"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_003
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 455
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 10
+        ROW 33
+        UPPERCASE TRUE
+        WIDTH 120
+    END TEXTBOX
+
+    DEFINE LABEL lbl_004
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 61
+        TRANSPARENT TRUE
+        VALUE "Endereço"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_004
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 40
+        ROW 84
+        UPPERCASE TRUE
+        WIDTH 310
+    END TEXTBOX
+
+    DEFINE LABEL lbl_005
+        AUTOSIZE TRUE
+        COL 325
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 61
+        TRANSPARENT TRUE
+        VALUE "Número"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_005
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 325
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 6
+        ROW 84
+        UPPERCASE TRUE
+        WIDTH 60
+    END TEXTBOX
+
+    DEFINE LABEL lbl_006
+        AUTOSIZE TRUE
+        COL 395
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 61
+        TRANSPARENT TRUE
+        VALUE "Complemento"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_006
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 395
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 20
+        ROW 84
+        UPPERCASE TRUE
+        WIDTH 180
+    END TEXTBOX
+
+    DEFINE LABEL lbl_007
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 112
+        TRANSPARENT TRUE
+        VALUE "Bairro"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_007
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 20
+        ROW 135
+        UPPERCASE TRUE
+        WIDTH 180
+    END TEXTBOX
+
+    DEFINE LABEL lbl_008
+        AUTOSIZE TRUE
+        COL 195
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 112
+        TRANSPARENT TRUE
+        VALUE "Cidade"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_008
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 195
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 20
+        ROW 135
+        UPPERCASE TRUE
+        WIDTH 180
+    END TEXTBOX
+
+    DEFINE LABEL lbl_009
+        AUTOSIZE TRUE
+        COL 385
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 112
+        TRANSPARENT TRUE
+        VALUE "UF"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_009
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 385
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 2
+        ROW 135
+        UPPERCASE TRUE
+        WIDTH 40
+    END TEXTBOX
+
+    DEFINE LABEL lbl_010
+        AUTOSIZE TRUE
+        COL 435
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 112
+        TRANSPARENT TRUE
+        VALUE "CEP"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_010
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 435
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 8
+        ROW 135
+        UPPERCASE TRUE
+        WIDTH 80
+    END TEXTBOX
+
+    DEFINE LABEL lbl_011
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 163
+        TRANSPARENT TRUE
+        VALUE "e-mail"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_011
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        LOWERCASE TRUE
+        MAXLENGTH 50
+        ROW 186
+        WIDTH 450
+    END TEXTBOX
+
+    DEFINE LABEL lbl_012
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 214
+        TRANSPARENT TRUE
+        VALUE "Grupo"
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX tbox_012
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 300
+        ONLISTDISPLAY (form_dados_tbox_012_Onlistdisplay())
+        ROW 237
+        VALUE 0
+        WIDTH 450
+    END COMBOBOX
+
+    DEFINE LABEL linha_rodape
+        BACKCOLOR { 0 , 0 , 0 }
+        COL 0
+        HEIGHT 1
+        ROW 270
+        TRANSPARENT FALSE
+        WIDTH 585
+    END LABEL
+
+    DEFINE BUTTONEX button_ok
+        ACTION (gravar(parametro))
+        CAPTION "Ok, gravar"
+        COL 360
+        FONTBOLD TRUE
+        HEIGHT 50
+        NOXPSTYLE TRUE
+        PICTURE "img_gravar"
+        ROW 275
+        TOOLTIP "Confirmar as informações digitadas"
+        WIDTH 120
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_cancela
+        ACTION (form_dados.release)
+        CAPTION "Voltar"
+        COL 485
+        FONTBOLD TRUE
+        HEIGHT 50
+        NOXPSTYLE TRUE
+        PICTURE "img_voltar"
+        ROW 275
+        TOOLTIP "Sair desta tela sem gravar informações"
+        WIDTH 90
+    END BUTTONEX
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+
