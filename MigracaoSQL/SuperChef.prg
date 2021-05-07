@@ -13,8 +13,9 @@ Memvar Connection
 function main()
    local aColors
    App.cargo := Hash()
-   App.cargo["demonstracao"]:= TRUE
-   App.cargo["limiteregistro"]:= 10
+   App.cargo["demonstracao"]   := TRUE
+   App.cargo["limiteregistro"] := 10
+   App.Cargo["acesso"]         := Replicate("0",43)
 
 
          public l_demo            := .F.
