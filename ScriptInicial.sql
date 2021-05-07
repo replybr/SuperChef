@@ -154,6 +154,14 @@ Create Table forma_pag_rec(
 --   dias_receb INTEGER
 --   );
 ---------------------------------------------------------
+--Definido impostos código auto-incremento e primary key
+--Executado
+Create Table impostos(
+   codigo COUNTER primary key,
+   nome Varchar(20),
+   aliquota Decimal(10,2)
+   );
+---------------------------------------------------------
 Create Table bordas(
    nome Varchar(15),
    preco Decimal(10,2)
@@ -258,16 +266,6 @@ Create Table entrega(
    motoboy Varchar(15),
    situacao Varchar(15),
    vlr_taxa Decimal(10,2)
-   );
-
-
-
-
-
-Create Table impostos(
-   codigo INTEGER,
-   nome Varchar(20),
-   aliquota Decimal(10,2)
    );
 
 Create Table acesso(
