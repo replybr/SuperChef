@@ -126,6 +126,33 @@ Create Table operadores(
  
 CREATE UNIQUE INDEX IDXOperadoresNome ON operadores (nome) ;
 Insert into operadores (nome,senha,acesso) values ('SChef','9999','1111111111111111111111111111111111111111111');
+
+--Definido atendentes código auto-incremento e primary key
+--Eliminado a tabela acesso, campo incluido acesso substitui a tabela.
+--Executado
+
+Create Table forma_pag_rec(
+   codigo INTEGER,
+   tipo char(1),
+   nome Varchar(20),
+   banco INTEGER,
+   dias_paga INTEGER,
+   CONSTRAINT FKforma_pag_rec_bancos FOREIGN KEY (banco) REFERENCES bancos
+   );
+--Tabela eliminada dando origem a forma_pag_rec
+--Create Table forma_pagamento(
+--   codigo INTEGER,
+--   tipo char(1),
+--   nome Varchar(20),
+--   banco INTEGER,
+--   dias_paga INTEGER
+--   );
+--Create Table formas_recebimento(
+--   codigo INTEGER,
+--   nome Varchar(20),
+--   banco INTEGER,
+--   dias_receb INTEGER
+--   );
 ---------------------------------------------------------
 Create Table bordas(
    nome Varchar(15),
@@ -233,19 +260,7 @@ Create Table entrega(
    vlr_taxa Decimal(10,2)
    );
 
-Create Table forma_pagamentos(
-   codigo INTEGER,
-   nome Varchar(20),
-   banco INTEGER,
-   dias_paga INTEGER
-   );
 
-Create Table formas_recebimento(
-   codigo INTEGER,
-   nome Varchar(20),
-   banco INTEGER,
-   dias_receb INTEGER
-   );
 
 
 
