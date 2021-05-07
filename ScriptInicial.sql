@@ -95,8 +95,25 @@ Create Table fornecedores(
    grupo INTEGER,
    CONSTRAINT FKfornecedores_grupo_apoio FOREIGN KEY (grupo) REFERENCES grupo_apoio
    );
+--Definido atendentes código auto-incremento e primary key
+--Executado
+Create Table motoboys(
+   codigo COUNTER Primary key,
+   nome Varchar(20),
+   comissao Decimal(10,2),
+   diaria Decimal(10,2),
+   fixo Varchar(10),
+   celular Varchar(10),
+   endereco Varchar(40),
+   numero Varchar(10),
+   complem Varchar(20),
+   bairro Varchar(20),
+   cidade Varchar(20),
+   uf Varchar(2),
+   cep Varchar(8),
+   email Varchar(40)
+   );
 ---------------------------------------------------------
-
 Create Table bordas(
    nome Varchar(15),
    preco Decimal(10,2)
@@ -341,22 +358,7 @@ Create Table montagem(
    nome Varchar(30)
    );
 
-Create Table motoboys(
-   codigo INTEGER,
-   nome Varchar(20),
-   comissao Decimal(10,2),
-   diaria Decimal(10,2),
-   fixo Varchar(10),
-   celular Varchar(10),
-   endereco Varchar(40),
-   numero Varchar(10),
-   complem Varchar(20),
-   bairro Varchar(20),
-   cidade Varchar(20),
-   uf Varchar(2),
-   cep Varchar(8),
-   email Varchar(40)
-   );
+
 
 Create Table movimento_bancario(
    id Varchar(10),
