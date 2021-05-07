@@ -113,6 +113,15 @@ Create Table motoboys(
    cep Varchar(8),
    email Varchar(40)
    );
+   
+--Definido atendentes código auto-incremento e primary key
+--Executado
+Create Table operadores(
+   codigo COUNTER Primary key,
+   nome Varchar(10),
+   senha Varchar(10),
+   acesso varchar(100) --Eliminado a tabela acesso, este campo substitui a tabela.
+   );   
 ---------------------------------------------------------
 Create Table bordas(
    nome Varchar(15),
@@ -377,11 +386,7 @@ Create Table materia_prima(
    qtd Decimal(12,3)
    );
 
-Create Table operadores(
-   codigo INTEGER,
-   nome Varchar(10),
-   senha Varchar(10)
-   );
+
 
 Create Table produto_composto(
    id_produto Varchar(10),
