@@ -239,6 +239,7 @@ static function atualizar()
 Static Function form_dados_tbox_012_Onlistdisplay( )
     Local Rspesquisa.New()
     RsPesquisa.SQL:="Select top 30 codigo,nome from grupo_apoio where tabela=4 and nome like '"+form_dados.tbox_012.displayvalue+"%'"
+    Gravalog(RsPesquisa.SQL)
     RsPesquisa.Open()
     Form_dados.tbox_012.DeleteallItems()
     Form_dados.tbox_012.Cargo:={}
@@ -247,4 +248,15 @@ Static Function form_dados_tbox_012_Onlistdisplay( )
         AADD(Form_dados.tbox_012.cargo,RsPesquisa.field.codigo.value)
         RsPesquisa.MoveNext()
     enddo
+    Return .T.
+
+    ***********************************************
+    ///////////////////////////////////////////////
+    ***********************************************
+Static Function form_dados_tbox_012_Onenter( )
+    if form_dados.tbox_012.value >0
+        Return .T.
+    endif
+    PostMessage(form_dados.tbox_012.handle,(320+15),1,0)
+    form_dados.tbox_012.setfocus()
     Return .T.
