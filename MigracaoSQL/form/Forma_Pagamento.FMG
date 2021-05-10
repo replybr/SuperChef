@@ -1,0 +1,120 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 10/05/2021-10:30:52 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_configurar}
+*{Modulo:Forma_Pagamento.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 196, 323 WIDTH 399 HEIGHT 270  TITLE "Configurar Venda de Pizza" ICON "icone" MODAL NOSIZE
+
+    DEFINE LABEL info_001
+        AUTOSIZE TRUE
+        COL 10
+        FONTBOLD TRUE
+        FONTCOLOR { 160 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 5
+        TRANSPARENT TRUE
+        VALUE "ESC fecha esta janela"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL info_002
+        AUTOSIZE TRUE
+        COL 10
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 50
+        TRANSPARENT TRUE
+        VALUE "Defina de que forma o programa deverá cobrar o valor"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL info_003
+        AUTOSIZE TRUE
+        COL 10
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 70
+        TRANSPARENT TRUE
+        VALUE "das pizzas vendidas, quando for selecionado mais  de"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL info_004
+        AUTOSIZE TRUE
+        COL 10
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 90
+        TRANSPARENT TRUE
+        VALUE "um sabor."
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOXEX cbo_tipo
+        COL 10
+        FONTNAME "courier new"
+        FONTSIZE 12
+        HEIGHT 400
+        ROW 120
+        WIDTH 380
+    END COMBOBOXEX
+
+    DEFINE BUTTONEX btn_sair
+        ACTION (form_configurar.release)
+        CAPTION "Sair"
+        COL 290
+        HEIGHT 30
+        IMAGEHEIGHT 30
+        IMAGEWIDTH 30
+        PICTURE "sair"
+        ROW 5
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE BUTTONEX btn_gravar
+        ACTION (gravar_config())
+        CAPTION "Gravar"
+        COL 290
+        HEIGHT 30
+        IMAGEHEIGHT 30
+        IMAGEWIDTH 30
+        PICTURE "alterar"
+        ROW 200
+        WIDTH 100
+    END BUTTONEX
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+
