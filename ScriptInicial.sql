@@ -51,7 +51,8 @@ Create Table empresa(
    uf Varchar(2),
    cep Varchar(8),
    email Varchar(50),
-   site Varchar(50)
+   site Varchar(50),
+   forma_cobranca int,
    );
 ---------------------------------------------------------
 Create Table grupo_apoio(
@@ -95,6 +96,7 @@ Create Table fornecedores(
    grupo INTEGER,
    CONSTRAINT FKfornecedores_grupo_apoio FOREIGN KEY (grupo) REFERENCES grupo_apoio
    );
+---------------------------------------------------------
 --Definido atendentes código auto-incremento e primary key
 --Executado
 Create Table motoboys(
@@ -113,7 +115,7 @@ Create Table motoboys(
    cep Varchar(8),
    email Varchar(40)
    );
-   
+ ---------------------------------------------------------
 --Definido atendentes código auto-incremento e primary key
 --Eliminado a tabela acesso, campo incluido acesso substitui a tabela.
 --Executado
@@ -124,8 +126,112 @@ Create Table operadores(
    acesso varchar(43) 
    );   
  
-CREATE UNIQUE INDEX IDXOperadoresNome ON operadores (nome) ;
+ CREATE UNIQUE INDEX IDXOperadoresNome ON operadores (nome) ;
 Insert into operadores (nome,senha,acesso) values ('SChef','9999','1111111111111111111111111111111111111111111');
+---------------------------------------------------------
+--Create Table acesso(
+--   operador INTEGER,
+--   acesso_001 BIT,
+--   acesso_002 BIT,
+--   acesso_003 BIT,
+--   acesso_004 BIT,
+--   acesso_005 BIT,
+--   acesso_006 BIT,
+--   acesso_007 BIT,
+--   acesso_008 BIT,
+--   acesso_009 BIT,
+--   acesso_010 BIT,
+--   acesso_011 BIT,
+--   acesso_012 BIT,
+--   acesso_013 BIT,
+--   acesso_014 BIT,
+--   acesso_015 BIT,
+--   acesso_016 BIT,
+--   acesso_017 BIT,
+--   acesso_018 BIT,
+--   acesso_019 BIT,
+--   acesso_020 BIT,
+--   acesso_021 BIT,
+--   acesso_022 BIT,
+--   acesso_023 BIT,
+--   acesso_024 BIT,
+--   acesso_025 BIT,
+--   acesso_026 BIT,
+--   acesso_027 BIT,
+--   acesso_028 BIT,
+--   acesso_029 BIT,
+--   acesso_030 BIT,
+--   acesso_031 BIT,
+--   acesso_032 BIT,
+--   acesso_033 BIT,
+--   acesso_034 BIT,
+--   acesso_035 BIT,
+--   acesso_036 BIT,
+--   acesso_037 BIT,
+--   acesso_038 BIT,
+--   acesso_039 BIT,
+--   acesso_040 BIT,
+--   acesso_041 BIT,
+--   acesso_042 BIT,
+--   acesso_043 BIT,
+--   acesso_044 BIT,
+--   acesso_045 BIT,
+--   acesso_046 BIT,
+--   acesso_047 BIT,
+--   acesso_048 BIT,
+--   acesso_049 BIT,
+--   acesso_050 BIT,
+--   acesso_051 BIT,
+--   acesso_052 BIT,
+--   acesso_053 BIT,
+--   acesso_054 BIT,
+--   acesso_055 BIT,
+--   acesso_056 BIT,
+--   acesso_057 BIT,
+--   acesso_058 BIT,
+--   acesso_059 BIT,
+--   acesso_060 BIT,
+--   acesso_061 BIT,
+--   acesso_062 BIT,
+--   acesso_063 BIT,
+--   acesso_064 BIT,
+--   acesso_065 BIT,
+--   acesso_066 BIT,
+--   acesso_067 BIT,
+--   acesso_068 BIT,
+--   acesso_069 BIT,
+--   acesso_070 BIT,
+--   acesso_071 BIT,
+--   acesso_072 BIT,
+--   acesso_073 BIT,
+--   acesso_074 BIT,
+--   acesso_075 BIT,
+--   acesso_076 BIT,
+--   acesso_077 BIT,
+--   acesso_078 BIT,
+--   acesso_079 BIT,
+--   acesso_080 BIT,
+--   acesso_081 BIT,
+--   acesso_082 BIT,
+--   acesso_083 BIT,
+--   acesso_084 BIT,
+--   acesso_085 BIT,
+--   acesso_086 BIT,
+--   acesso_087 BIT,
+--   acesso_088 BIT,
+--   acesso_089 BIT,
+--   acesso_090 BIT,
+--   acesso_091 BIT,
+--   acesso_092 BIT,
+--   acesso_093 BIT,
+--   acesso_094 BIT,
+--   acesso_095 BIT,
+--   acesso_096 BIT,
+--   acesso_097 BIT,
+--   acesso_098 BIT,
+--   acesso_099 BIT,
+--   acesso_100 BIT
+--   );
 
 --Definido atendentes código auto-incremento e primary key
 --Eliminado a tabela acesso, campo incluido acesso substitui a tabela.
@@ -161,6 +267,16 @@ Create Table impostos(
    nome Varchar(20),
    aliquota Decimal(10,2)
    );
+--Definido materia_prima código auto-incremento e primary key
+--Executado
+Create Table materia_prima(
+   codigo COUNTER primary key,
+   nome Varchar(20),
+   unidade INTEGER,
+   preco Decimal(10,2),
+   qtd Decimal(12,3),
+   CONSTRAINT FKmateriaprima_grupo_apoio FOREIGN KEY (unidade) REFERENCES grupo_apoio
+   );   
 ---------------------------------------------------------
 Create Table bordas(
    nome Varchar(15),
@@ -174,8 +290,6 @@ Create Table caixa(
    entrada Decimal(12,2),
    saida Decimal(12,2)
    );
-
-
 
 Create Table detalhamento_compras(
    id_cliente INTEGER,
@@ -195,8 +309,6 @@ Create Table ultimas_compras(
    valor Decimal(12,2)
    );
 
-
-
 Create Table comissao_mesa(
    id INTEGER,
    data DateTime,
@@ -215,24 +327,24 @@ Create Table config(
    tipo INTEGER
    );
 
---Rever a tabela Conta, os recurso Sum do SQL pode prover esta informação automaticamente.
-Create Table conta(
-   c_clientes INTEGER,
-   c_fornec INTEGER,
-   c_gfornec INTEGER,
-   c_mprima INTEGER,
-   c_catprod INTEGER,
-   c_scatprod INTEGER,
-   c_mesas INTEGER,
-   c_frecebe INTEGER,
-   c_fpaga INTEGER,
-   c_umedida INTEGER,
-   c_bancos INTEGER,
-   c_impostos INTEGER,
-   c_atende INTEGER,
-   c_motent INTEGER,
-   c_operador INTEGER
-   );
+--Rever a tabela Conta, os campos serao substituidos por COUNTER (autoincremento)
+--Create Table conta(
+--   c_clientes INTEGER,
+--   c_fornec INTEGER,
+--   c_gfornec INTEGER,
+--   c_mprima INTEGER,
+--   c_catprod INTEGER,
+--   c_scatprod INTEGER,
+--   c_mesas INTEGER,
+--   c_frecebe INTEGER,
+--   c_fpaga INTEGER,
+--   c_umedida INTEGER,
+--   c_bancos INTEGER,
+--   c_impostos INTEGER,
+--   c_atende INTEGER,
+--   c_motent INTEGER,
+--   c_operador INTEGER
+--   );
 
 Create Table contas_pagar(
    id Varchar(10),
@@ -268,110 +380,6 @@ Create Table entrega(
    vlr_taxa Decimal(10,2)
    );
 
-Create Table acesso(
-   operador INTEGER,
-   acesso_001 BIT,
-   acesso_002 BIT,
-   acesso_003 BIT,
-   acesso_004 BIT,
-   acesso_005 BIT,
-   acesso_006 BIT,
-   acesso_007 BIT,
-   acesso_008 BIT,
-   acesso_009 BIT,
-   acesso_010 BIT,
-   acesso_011 BIT,
-   acesso_012 BIT,
-   acesso_013 BIT,
-   acesso_014 BIT,
-   acesso_015 BIT,
-   acesso_016 BIT,
-   acesso_017 BIT,
-   acesso_018 BIT,
-   acesso_019 BIT,
-   acesso_020 BIT,
-   acesso_021 BIT,
-   acesso_022 BIT,
-   acesso_023 BIT,
-   acesso_024 BIT,
-   acesso_025 BIT,
-   acesso_026 BIT,
-   acesso_027 BIT,
-   acesso_028 BIT,
-   acesso_029 BIT,
-   acesso_030 BIT,
-   acesso_031 BIT,
-   acesso_032 BIT,
-   acesso_033 BIT,
-   acesso_034 BIT,
-   acesso_035 BIT,
-   acesso_036 BIT,
-   acesso_037 BIT,
-   acesso_038 BIT,
-   acesso_039 BIT,
-   acesso_040 BIT,
-   acesso_041 BIT,
-   acesso_042 BIT,
-   acesso_043 BIT,
-   acesso_044 BIT,
-   acesso_045 BIT,
-   acesso_046 BIT,
-   acesso_047 BIT,
-   acesso_048 BIT,
-   acesso_049 BIT,
-   acesso_050 BIT,
-   acesso_051 BIT,
-   acesso_052 BIT,
-   acesso_053 BIT,
-   acesso_054 BIT,
-   acesso_055 BIT,
-   acesso_056 BIT,
-   acesso_057 BIT,
-   acesso_058 BIT,
-   acesso_059 BIT,
-   acesso_060 BIT,
-   acesso_061 BIT,
-   acesso_062 BIT,
-   acesso_063 BIT,
-   acesso_064 BIT,
-   acesso_065 BIT,
-   acesso_066 BIT,
-   acesso_067 BIT,
-   acesso_068 BIT,
-   acesso_069 BIT,
-   acesso_070 BIT,
-   acesso_071 BIT,
-   acesso_072 BIT,
-   acesso_073 BIT,
-   acesso_074 BIT,
-   acesso_075 BIT,
-   acesso_076 BIT,
-   acesso_077 BIT,
-   acesso_078 BIT,
-   acesso_079 BIT,
-   acesso_080 BIT,
-   acesso_081 BIT,
-   acesso_082 BIT,
-   acesso_083 BIT,
-   acesso_084 BIT,
-   acesso_085 BIT,
-   acesso_086 BIT,
-   acesso_087 BIT,
-   acesso_088 BIT,
-   acesso_089 BIT,
-   acesso_090 BIT,
-   acesso_091 BIT,
-   acesso_092 BIT,
-   acesso_093 BIT,
-   acesso_094 BIT,
-   acesso_095 BIT,
-   acesso_096 BIT,
-   acesso_097 BIT,
-   acesso_098 BIT,
-   acesso_099 BIT,
-   acesso_100 BIT
-   );
-
 Create Table mesas(
    codigo INTEGER,
    nome Varchar(20),
@@ -394,15 +402,6 @@ Create Table movimento_bancario(
    entrada Decimal(12,2),
    saida Decimal(12,2)
    );
-
-Create Table materia_prima(
-   codigo INTEGER,
-   nome Varchar(20),
-   unidade INTEGER,
-   preco Decimal(10,2),
-   qtd Decimal(12,3)
-   );
-
 
 
 Create Table produto_composto(
