@@ -8,7 +8,7 @@
     Compilador : MinGW GNU C 11.1 (32-bit)
     ----------------------------------------------------------------------------------------------
     SOBRE ESTE CÓDIGO GERADO:
-    Última alteração : 06/05/2021-21:06:08 Máquina: IMA2018 Usuário:ivani
+    Última alteração : 10/05/2021-14:01:50 Máquina: IMA2018 Usuário:ivani
     Código do formulário ajustado
     ----------------------------------------------------------------------------------------------
     Projeto : SuperChefSQL
@@ -336,6 +336,7 @@ DEFINE WINDOW TEMPLATE AT 251, 313 WIDTH 585 HEIGHT 360  TITLE "(titulo)" ICON "
     END LABEL
 
     DEFINE COMBOBOX tbox_012
+        AUTOCOMPLETE TRUE
         BACKCOLOR { 255 , 255 , 255 }
         COL 5
         DISPLAYEDIT TRUE
@@ -343,8 +344,10 @@ DEFINE WINDOW TEMPLATE AT 251, 313 WIDTH 585 HEIGHT 360  TITLE "(titulo)" ICON "
         FONTNAME "tahoma"
         FONTSIZE 10
         HEIGHT 300
+        ONENTER (form_dados_tbox_012_Onenter())
         ONLISTDISPLAY (form_dados_tbox_012_Onlistdisplay())
         ROW 237
+        SHOWDROPDOWN TRUE
         VALUE 0
         WIDTH 450
     END COMBOBOX
