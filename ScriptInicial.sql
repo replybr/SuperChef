@@ -39,6 +39,7 @@ Create Table clientes(
    aniv_mes INTEGER
    );
 ---------------------------------------------------------
+--incluido campo forma de pagamento para substituir a tabela config
 Create Table empresa(
    nome Varchar(40),
    fixo_1 Varchar(10),
@@ -52,7 +53,7 @@ Create Table empresa(
    cep Varchar(8),
    email Varchar(50),
    site Varchar(50),
-   forma_cobranca int,
+   forma_pagamento int,
    );
 ---------------------------------------------------------
 Create Table grupo_apoio(
@@ -278,6 +279,41 @@ Create Table materia_prima(
    CONSTRAINT FKmateriaprima_grupo_apoio FOREIGN KEY (unidade) REFERENCES grupo_apoio
    );   
 ---------------------------------------------------------
+--Definido produtos código de varchar(10) para auto-incremento e primary key
+--Executado
+Create Table produtos(
+   codigo COUNTER primary key,
+   cbarra Varchar(15),
+   nome_longo Varchar(40),
+   nome_cupom Varchar(15),
+   categoria INTEGER,
+   scategoria INTEGER,
+   imposto INTEGER,
+   baixa BIT,
+   qtd_estoq INTEGER,
+   qtd_min INTEGER,
+   qtd_max INTEGER,
+   vlr_custo Decimal(12,2),
+   vlr_venda Decimal(12,2),
+   promocao BIT,
+   pizza BIT,
+   CONSTRAINT FKprodutos_grupo_apoio1 FOREIGN KEY (categoria) REFERENCES grupo_apoio,
+   CONSTRAINT FKprodutos_grupo_apoio2 FOREIGN KEY (scategoria) REFERENCES grupo_apoio,
+   CONSTRAINT FKprodutos_impostos     FOREIGN KEY (imposto) REFERENCES impostos
+   );
+---------------------------------------------------------
+--Ajuste de produto de varchar para integer
+--ajuste de mprima para materia_prima
+Create Table produto_composto(
+   produto integer,
+   materia_prima INTEGER,
+   quantidade Decimal(12,3),
+   Primary key (produto,materia_prima),
+   CONSTRAINT FKproduto_composto_produtos FOREIGN KEY (produto) REFERENCES produtos,
+   CONSTRAINT FKproduto_composto_materia_prima FOREIGN KEY (materia_prima) REFERENCES materia_prima
+   );
+   
+
 Create Table bordas(
    nome Varchar(15),
    preco Decimal(10,2)
@@ -404,35 +440,7 @@ Create Table movimento_bancario(
    );
 
 
-Create Table produto_composto(
-   id_produto Varchar(10),
-   id_mprima INTEGER,
-   quantidade Decimal(12,3)
-   );
 
-Create Table produtos(
-   codigo Varchar(10),
-   cbarra Varchar(15),
-   nome_longo Varchar(40),
-   nome_cupom Varchar(15),
-   categoria INTEGER,
-   scategoria INTEGER,
-   imposto INTEGER,
-   baixa BIT,
-   qtd_estoq INTEGER,
-   qtd_min INTEGER,
-   qtd_max INTEGER,
-   vlr_custo Decimal(12,2),
-   vlr_venda Decimal(12,2),
-   promocao BIT,
-   pizza BIT,
-   val_tm_001 Decimal(10,2),
-   val_tm_002 Decimal(10,2),
-   val_tm_003 Decimal(10,2),
-   val_tm_004 Decimal(10,2),
-   val_tm_005 Decimal(10,2),
-   val_tm_006 Decimal(10,2)
-   );
 
 
 Create Table tamanhos(
