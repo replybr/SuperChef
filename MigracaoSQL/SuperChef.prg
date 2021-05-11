@@ -174,7 +174,7 @@ function main()
                        col 000
                        height getdesktopheight()
                        width getdesktopwidth()
-                       picture path_imagens+'wallpaper'
+                       picture 'wallpaper'
                        stretch .T.
                 end image
 
@@ -343,7 +343,7 @@ function main()
                 end buttonex
                 define buttonex produtos
                        parent form_main
-                       picture path_imagens+'produtos'
+                       picture 'produtos'
                        col 680
                        row 000
                        width 170
@@ -2348,120 +2348,6 @@ static function libera(parametro)
        endif
 
        return(.T.)
-*-------------------------------------------------------------------------------
-static function configurar_venda()
-
-	   local x_tipo // := 0
-	   local a_tipos := {'Calcular pelo MAIOR preço','Calcular pela MÉDIA de preços'}
-	   
-       dbselectarea('config')
-       config->(dbgotop())
-       x_tipo := config->tipo
-define window form_configurar;
-              at 000,000;
-              width 400;
-              height 270;
-              title 'Configurar Venda de Pizza';
-              icon path_imagens+'icone';
-              modal;
-              nosize
-
-              define label info_001
-                     parent form_configurar
-                     col 010
-                     row 005
-                     value 'ESC fecha esta janela'
-                     autosize .T.
-                     fontname 'tahoma'
-                     fontsize 010
-                     fontbold .T.
-                     fontcolor _vermelho_002
-                     transparent .T.
-              end label
-              define label info_002
-                     parent form_configurar
-                     col 010
-                     row 050
-                     value 'Defina de que forma o programa deverá cobrar o valor'
-                     autosize .T.
-                     fontname 'tahoma'
-                     fontsize 010
-                     fontbold .T.
-                     fontcolor _azul_002
-                     transparent .T.
-              end label
-              define label info_003
-                     parent form_configurar
-                     col 010
-                     row 070
-                     value 'das pizzas vendidas, quando for selecionado mais  de'
-                     autosize .T.
-                     fontname 'tahoma'
-                     fontsize 010
-                     fontbold .T.
-                     fontcolor _azul_002
-                     transparent .T.
-              end label
-              define label info_004
-                     parent form_configurar
-                     col 010
-                     row 090
-                     value 'um sabor.'
-                     autosize .T.
-                     fontname 'tahoma'
-                     fontsize 010
-                     fontbold .T.
-                     fontcolor _azul_002
-                     transparent .T.
-              end label
-     		  define comboboxex cbo_tipo
-         	  		 row 120
-                     col 010
-	              	 width 380
-			         height 400
-			         items a_tipos
-			         value x_tipo
-			         fontname 'courier new'
-			         fontsize 12
-			         fontcolor BLACK
-         	  end comboboxex
-
-              @ 005,290 button btn_sair;
-                        parent form_configurar;
-                        caption 'Sair';
-                        action form_configurar.release;
-                        width 100;
-                        height 030
-              @ 200,290 button btn_gravar;
-                        parent form_configurar;
-                        caption 'Gravar';
-                        action gravar_config();
-                        width 100;
-                        height 030
-
-              on key escape action thiswindow.release
-
-       end window
-
-       form_configurar.center
-       form_configurar.activate
-
-       return(nil)
-*-------------------------------------------------------------------------------
-static function gravar_config()
-
-	   local x_tipo := form_configurar.cbo_tipo.value
-	   
-       dbselectarea('config')
-       config->(dbgotop())
-       replace tipo with x_tipo
-       commit
-
-       _tipo_cobranca := x_tipo
-       
-       form_configurar.release
-       
-   	   return(nil)
 *-------------------------------------------------------------------------------
 static function bordas_pizza()
 
