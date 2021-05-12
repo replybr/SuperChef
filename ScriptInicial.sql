@@ -423,19 +423,24 @@ Create Table contas(
 --   obs Varchar(30),
 --   baixa BIT
 --   );
+---------------------------------------------------------   
+--Alteração da coluna ID para codigo, tipo autoincremento e primary key
+--data alterado para dtmovimento, data=reservado.
+Create Table caixa(
+   codigo COUNTER primary key,
+   dtmovimento DateTime,
+   historico Varchar(30),
+   entrada Decimal(12,2),
+   saida Decimal(12,2)
+   );
    
+ ---------------------------------------------------------  
 Create Table bordas(
    nome Varchar(15),
    preco Decimal(10,2)
    );
 
-Create Table caixa(
-   id Varchar(10),
-   data DateTime,
-   historico Varchar(30),
-   entrada Decimal(12,2),
-   saida Decimal(12,2)
-   );
+
 
 Create Table detalhamento_compras(
    id_cliente INTEGER,
