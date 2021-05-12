@@ -1,0 +1,99 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 10/05/2021-19:56:03 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_compor}
+*{Modulo:produtos.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 154, 323 WIDTH 600 HEIGHT 500  TITLE 'Compor produto : ' ICON "icone" MODAL NOSIZE
+
+    DEFINE BUTTONEX button_incluir
+        ACTION (incluir_composicao())
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "F5 Incluir"
+        COL 5
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "incluir"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_excluir
+        ACTION (excluir_composicao())
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "F7 Excluir"
+        COL 107
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "excluir"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_sair
+        ACTION (form_compor.release)
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "ESC Voltar"
+        COL 209
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "sair"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE GRID grid_mprima_composicao
+        BACKCOLOR { 210 , 233 , 255 }
+        COL 5
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEADERS { "id produto" , "id matéria prima" , "Nome" , "Quantidade" , "Unidade Medida" }
+        HEIGHT 360
+        NOLINES TRUE
+        ROW 104
+        VALUE 0
+        WIDTH 585
+        WIDTHS { 4 , 1 , 300 , 120 , 150 }
+    END GRID
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+

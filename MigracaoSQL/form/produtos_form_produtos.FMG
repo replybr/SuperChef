@@ -1,0 +1,214 @@
+*Form extraido do arquivo E:\Prgplus\Git\SuperChef\MigracaoSQL\produtos.prg
+* linha 19 à 226
+
+#include <Var.ch>
+Local xxxxwidth := getdesktopwidth()
+Local xxxHeight := getdesktopheight()
+
+*{Name:form_produtos}
+*{Modulo:produtos.prg}
+
+define window form_produtos; 
+at 000,000; 
+width getdesktopwidth(); 
+height getdesktopheight(); 
+title 'Produtos'; 
+icon path_imagens+'icone.ico'; 
+modal; 
+on init pesquisar() 
+define buttonex button_incluir 
+picture path_imagens+'incluir.bmp' 
+col 005 
+row 002 
+width 100 
+height 100 
+caption 'F5 Incluir' 
+action dados(1) 
+fontname 'verdana' 
+fontsize 009 
+fontbold .T. 
+fontcolor _preto_001 
+vertical .T. 
+flat .T. 
+noxpstyle .T. 
+backcolor _branco_001 
+end buttonex 
+define buttonex button_alterar 
+picture path_imagens+'alterar.bmp' 
+col 107 
+row 002 
+width 100 
+height 100 
+caption 'F6 Alterar' 
+action dados(2) 
+fontname 'verdana' 
+fontsize 009 
+fontbold .T. 
+fontcolor _preto_001 
+vertical .T. 
+flat .T. 
+noxpstyle .T. 
+backcolor _branco_001 
+end buttonex 
+define buttonex button_excluir 
+picture path_imagens+'excluir.bmp' 
+col 209 
+row 002 
+width 100 
+height 100 
+caption 'F7 Excluir' 
+action excluir() 
+fontname 'verdana' 
+fontsize 009 
+fontbold .T. 
+fontcolor _preto_001 
+vertical .T. 
+flat .T. 
+noxpstyle .T. 
+backcolor _branco_001 
+end buttonex 
+define buttonex button_imprimir 
+picture path_imagens+'imprimir.bmp' 
+col 311 
+row 002 
+width 100 
+height 100 
+caption 'F8 Imprimir' 
+action relacao() 
+fontname 'verdana' 
+fontsize 009 
+fontbold .T. 
+fontcolor _preto_001 
+vertical .T. 
+flat .T. 
+noxpstyle .T. 
+backcolor _branco_001 
+end buttonex 
+define buttonex button_atualizar 
+picture path_imagens+'atualizar.bmp' 
+col 413 
+row 002 
+width 100 
+height 100 
+caption 'Atualizar' 
+action atualizar() 
+fontname 'verdana' 
+fontsize 009 
+fontbold .T. 
+fontcolor _preto_001 
+vertical .T. 
+flat .T. 
+noxpstyle .T. 
+backcolor _branco_001 
+end buttonex 
+define buttonex button_fornecedores 
+picture path_imagens+'fornecedores.bmp' 
+col 515 
+row 002 
+width 100 
+height 100 
+caption 'Fornecedores' 
+action fornecedores_produto() 
+fontname 'verdana' 
+fontsize 009 
+fontbold .T. 
+fontcolor _preto_001 
+vertical .T. 
+flat .T. 
+noxpstyle .T. 
+backcolor _branco_001 
+end buttonex 
+define buttonex button_compor 
+picture path_imagens+'compor.bmp' 
+col 617 
+row 002 
+width 100 
+height 100 
+caption 'Compor Prod.' 
+action compor_produto() 
+fontname 'verdana' 
+fontsize 009 
+fontbold .T. 
+fontcolor _preto_001 
+vertical .T. 
+flat .T. 
+noxpstyle .T. 
+backcolor _branco_001 
+end buttonex 
+define buttonex button_sair 
+picture path_imagens+'sair.bmp' 
+col 719 
+row 002 
+width 100 
+height 100 
+caption 'ESC Voltar' 
+action form_produtos.release 
+fontname 'verdana' 
+fontsize 009 
+fontbold .T. 
+fontcolor _preto_001 
+vertical .T. 
+flat .T. 
+noxpstyle .T. 
+backcolor _branco_001 
+end buttonex 
+define splitbox 
+define grid grid_produtos 
+parent form_produtos 
+col 000 
+row 105 
+width getdesktopwidth() 
+height getdesktopheight()-210 
+headers {'Pizza','Promoção','Baixa','Código','Código Barra','Nome (longo)','Qtd.Estoque'} 
+widths {060,100,060,100,150,400,120} 
+fontname 'verdana' 
+fontsize 010 
+fontbold .T. 
+backcolor _amarelo_001 
+fontcolor _preto_001 
+ondblclick dados(2) 
+end grid 
+end splitbox 
+define label rodape_001 
+parent form_produtos 
+col 005 
+row getdesktopheight()-090 
+value 'Digite sua pesquisa' 
+autosize .T. 
+fontname 'verdana' 
+fontsize 010 
+fontbold .T. 
+fontcolor _cinza_001 
+transparent .T. 
+end label 
+@ getdesktopheight()-095,160 textbox tbox_pesquisa; 
+of form_produtos; 
+height 027; 
+width 550; 
+value ''; 
+maxlength 040; 
+font 'verdana' size 010; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+uppercase; 
+on change pesquisar() 
+define label rodape_002 
+parent form_produtos 
+col xxxxWidth-270
+row getdesktopheight()-085 
+value 'DUPLO CLIQUE : Alterar informação' 
+autosize .T. 
+fontname 'verdana' 
+fontsize 010 
+fontbold .T. 
+fontcolor _verde_002 
+transparent .T. 
+end label 
+on key F5 action dados(1) 
+on key F6 action dados(2) 
+on key F7 action excluir() 
+on key F8 action relacao() 
+on key escape action thiswindow.release 
+end window 
+
+

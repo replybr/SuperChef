@@ -1,0 +1,439 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 10/05/2021-21:03:13 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_dados}
+*{Modulo:produtos.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "icone" MODAL NOSIZE
+
+    DEFINE FRAME frame_geral
+        CAPTION "Informações do cadastro"
+        COL 5
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 440
+        OPAQUE TRUE
+        ROW 5
+        WIDTH 510
+    END FRAME
+
+    DEFINE LABEL lbl_001
+        AUTOSIZE TRUE
+        COL 15
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 25
+        TRANSPARENT TRUE
+        VALUE "Código"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX tbox_001
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 15
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        NUMERIC TRUE
+        ROW 48
+        VALUE 0
+        WIDTH 120
+    END GETBOX
+
+    DEFINE LABEL lbl_002
+        AUTOSIZE TRUE
+        COL 145
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 25
+        TRANSPARENT TRUE
+        VALUE "Nome (longo)"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_002
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 145
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 40
+        ROW 48
+        UPPERCASE TRUE
+        WIDTH 360
+    END TEXTBOX
+
+    DEFINE LABEL lbl_003
+        AUTOSIZE TRUE
+        COL 15
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 76
+        TRANSPARENT TRUE
+        VALUE "Nome (cupom)"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_003
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 15
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 15
+        ROW 99
+        UPPERCASE TRUE
+        WIDTH 250
+    END TEXTBOX
+
+    DEFINE LABEL lbl_004
+        AUTOSIZE TRUE
+        COL 275
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 76
+        TRANSPARENT TRUE
+        VALUE "Código Barra"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_004
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 275
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 15
+        ROW 99
+        UPPERCASE TRUE
+        WIDTH 230
+    END TEXTBOX
+
+    DEFINE CHECKBOX tbox_005
+        CAPTION "Produto é PIZZA ?"
+        COL 15
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 28
+        ROW 130
+        WIDTH 150
+    END CHECKBOX
+
+    DEFINE CHECKBOX tbox_006
+        CAPTION "Em Promoção ?"
+        COL 175
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 28
+        ROW 130
+        WIDTH 130
+    END CHECKBOX
+
+    DEFINE CHECKBOX tbox_007
+        CAPTION "Baixa o estoque ?"
+        COL 315
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 28
+        ROW 130
+        WIDTH 180
+    END CHECKBOX
+
+    DEFINE LABEL lbl_008
+        AUTOSIZE TRUE
+        COL 15
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 180
+        TRANSPARENT TRUE
+        VALUE "Categoria"
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX tbox_008
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 15
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 300
+        ONENTER (form_dados_tbox_008_Onenter())
+        ONLISTDISPLAY (form_dados_tbox_008_Onlistdisplay())
+        ROW 203
+        VALUE 0
+        WIDTH 486
+    END COMBOBOX
+
+    DEFINE LABEL lbl_009
+        AUTOSIZE TRUE
+        COL 15
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 231
+        TRANSPARENT TRUE
+        VALUE "Sub Categoria"
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX tbox_009
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 15
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 300
+        ONENTER (form_dados_tbox_009_Onenter())
+        ONLISTDISPLAY (form_dados_tbox_009_Onlistdisplay())
+        ROW 254
+        VALUE 0
+        WIDTH 486
+    END COMBOBOX
+
+    DEFINE LABEL lbl_010
+        AUTOSIZE TRUE
+        COL 15
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 290
+        TRANSPARENT TRUE
+        VALUE "Qtd. em estoque"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_010
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 15
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        NUMERIC TRUE
+        ROW 313
+        WIDTH 100
+    END TEXTBOX
+
+    DEFINE LABEL lbl_011
+        AUTOSIZE TRUE
+        COL 130
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 290
+        TRANSPARENT TRUE
+        VALUE "Qtd. mínima"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_011
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 130
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        NUMERIC TRUE
+        ROW 313
+        WIDTH 100
+    END TEXTBOX
+
+    DEFINE LABEL lbl_012
+        AUTOSIZE TRUE
+        COL 240
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 290
+        TRANSPARENT TRUE
+        VALUE "Qtd. máxima"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_012
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 240
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        NUMERIC TRUE
+        ROW 313
+        WIDTH 100
+    END TEXTBOX
+
+    DEFINE LABEL lbl_013
+        AUTOSIZE TRUE
+        COL 15
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 341
+        TRANSPARENT TRUE
+        VALUE "Imposto"
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX tbox_013
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 15
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 300
+        ONENTER (form_dados_tbox_013_Onenter())
+        ONLISTDISPLAY (form_dados_tbox_013_Onlistdisplay())
+        ROW 364
+        VALUE 0
+        WIDTH 486
+    END COMBOBOX
+
+    DEFINE LABEL lbl_014
+        AUTOSIZE TRUE
+        COL 15
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 94 , 47 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 390
+        TRANSPARENT TRUE
+        VALUE "Valor CUSTO R$"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX tbox_014
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 15
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        NUMERIC TRUE
+        PICTURE "@E 999,999.99"
+        ROW 413
+        VALUE 0
+        WIDTH 150
+    END GETBOX
+
+    DEFINE LABEL lbl_015
+        AUTOSIZE TRUE
+        COL 175
+        FONTBOLD TRUE
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 390
+        TRANSPARENT TRUE
+        VALUE "Valor VENDA R$"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX tbox_015
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 175
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        NUMERIC TRUE
+        PICTURE "@E 999,999.99"
+        ROW 413
+        VALUE 0
+        WIDTH 150
+    END GETBOX
+
+    DEFINE LABEL linha_rodape
+        BACKCOLOR { 0 , 0 , 0 }
+        COL 0
+        HEIGHT 1
+        ROW 460
+        TRANSPARENT FALSE
+        WIDTH 830
+    END LABEL
+
+    DEFINE BUTTONEX button_ok
+        ACTION (gravar(parametro))
+        CAPTION "Ok, gravar"
+        COL 298
+        FONTBOLD TRUE
+        HEIGHT 50
+        NOXPSTYLE TRUE
+        PICTURE "img_gravar"
+        ROW 465
+        TOOLTIP "Confirmar as informações digitadas"
+        WIDTH 120
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_cancela
+        ACTION (form_dados.release)
+        CAPTION "Voltar"
+        COL 423
+        FONTBOLD TRUE
+        HEIGHT 50
+        NOXPSTYLE TRUE
+        PICTURE "img_voltar"
+        ROW 465
+        TOOLTIP "Sair desta tela sem gravar informações"
+        WIDTH 90
+    END BUTTONEX
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+

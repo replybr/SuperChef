@@ -1,0 +1,418 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 11/05/2021-18:46:09 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_compras}
+*{Modulo:compras.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 188, 265 WIDTH 1000 HEIGHT 583  TITLE "Compras / Entrada Estoque ( Produtos e Matéria Prima )" ICON "icone" MODAL NOSIZE
+
+    DEFINE LABEL lbl_documento1
+        AUTOSIZE TRUE
+        COL 831
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 8
+        TRANSPARENT TRUE
+        VALUE "Valor documento"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL lbl_001
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 10
+        TRANSPARENT TRUE
+        VALUE "Fornecedor"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL lbl_004
+        AUTOSIZE TRUE
+        COL 367
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 10
+        TRANSPARENT TRUE
+        VALUE "Forma de pagamento"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL lbl_documento
+        AUTOSIZE TRUE
+        COL 613
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 10
+        TRANSPARENT TRUE
+        VALUE "Nº do documento"
+        WIDTH 120
+    END LABEL
+
+    DEFINE BUTTONEX oExcluiDoc
+        COL 796
+        HEIGHT 30
+        PICTURE "excluir_item"
+        ROW 30
+        WIDTH 30
+    END BUTTONEX
+
+    DEFINE COMBOBOX tbox_001
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 300
+        ONENTER (form_compras_tbox_001_Onenter())
+        ONLISTDISPLAY (form_compras_tbox_001_Onlistdisplay())
+        ROW 33
+        VALUE 0
+        WIDTH 357
+    END COMBOBOX
+
+    DEFINE COMBOBOX tbox_004
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 367
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 300
+        ONENTER (form_compras_tbox_004_Onenter())
+        ONLISTDISPLAY (form_compras_tbox_004_Onlistdisplay())
+        ROW 33
+        VALUE 0
+        WIDTH 242
+    END COMBOBOX
+
+    DEFINE COMBOBOX tbox_documento
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 613
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 300
+        ONCHANGE (form_compras_tbox_documento_Onchange())
+        ONLISTDISPLAY (form_compras_tbox_documento_Onlistdisplay())
+        ROW 33
+        UPPERCASE TRUE
+        VALUE 0
+        WIDTH 180
+    END COMBOBOX
+
+    DEFINE GETBOX oValor_Doc
+        COL 831
+        HEIGHT 27.00
+        MAXLENGTH 10
+        NUMERIC TRUE
+        PICTURE "@E 999,999.99"
+        ROW 33
+        VALUE 0
+        WIDTH 155
+    END GETBOX
+
+    DEFINE LABEL lbl_005
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27.00
+        ROW 70
+        TRANSPARENT TRUE
+        VALUE "Nº de parcelas"
+        VCENTERALIGN TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX tbox_005
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 107
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27.00
+        PICTURE "@R 999"
+        ROW 70
+        VALUE 1
+        WIDTH 60
+    END GETBOX
+
+    DEFINE LABEL lbl_006
+        AUTOSIZE TRUE
+        COL 171
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27.00
+        ROW 70
+        TRANSPARENT TRUE
+        VALUE "Data de Vencimento:"
+        VCENTERALIGN TRUE
+        WIDTH 144
+    END LABEL
+
+    DEFINE TEXTBOX tbox_006
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 319
+        DATE TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27.00
+        ROW 70
+        TOOLTIP e"Informe a Data de vencimento (se for uma única parcela)\r\nou Data início da primeira parcela\r\n"
+        VALUE date()
+        WIDTH 100
+    END TEXTBOX
+
+    DEFINE LABEL lbl_007
+        AUTOSIZE TRUE
+        COL 423
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27.00
+        ROW 70
+        TRANSPARENT TRUE
+        VALUE "Dias entre parcelas:"
+        VCENTERALIGN TRUE
+        WIDTH 140
+    END LABEL
+
+    DEFINE GETBOX tbox_008
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 567
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27.00
+        NUMERIC TRUE
+        PICTURE "@R 999"
+        ROW 70
+        TOOLTIP { e"Caso a compra seja parcelada, digite a quantidade de dias entre as parcelas\npara que o sistema possa calcular os vencimentos futuros." , "" , "" }
+        VALUE 0
+        WIDTH 60
+    END GETBOX
+
+    DEFINE RADIOGROUP oTipoProduto
+        COL 772
+        HEIGHT 28
+        HORIZONTAL TRUE
+        NOTABSTOP TRUE
+        ONCHANGE (form_compras_oTipoProduto_Onchange())
+        OPTIONS { "Produto" , "Matéria Prima" }
+        ROW 70
+        SPACING 25
+        WIDTH 94
+    END RADIOGROUP
+
+    DEFINE LABEL label_sep_001
+        BACKCOLOR { 192 , 192 , 192 }
+        COL 0
+        HEIGHT 2
+        ROW 103
+        TRANSPARENT FALSE
+        WIDTH 1000
+    END LABEL
+
+    DEFINE LABEL label_produto
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 115
+        TRANSPARENT TRUE
+        VALUE "Produto"
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX tbox_produto
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        DISPLAYEDIT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 300
+        ONENTER (form_compras_tbox_produto_Onenter())
+        ONLISTDISPLAY (form_compras_tbox_produto_Onlistdisplay())
+        ROW 138
+        VALUE 0
+        WIDTH 460
+    END COMBOBOX
+
+    DEFINE LABEL lbl_002
+        AUTOSIZE TRUE
+        COL 485
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 115
+        TRANSPARENT TRUE
+        VALUE "Quantidade"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX tbox_002
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 485
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        NUMERIC TRUE
+        PICTURE "@R 999999"
+        ROW 138
+        VALUE 0
+        WIDTH 120
+    END GETBOX
+
+    DEFINE LABEL lbl_003
+        AUTOSIZE TRUE
+        COL 615
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 115
+        TRANSPARENT TRUE
+        VALUE "Valor Unitário R$"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX tbox_003
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 615
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        NUMERIC TRUE
+        PICTURE "@E 999,999.99"
+        ROW 138
+        VALUE 0
+        WIDTH 120
+    END GETBOX
+
+    DEFINE BUTTONEX botao_confirmar_001
+        ACTION (gravar_produto())
+        CAPTION "Confirma"
+        COL 766
+        HEIGHT 40
+        PICTURE "adicionar"
+        ROW 130
+        WIDTH 115
+    END BUTTONEX
+
+    DEFINE BUTTONEX botao_excluir_produto
+        ACTION (excluir_produto())
+        CAPTION "Excluir"
+        COL 886
+        HEIGHT 40
+        NOTABSTOP TRUE
+        PICTURE "excluir_item"
+        ROW 130
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE GRID grid_produtos
+        BACKCOLOR { 255 , 255 , 225 }
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEADERS { "id" , "cod Prod" , "Nome do produto" , "Qtd." , "Unitário R$" , "Subtotal R$" }
+        HEIGHT 309
+        JUSTIFY { 0 , 0 , 0 , 0 , 0 , 0 }
+        ONHEADCLICK {{||Nil},{||Nil},{||Nil},{||Nil},{||Nil},{||Nil}}
+        ROW 175
+        SHOWHEADERS TRUE
+        VALUE 0
+        WIDTH 981
+        WIDTHS { 55 , 88 , 475 , 100 , 120 , 120 }
+    END GRID
+
+    DEFINE LABEL label_sep_002
+        BACKCOLOR { 192 , 192 , 192 }
+        COL 0
+        HEIGHT 2
+        ROW 491
+        TRANSPARENT FALSE
+        WIDTH 1000
+    END LABEL
+
+    DEFINE BUTTONEX botao_gravar
+        ACTION (gravar_compras())
+        CAPTION "Gravar as informações"
+        COL 635
+        FONTBOLD TRUE
+        HEIGHT 50
+        PICTURE "img_salvar"
+        ROW 496
+        TOOLTIP "Clique aqui para gravar todas as informações"
+        WIDTH 200
+    END BUTTONEX
+
+    DEFINE BUTTONEX botao_sair
+        ACTION (form_compras.release)
+        CAPTION "Sair desta tela"
+        COL 840
+        FONTBOLD TRUE
+        HEIGHT 50
+        PICTURE "img_sair"
+        ROW 496
+        TOOLTIP "Sair desta tela sem gravar informações"
+        WIDTH 150
+    END BUTTONEX
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+
