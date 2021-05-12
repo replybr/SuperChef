@@ -55,7 +55,19 @@ Create Table empresa(
    site Varchar(50),
    forma_pagamento int,
    );
+   
 ---------------------------------------------------------
+--config eliminada, 
+--Create Table config(
+--   tipo INTEGER
+--   );
+
+---------------------------------------------------------
+--tabela 1.categoria de produtos
+--tabela 2.subcategoria de produtos
+--tabela 3.Unidade de Medida
+--tabela 4.Grupo de Fornecedores
+
 Create Table grupo_apoio(
    codigo COUNTER primary key,
    tabela integer not null,
@@ -117,7 +129,7 @@ Create Table motoboys(
    email Varchar(40)
    );
  ---------------------------------------------------------
---Definido atendentes código auto-incremento e primary key
+--Definido operadores código auto-incremento e primary key
 --Eliminado a tabela acesso, campo incluido acesso substitui a tabela.
 --Executado
 Create Table operadores(
@@ -130,6 +142,7 @@ Create Table operadores(
  CREATE UNIQUE INDEX IDXOperadoresNome ON operadores (nome) ;
 Insert into operadores (nome,senha,acesso) values ('SChef','9999','1111111111111111111111111111111111111111111');
 ---------------------------------------------------------
+--Eliminado a tabela acesso, campo incluido em operadores acesso substitui a tabela.
 --Create Table acesso(
 --   operador INTEGER,
 --   acesso_001 BIT,
@@ -233,9 +246,10 @@ Insert into operadores (nome,senha,acesso) values ('SChef','9999','1111111111111
 --   acesso_099 BIT,
 --   acesso_100 BIT
 --   );
-
---Definido atendentes código auto-incremento e primary key
---Eliminado a tabela acesso, campo incluido acesso substitui a tabela.
+---------------------------------------------------------
+--Definido forma_paga_rec código auto-incremento e primary key
+--tipo P.Pagamentos
+--tipo R.Recebimentos
 --Executado
 
 Create Table forma_pag_rec(
@@ -246,10 +260,10 @@ Create Table forma_pag_rec(
    dias_paga INTEGER,
    CONSTRAINT FKforma_pag_rec_bancos FOREIGN KEY (banco) REFERENCES bancos
    );
+--eliminadas
 --Tabela eliminada dando origem a forma_pag_rec
 --Create Table forma_pagamento(
 --   codigo INTEGER,
---   tipo char(1),
 --   nome Varchar(20),
 --   banco INTEGER,
 --   dias_paga INTEGER
@@ -312,8 +326,104 @@ Create Table produto_composto(
    CONSTRAINT FKproduto_composto_produtos FOREIGN KEY (produto) REFERENCES produtos,
    CONSTRAINT FKproduto_composto_materia_prima FOREIGN KEY (materia_prima) REFERENCES materia_prima
    );
-   
+---------------------------------------------------------
+--Criado tabela compras da junção de tCompra1+tCompra2
+--adicionado campo tipo onde:
+--tipo P.Produto
+--tipo M.Materia Prima
+Create Table compras(
+   codigo COUNTER primary key,
+   fornecedor INTEGER,
+   forma_pag INTEGER,
+   num_parc INTEGER,
+   data_venc DateTime,
+   dias_parc INTEGER,
+   tipo char(1),
+   num_doc Varchar(15),
+   valor_doc decimal(12,2),
+   CONSTRAINT FKcompras_fornecedores FOREIGN KEY (fornecedor) REFERENCES fornecedores  , 
+   CONSTRAINT FKcompras_forma_pag_rec FOREIGN KEY (forma_pag) REFERENCES forma_pag_rec
+   );
+--desdobramento tabela para evitar redundancia
+Create Table compras_detalhe(
+   codigo integer,
+   ordem integer,
+   produto integer,
+   qtd INTEGER,
+   vlr_unit Decimal(12,2),
+   primary key (codigo,ordem),
+   CONSTRAINT fkcompras_detalhe_compras FOREIGN KEY (codigo) REFERENCES compras
+   );
 
+--eliminadas   
+--Create Table tcompra1(
+--   fornecedor INTEGER,
+--   forma_pag INTEGER,
+--   num_parc INTEGER,
+--   data_venc DateTime,
+--   dias_parc INTEGER,
+--   produto Varchar(10),
+--   qtd INTEGER,
+--   vlr_unit Decimal(12,2),
+--   num_doc Varchar(15)
+--   );
+
+--Create Table tcompra2(
+--   fornecedor INTEGER,
+--   forma_pag INTEGER,
+--   num_parc INTEGER,
+--   data_venc DateTime,
+--   dias_parc INTEGER,
+--   mat_prima INTEGER,
+--   qtd Decimal(12,3),
+--   vlr_unit Decimal(12,2),
+--   num_doc Varchar(15)
+--   );   
+---------------------------------------------------------
+--Criado tabela contas da junção de contas_pagar+contas_receber
+--adicionado campo tipo onde:
+--tipo P.contas a pagar
+--tipo R.contas a receber
+
+Create Table contas(
+   id COUNTER primary key,
+   cod_origem integer,
+   vencimento DateTime,
+   pagamento datetime,
+   valor Decimal(12,2),
+   multa decimal(12,2),
+   juros decimal(12,2),
+   desconto decimal(12,2),
+   forma INTEGER,
+   fornec INTEGER,
+   obs Varchar(30),
+   CONSTRAINT FKcontas_fornecedores FOREIGN KEY (fornec) REFERENCES fornecedores,
+   CONSTRAINT FKcontas_forma_pag_rec FOREIGN KEY (forma) REFERENCES forma_pag_rec
+);
+
+--eliminadas  
+--Create Table contas_pagar(
+--   id Varchar(10),
+--   data DateTime,
+--   valor Decimal(12,2),
+--   forma INTEGER,
+--   fornec INTEGER,
+--   numero Varchar(15),
+--   obs Varchar(30),
+--   baixa BIT
+--   );
+
+--Create Table contas_receber(
+--   id Varchar(10),
+--   data DateTime,
+--   valor Decimal(12,2),
+--   forma INTEGER,
+--   cliente INTEGER,
+--   numero Varchar(15),
+--   obs Varchar(30),
+--   baixa BIT
+--   );
+   
 Create Table bordas(
    nome Varchar(15),
    preco Decimal(10,2)
@@ -359,9 +469,6 @@ Create Table comissao(
    valor Decimal(12,2)
    );
 
-Create Table config(
-   tipo INTEGER
-   );
 
 --Rever a tabela Conta, os campos serao substituidos por COUNTER (autoincremento)
 --Create Table conta(
@@ -382,27 +489,7 @@ Create Table config(
 --   c_operador INTEGER
 --   );
 
-Create Table contas_pagar(
-   id Varchar(10),
-   data DateTime,
-   valor Decimal(12,2),
-   forma INTEGER,
-   fornec INTEGER,
-   numero Varchar(15),
-   obs Varchar(30),
-   baixa BIT
-   );
 
-Create Table contas_receber(
-   id Varchar(10),
-   data DateTime,
-   valor Decimal(12,2),
-   forma INTEGER,
-   cliente INTEGER,
-   numero Varchar(15),
-   obs Varchar(30),
-   baixa BIT
-   );
 
 Create Table entrega(
    cliente Varchar(30),
@@ -439,38 +526,12 @@ Create Table movimento_bancario(
    saida Decimal(12,2)
    );
 
-
-
-
-
 Create Table tamanhos(
    nome Varchar(15),
    pedacos INTEGER
    );
 
-Create Table tcompra1(
-   fornecedor INTEGER,
-   forma_pag INTEGER,
-   num_parc INTEGER,
-   data_venc DateTime,
-   dias_parc INTEGER,
-   produto Varchar(10),
-   qtd INTEGER,
-   vlr_unit Decimal(12,2),
-   num_doc Varchar(15)
-   );
 
-Create Table tcompra2(
-   fornecedor INTEGER,
-   forma_pag INTEGER,
-   num_parc INTEGER,
-   data_venc DateTime,
-   dias_parc INTEGER,
-   mat_prima INTEGER,
-   qtd Decimal(12,3),
-   vlr_unit Decimal(12,2),
-   num_doc Varchar(15)
-   );
 
 Create Table temp_cpz(
    preco Decimal(10,2)
