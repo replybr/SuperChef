@@ -172,7 +172,7 @@ static function gravar(parametro)
 static function atualizar()
     form_caixa.grid_Pesquisa.disableupdate
     delete item all from grid_Pesquisa of form_caixa
-    Rs.SQL:="Select * from caixa where dtMovimento>="+Rs:DataSQL(form_caixa.dp_inicio.value)+" and dtMovimento<="+Rs:DataSQL(form_caixa.dp_final.value)+" order by codigo"
+    Rs.SQL:="Select * from caixa where dtMovimento>="+Rs:DataSQL(form_caixa.dp_inicio.value)+" and dtMovimento<="+Rs:DataSQL(form_caixa.dp_final.value)+" order by dtMovimento,codigo"
     Rs.Open()
     if Rs.ErrorSQL()
         Return .F.
