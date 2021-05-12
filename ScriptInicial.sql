@@ -433,7 +433,18 @@ Create Table caixa(
    entrada Decimal(12,2),
    saida Decimal(12,2)
    );
-   
+---------------------------------------------------------   
+--Alteração da coluna ID para codigo, tipo autoincremento e primary key
+--data alterado para dtmovimento, data=reservado.
+Create Table movimento_bancario(
+   codigo COUNTER primary key,
+   banco INTEGER,
+   dtMovimento DateTime,
+   historico Varchar(30),
+   entrada Decimal(12,2),
+   saida Decimal(12,2),
+   CONSTRAINT FKmovimento_bancario_bancos FOREIGN KEY (banco) REFERENCES bancos
+   );
  ---------------------------------------------------------  
 Create Table bordas(
    nome Varchar(15),
@@ -521,15 +532,6 @@ Create Table montagem(
    );
 
 
-
-Create Table movimento_bancario(
-   id Varchar(10),
-   banco INTEGER,
-   data DateTime,
-   historico Varchar(30),
-   entrada Decimal(12,2),
-   saida Decimal(12,2)
-   );
 
 Create Table tamanhos(
    nome Varchar(15),
