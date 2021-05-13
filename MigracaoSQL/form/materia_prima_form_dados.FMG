@@ -8,7 +8,7 @@
     Compilador : MinGW GNU C 11.1 (32-bit)
     ----------------------------------------------------------------------------------------------
     SOBRE ESTE CÓDIGO GERADO:
-    Última alteração : 10/05/2021-14:46:05 Máquina: IMA2018 Usuário:ivani
+    Última alteração : 13/05/2021-19:33:43 Máquina: IMA2018 Usuário:ivani
     Código do formulário ajustado
     ----------------------------------------------------------------------------------------------
     Projeto : SuperChefSQL
@@ -19,7 +19,7 @@
     #endif
 
 *{Name:form_dados}
-*{Modulo:materia_prima.prg}
+*{Modulo:SQLmateria_prima.prg}
 
 
 DEFINE WINDOW TEMPLATE AT 193, 334 WIDTH 325 HEIGHT 300  TITLE "(titulo)" ICON "icone" MODAL NOSIZE
@@ -130,7 +130,7 @@ DEFINE WINDOW TEMPLATE AT 193, 334 WIDTH 325 HEIGHT 300  TITLE "(titulo)" ICON "
         FONTSIZE 10
         HEIGHT 27
         NUMERIC TRUE
-        PICTURE "@R 99,999.999"
+        PICTURE "@R 9999999"
         ROW 135
         VALUE 0
         WIDTH 120
