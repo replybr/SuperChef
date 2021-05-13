@@ -59,7 +59,7 @@ Static function Forma_Pag_Rec(cTabela)
     *-------------------------------------------------------------------------------
 static function dados(parametro)
     local cId := form_formas_pagamento.Grid_Pesquisa.Item(form_formas_pagamento.Grid_Pesquisa.value)[1]
-    Local Rs1.new()
+    Local rs1.new()
     Load Window formas_pag_rec_form_dados as form_dados
         form_dados.title := IIF(parametro=1,"Incluir","Alterar")
         if parametro=2
