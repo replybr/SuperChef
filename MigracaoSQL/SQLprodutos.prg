@@ -94,6 +94,7 @@ static function dados(parametro)
     Load Window produtos_form_dados as form_dados
         form_dados.title := IIF(parametro=1,"Incluir","Alterar")
         form_dados.tbox_001.enabled := .F.
+        form_dados.tbox_010.enabled  := .F. //lancamento automatico
         if parametro=2
             Rs.SQL:="Select * from produtos where codigo="+cId
             Rs.Open()
@@ -106,7 +107,7 @@ static function dados(parametro)
                 form_dados.tbox_009.value := rs.field.scategoria.value
                 form_dados.tbox_013.value := rs.field.imposto.value
                 form_dados.tbox_007.value := rs.field.baixa.value
-                form_dados.tbox_010.value := rs.field.qtd_estoq.value
+                form_dados.tbox_010.value := rs.field.qtd_estoque.value
                 form_dados.tbox_011.value := rs.field.qtd_min.value
                 form_dados.tbox_012.value := rs.field.qtd_max.value
                 form_dados.tbox_014.value := rs.field.vlr_custo.value
@@ -267,7 +268,7 @@ static function relacao()
             @ linha,030 PRINT rs.field.nome_longo.value FONT 'courier new' SIZE 010
             @ linha,110 PRINT iif(rs.field.pizza.value,'Sim','Não') FONT 'courier new' SIZE 010
             @ linha,140 PRINT iif(rs.field.baixa.value,'Sim','Não') FONT 'courier new' SIZE 010
-            @ linha,170 PRINT str(rs.field.qtd_estoq.value,6) FONT 'courier new' SIZE 010
+            @ linha,170 PRINT str(rs.field.qtd_estoque.value,6) FONT 'courier new' SIZE 010
             
             linha += 5
             
@@ -353,7 +354,7 @@ static function gravar(parametro)
     rs.field.scategoria.value := form_dados.tbox_009.cargo[form_dados.tbox_009.value]
     rs.field.imposto.value    := form_dados.tbox_013.cargo[form_dados.tbox_013.value]
     rs.field.baixa.value      := form_dados.tbox_007.value
-    rs.field.qtd_estoq.value  := form_dados.tbox_010.value
+    rs.field.qtd_estoque.value  := form_dados.tbox_010.value
     rs.field.qtd_min.value    := form_dados.tbox_011.value
     rs.field.qtd_max.value    := form_dados.tbox_012.value
     rs.field.vlr_custo.value  := form_dados.tbox_014.value
@@ -383,7 +384,7 @@ static function atualizar()
         str(Rs.Field.codigo.value,10),;
         Rs.Field.cbarra.value,;
         Rs.Field.nome_longo.value,;
-        str(Rs.Field.qtd_estoq.value,6)} to Grid_Pesquisa of form_produtos
+        str(Rs.Field.qtd_estoque.value,6)} to Grid_Pesquisa of form_produtos
         Rs.MoveNext()
     end
     form_produtos.Grid_Pesquisa.ColumnsAutoFit()
