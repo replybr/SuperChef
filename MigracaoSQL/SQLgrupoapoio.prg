@@ -28,35 +28,30 @@ Declare Cursor SQLADO rs
 memvar Rs
 
 function categoria_produtos()
-    GrupoApoio(1)
+    GrupoApoio(1,"Categoria Produtos")
     Return .t.
 function subcategoria_produtos()
-    GrupoApoio(2)
+    GrupoApoio(2,"SubCategoria de Produtos")
     Return .T.
 function unidades_medida()
-    GrupoApoio(3)
+    GrupoApoio(3,"Unidade de Medida")
     Return .T.
 function grupo_fornecedores()
-    GrupoApoio(4)
+    GrupoApoio(4,"Grupo de fornecedores")
     Return .T.
+function mesas()
+    GrupoApoio(5,"Cadastro de Mesas")
+    Return .T.
+
     //////////////////////////////////////////////////////////////////////////
     *************************************************************************
     //////////////////////////////////////////////////////////////////////////
-Static function GrupoApoio(nTabela)
+Static function GrupoApoio(nTabela,cTitle)
     Local aHeader:={'Código','Nome'}
     Private Rs:=Rs.New()
     Load window Form_Pesquisa as form_apoio
         form_apoio.cargo := nTabela
-        Do case
-            Case nTabela=1 //categoria_produtos
-                form_apoio.Title := "Categoria Produtos"
-            Case nTabela=2 //subcategoria_produtos
-                form_apoio.Title := "SubCategoria de Produtos"
-            Case nTabela=3 //unidade_medida
-                form_apoio.Title := "Unidade de Medida"
-            Case nTabela=4 //grupo_fornecedores
-                form_apoio.Title := "Grupo de fornecedores"
-        EndCase
+        form_apoio.Title := cTitle
         on key F5      of form_apoio action dados(1)
         on key F6      of form_apoio action dados(2)
         on key F7      of form_apoio action excluir()
