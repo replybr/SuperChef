@@ -8,7 +8,7 @@
     Compilador : MinGW GNU C 11.1 (32-bit)
     ----------------------------------------------------------------------------------------------
     SOBRE ESTE CÓDIGO GERADO:
-    Última alteração : 11/05/2021-18:46:09 Máquina: IMA2018 Usuário:ivani
+    Última alteração : 13/05/2021-18:39:35 Máquina: IMA2018 Usuário:ivani
     Código do formulário ajustado
     ----------------------------------------------------------------------------------------------
     Projeto : SuperChefSQL
@@ -19,7 +19,7 @@
     #endif
 
 *{Name:form_compras}
-*{Modulo:compras.prg}
+*{Modulo:SQLcompras.prg}
 
 
 DEFINE WINDOW TEMPLATE AT 188, 265 WIDTH 1000 HEIGHT 583  TITLE "Compras / Entrada Estoque ( Produtos e Matéria Prima )" ICON "icone" MODAL NOSIZE
@@ -81,6 +81,7 @@ DEFINE WINDOW TEMPLATE AT 188, 265 WIDTH 1000 HEIGHT 583  TITLE "Compras / Entra
     END LABEL
 
     DEFINE BUTTONEX oExcluiDoc
+        ACTION (form_compras_oExcluiDoc_Action())
         COL 796
         HEIGHT 30
         PICTURE "excluir_item"
