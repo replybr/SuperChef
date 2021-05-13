@@ -67,6 +67,7 @@ Create Table empresa(
 --tabela 2.subcategoria de produtos
 --tabela 3.Unidade de Medida
 --tabela 4.Grupo de Fornecedores
+--tabela 5.Cadastro de Mesas
 
 Create Table grupo_apoio(
    codigo COUNTER primary key,
@@ -78,17 +79,27 @@ Create Table grupo_apoio(
 --   codigo INTEGER,
 --   nome Varchar(20)
 --   );
+
 --Create Table subcategoria_produtos(
 --   codigo INTEGER,
 --   nome Varchar(20)
 --   );
+
 --Create Table unidade_medida(
 --   codigo INTEGER,
 --   nome Varchar(10)
 --   );
+
 --Create Table grupo_fornecedores(
 --   codigo INTEGER,
 --   nome Varchar(20)
+--   );
+ 
+--Create Table mesas(
+--   codigo COUNTER primary key,
+--   nome Varchar(20),
+--   hora Varchar(10),
+--   id Varchar(18)
 --   );
 ---------------------------------------------------------
 --Definido atendentes código auto-incremento e primary key
@@ -289,7 +300,7 @@ Create Table materia_prima(
    nome Varchar(20),
    unidade INTEGER,
    preco Decimal(10,2),
-   qtd Decimal(12,3),
+   qtd_estoque integer,
    CONSTRAINT FKmateriaprima_grupo_apoio FOREIGN KEY (unidade) REFERENCES grupo_apoio
    );   
 ---------------------------------------------------------
@@ -304,7 +315,7 @@ Create Table produtos(
    scategoria INTEGER,
    imposto INTEGER,
    baixa BIT,
-   qtd_estoq INTEGER,
+   qtd_estoque INTEGER,
    qtd_min INTEGER,
    qtd_max INTEGER,
    vlr_custo Decimal(12,2),
@@ -386,8 +397,10 @@ Create Table compras_detalhe(
 --tipo R.contas a receber
 
 Create Table contas(
-   id COUNTER primary key,
+   codigo COUNTER primary key,
    cod_origem integer,
+   tipo char(1),
+   num_doc varchar(15),
    vencimento DateTime,
    pagamento datetime,
    valor Decimal(12,2),
@@ -423,6 +436,26 @@ Create Table contas(
 --   obs Varchar(30),
 --   baixa BIT
 --   );
+
+--Rever a tabela Conta, os campos serao substituidos por COUNTER (autoincremento)
+--Create Table conta(
+--   c_clientes INTEGER,
+--   c_fornec INTEGER,
+--   c_gfornec INTEGER,
+--   c_mprima INTEGER,
+--   c_catprod INTEGER,
+--   c_scatprod INTEGER,
+--   c_mesas INTEGER,
+--   c_frecebe INTEGER,
+--   c_fpaga INTEGER,
+--   c_umedida INTEGER,
+--   c_bancos INTEGER,
+--   c_impostos INTEGER,
+--   c_atende INTEGER,
+--   c_motent INTEGER,
+--   c_operador INTEGER
+--   );
+
 ---------------------------------------------------------   
 --Alteração da coluna ID para codigo, tipo autoincremento e primary key
 --data alterado para dtmovimento, data=reservado.
@@ -446,12 +479,13 @@ Create Table movimento_bancario(
    CONSTRAINT FKmovimento_bancario_bancos FOREIGN KEY (banco) REFERENCES bancos
    );
  ---------------------------------------------------------  
+
+
+
 Create Table bordas(
    nome Varchar(15),
    preco Decimal(10,2)
    );
-
-
 
 Create Table detalhamento_compras(
    id_cliente INTEGER,
@@ -486,24 +520,7 @@ Create Table comissao(
    );
 
 
---Rever a tabela Conta, os campos serao substituidos por COUNTER (autoincremento)
---Create Table conta(
---   c_clientes INTEGER,
---   c_fornec INTEGER,
---   c_gfornec INTEGER,
---   c_mprima INTEGER,
---   c_catprod INTEGER,
---   c_scatprod INTEGER,
---   c_mesas INTEGER,
---   c_frecebe INTEGER,
---   c_fpaga INTEGER,
---   c_umedida INTEGER,
---   c_bancos INTEGER,
---   c_impostos INTEGER,
---   c_atende INTEGER,
---   c_motent INTEGER,
---   c_operador INTEGER
---   );
+
 
 
 
@@ -519,12 +536,7 @@ Create Table entrega(
    vlr_taxa Decimal(10,2)
    );
 
-Create Table mesas(
-   codigo INTEGER,
-   nome Varchar(20),
-   hora Varchar(10),
-   id Varchar(18)
-   );
+
 
 Create Table montagem(
    id Varchar(10),
