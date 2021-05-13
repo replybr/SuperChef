@@ -11,6 +11,8 @@
 
 function cpag()
 
+
+    
          define window form_cpag;
                 at 000,000;
                 width 1000;
@@ -181,6 +183,7 @@ function cpag()
                 on key escape action thiswindow.release
 
          end window
+  
 
          form_cpag.center
          form_cpag.activate
@@ -221,6 +224,7 @@ static function dados_cpag(parametro)
              return(nil)
           endif
        endif
+
 
        define window form_dados;
               at 000,000;
@@ -399,6 +403,7 @@ static function dados_cpag(parametro)
               end buttonex
 
        end window
+   
 
        sethandcursor(getcontrolhandle('button_ok','form_dados'))
        sethandcursor(getcontrolhandle('button_cancela','form_dados'))
@@ -745,3 +750,31 @@ static function find_formas_pagamento()
        endif
 
        return(nil)
+
+    ***********************************************
+    ///////////////////////////////////////////////
+    ***********************************************
+Static Function form_dados_tbox_001_Onlistdisplay( )
+    
+    Return .T.
+
+    ***********************************************
+    ///////////////////////////////////////////////
+    ***********************************************
+Static Function form_dados_tbox_001_Onenter( )
+    
+    Return .T.
+
+    ***********************************************
+    ///////////////////////////////////////////////
+    ***********************************************
+Static Function form_dados_tbox_002_Onlistdisplay( )
+    
+    Return .T.
+
+    ***********************************************
+    ///////////////////////////////////////////////
+    ***********************************************
+Static Function form_dados_tbox_002_Onenter( )
+    
+    Return .T.
