@@ -35,6 +35,7 @@ function compras()
         form_compras.cargo["total_doc"] := 0
         form_compras.oTipoProduto.value := 1
         form_compras.tbox_001.Setfocus()
+        form_compras.oExcluiDoc.enabled := .F.
     form_compras.center
     form_compras.activate
     
@@ -183,9 +184,9 @@ static function gravar_compras()
         endif    
         //Se for produto
         if form_compras.oTipoProduto.value=1
-            rs.execute("update produtos set qtd_estoq=(qtd_estoq+"+aItem[4]+") where codigo="+aItem[2])
+            rs.execute("update produtos set qtd_estoque=(qtd_estoque+"+aItem[4]+") where codigo="+aItem[2])
         else
-            rs.execute("update materia_prima set qtd=(qtd+"+aItem[4]+") where codigo="+aItem[2])
+            rs.execute("update materia_prima set qtd_estoque=(qtd_estoque+"+aItem[4]+") where codigo="+aItem[2])
         endif
         if rs.ErrorSQL()
             rs:RollbackTrans()
@@ -205,6 +206,8 @@ static function gravar_compras()
         rs.field.vencimento.value := dVencimento
         rs.field.forma.value      := form_compras.tbox_004.cargo[form_compras.tbox_004.value]
         rs.field.fornec.value     := form_compras.tbox_001.cargo[form_compras.tbox_001.value]
+        rs.field.tipo.value       := "P"
+        rs.field.num_doc.value    := form_compras.tbox_documento.displayValue
         if nItem < form_compras.tbox_005.value
             rs.field.valor.value      := nValorParcela
         else
@@ -353,6 +356,7 @@ Static Function form_compras_tbox_documento_Onchange( )
     Local rs1.new(),nCod
     Form_compras_Enabled(form_compras.tbox_documento.value = 0)
     if form_compras.tbox_documento.value >0
+        form_compras.tbox_documento.enabled := .T.
         nCod := form_compras.tbox_documento.cargo[form_compras.tbox_documento.value]
         rs1.SQL:=" SELECT C.fornecedor, F.nome as nomefornecedor, C.forma_pag, P.nome as nomeforma, C.num_parc, C.data_venc, C.dias_parc, C.tipo, C.num_doc, C.valor_doc "
         rs1.SQL += "FROM forma_pag_rec as P INNER JOIN (fornecedores as F INNER JOIN compras as C ON F.codigo = C.fornecedor) ON P.codigo = C.forma_pag "
@@ -393,5 +397,53 @@ Static Function form_compras_tbox_documento_Onchange( )
             rs1.MoveNext()
         Enddo
         form_compras.grid_produtos.enableUpdate()
+    else
+        form_compras.oExcluiDoc.enabled := .F.
     endif
+    Return .T.
+
+    ***********************************************
+    ///////////////////////////////////////////////
+    ***********************************************
+Static Function form_compras_oExcluiDoc_Action( )
+    Local rs.new(),cUpdate:="materia_prima"
+    Local cCodCompra
+    if form_compras.tbox_documento.value =0
+        form_compras.oExcluiDoc.enabled := .F.
+        Return .F.
+    endif
+    if !msgYesNo("Esta operação vai afetar o compras/estoque e contas a pagar, tem certeza que deseja continuar?","EXCLUIR")
+        Return .F.
+    Endif
+    cCodCompra := hb_ntos(form_compras.tbox_documento.cargo[form_compras.tbox_documento.value])
+    rs:BeginTrans()
+    if form_compras.oTipoProduto.value=1
+        cUpdate := "Produtos"
+    endif
+    rs.sql :="UPDATE (compras INNER JOIN compras_detalhe ON compras.codigo = compras_detalhe.codigo) "
+    rs.sql += " INNER JOIN "+cUpdate+" as produtos ON compras_detalhe.produto = produtos.codigo"
+    rs.sql += " SET produtos.qtd_estoque=produtos.qtd_estoque-compras_detalhe.qtd"
+    rs.sql += " where compras.codigo="+cCodCompra
+    rs.execute()
+    if rs.ErrorSQL()
+        Rs:RollbackTrans()
+        Return .F.
+    endif
+    rs.Execute("Delete from compras_detalhe where codigo="+cCodCompra)
+    if rs.ErrorSQL()
+        Rs:RollbackTrans()
+        Return .F.
+    endif
+    rs.Execute("Delete from compras where codigo="+cCodCompra)
+    if rs.ErrorSQL()
+        Rs:RollbackTrans()
+        Return .F.
+    endif
+    rs.Execute("Delete from contas where cod_origem="+cCodCompra+" and tipo='P'")
+    if rs.ErrorSQL()
+        Rs:RollbackTrans()
+        Return .F.
+    endif
+    rs:commitTrans()
+    MsgInfo("Exclusão de compras, contas a pagar e ajuste de estoque de produtos ou matéria prima concluidos com sucesso!","sucesso")
     Return .T.
