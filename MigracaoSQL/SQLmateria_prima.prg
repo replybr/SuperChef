@@ -71,13 +71,14 @@ static function dados(parametro)
     endif
     Load Window materia_prima_form_dados as form_dados
         form_dados.title := IIF(parametro=1,"Incluir","Alterar")
+        form_dados.tbox_004.enabled := .F.
         if parametro=2
             Rs.SQL:="Select * from materia_prima where codigo="+cId
             Rs.Open()
             if !Rs.ErrorSQL().and.!Rs.Eof()
                 form_dados.tbox_001.value := rs.field.nome.value
                 form_dados.tbox_003.value := rs.field.preco.value
-                form_dados.tbox_004.value := rs.field.qtd.value      
+                form_dados.tbox_004.value := rs.field.qtd_estoque.value      
                 if !Empty(rs.field.unidade.value)
                     Rs1.SQL:="Select * from grupo_apoio where codigo="+hb_ntos(rs.field.unidade.value)
                     Rs1.Open()
@@ -117,7 +118,7 @@ static function relacao()
     local linha   := p_linha
     local pagina  := 1
     
-    Rs.SQL:="SELECT M.codigo, M.nome, A.nome as nomeunidade, M.preco, M.qtd FROM grupo_apoio as A INNER JOIN materia_prima as M ON A.codigo = M.unidade;"
+    Rs.SQL:="SELECT M.codigo, M.nome, A.nome as nomeunidade, M.preco, M.qtd_estoque FROM grupo_apoio as A INNER JOIN materia_prima as M ON A.codigo = M.unidade;"
 
     Rs.Open()
     if Rs.ErrorSQL()
@@ -137,7 +138,7 @@ static function relacao()
             @ linha,045 PRINT rs.field.nome.value FONT 'courier new' SIZE 010
             @ linha,120 PRINT rs.field.nomeunidade.value FONT 'courier new' SIZE 010
             @ linha,150 PRINT trans(rs.field.preco.value,'@E 9,999.99') FONT 'courier new' SIZE 010
-            @ linha,170 PRINT trans(rs.field.qtd.value,'@R 99,999.999') FONT 'courier new' SIZE 010
+            @ linha,170 PRINT trans(rs.field.qtd_estoque.value,'@R 99,999.999') FONT 'courier new' SIZE 010
             
             linha += 5
             
@@ -221,7 +222,7 @@ static function gravar(parametro)
     Rs.Field.nome.value     := form_dados.tbox_001.value
     Rs.Field.unidade.value  := form_dados.tbox_002.cargo[form_dados.tbox_002.value]
     Rs.Field.preco.value    := form_dados.tbox_003.value
-    Rs.Field.qtd.value      := form_dados.tbox_004.value
+    Rs.Field.qtd_estoque.value      := form_dados.tbox_004.value
     Rs.Update()
     if Rs.ErrorSQL()
         Return .F.
@@ -233,14 +234,14 @@ static function gravar(parametro)
 static function atualizar()
     form_materia_prima.grid_Pesquisa.disableupdate
     delete item all from grid_Pesquisa of form_materia_prima
-    Rs.SQL := "SELECT M.codigo, M.nome, A.nome as nomeunidade, M.preco, M.qtd FROM grupo_apoio as A INNER JOIN materia_prima as M ON A.codigo = M.unidade"
+    Rs.SQL := "SELECT M.codigo, M.nome, A.nome as nomeunidade, M.preco, M.qtd_estoque FROM grupo_apoio as A INNER JOIN materia_prima as M ON A.codigo = M.unidade"
     Rs.SQL += " where M.nome like '"+form_materia_prima.tbox_pesquisa.value+"%' order by M.nome"
     Rs.Open()
     if Rs.ErrorSQL()
         Return .F.
     Endif
     while !Rs.Eof()
-        add item {str(Rs.Field.codigo.value,4),Rs.Field.nome.value,Rs.Field.nomeunidade.value,trans(rs.field.preco.value,'@E 999,999.99'),trans(rs.field.qtd.value,'@R 99,999.999')} to Grid_Pesquisa of form_materia_prima
+        add item {str(Rs.Field.codigo.value,4),Rs.Field.nome.value,Rs.Field.nomeunidade.value,trans(rs.field.preco.value,'@E 999,999.99'),trans(rs.field.qtd_estoque.value,'@R 99,999.999')} to Grid_Pesquisa of form_materia_prima
         Rs.MoveNext()
     end
     form_materia_prima.Grid_Pesquisa.ColumnsAutoFit()
