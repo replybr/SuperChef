@@ -1,0 +1,376 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 13/05/2021-16:27:14 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_dados}
+*{Modulo:SQLcontas_PagRec.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 219, 359 WIDTH 497 HEIGHT 397  TITLE "(titulo)" ICON "icone" MODAL NOSIZE
+
+    DEFINE LABEL lbl_001
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 10
+        TRANSPARENT TRUE
+        VALUE "Fornecedor"
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX tbox_001
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 300
+        ONENTER (form_dados_tbox_001_Onenter())
+        ONLISTDISPLAY (form_dados_tbox_001_Onlistdisplay())
+        ROW 33
+        VALUE 0
+        WIDTH 476
+    END COMBOBOX
+
+    DEFINE LABEL lbl_002
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 61
+        TRANSPARENT TRUE
+        VALUE "Forma Pagamento"
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX tbox_002
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 300
+        ONENTER (form_dados_tbox_002_Onenter())
+        ONLISTDISPLAY (form_dados_tbox_002_Onlistdisplay())
+        ROW 84
+        VALUE 0
+        WIDTH 476
+    END COMBOBOX
+
+    DEFINE LABEL lbl_003
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 112
+        TRANSPARENT TRUE
+        VALUE "Vencimento"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_003
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        DATE TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        ROW 135
+        VALUE Date()
+        WIDTH 120
+    END TEXTBOX
+
+    DEFINE LABEL lbl_5
+        AUTOSIZE TRUE
+        COL 137
+        FONTBOLD TRUE
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 112
+        TRANSPARENT TRUE
+        VALUE "Data do Pagamento"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX oPagamento
+        COL 137
+        DATE TRUE
+        HEIGHT 27
+        MAXLENGTH 10
+        ROW 135
+        VALUE CTOD('')
+        WIDTH 120
+    END GETBOX
+
+    DEFINE LABEL lbl_005
+        AUTOSIZE TRUE
+        COL 331
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 112
+        TRANSPARENT TRUE
+        VALUE "Número documento"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_005
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 331
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 15
+        ROW 135
+        UPPERCASE TRUE
+        WIDTH 150
+    END TEXTBOX
+
+    DEFINE LABEL lbl_004
+        AUTOSIZE TRUE
+        COL 7
+        FONTBOLD TRUE
+        FONTCOLOR { 160 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 167
+        TRANSPARENT TRUE
+        VALUE "Valor R$"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX tbox_004
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 7
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        NUMERIC TRUE
+        ONCHANGE (form_dados_tbox_Onchange( ))
+        PICTURE "@E 999,999.99"
+        ROW 190
+        VALUE 0
+        WIDTH 94
+    END GETBOX
+
+    DEFINE LABEL lbl_1
+        AUTOSIZE TRUE
+        COL 102
+        FONTBOLD TRUE
+        FONTCOLOR { 160 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 166
+        TRANSPARENT TRUE
+        VALUE "Multa"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX oMulta
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 102
+        FONTCOLOR { 0 , 0 , 255 }
+        HEIGHT 27
+        MAXLENGTH 10
+        NUMERIC TRUE
+        ONCHANGE (form_dados_tbox_Onchange( ))
+        PICTURE "@E 999,999.99"
+        ROW 190
+        VALUE 0
+        WIDTH 94
+    END GETBOX
+
+    DEFINE LABEL lbl_2
+        AUTOSIZE TRUE
+        COL 197
+        FONTBOLD TRUE
+        FONTCOLOR { 160 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 166
+        TRANSPARENT TRUE
+        VALUE "Juros"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX oJuros
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 197
+        FONTCOLOR { 0 , 0 , 255 }
+        HEIGHT 27
+        MAXLENGTH 10
+        NUMERIC TRUE
+        ONCHANGE (form_dados_tbox_Onchange( ))
+        PICTURE "@E 999,999.99"
+        ROW 190
+        VALUE 0
+        WIDTH 94
+    END GETBOX
+
+    DEFINE LABEL lbl_3
+        AUTOSIZE TRUE
+        COL 292
+        FONTBOLD TRUE
+        FONTCOLOR { 160 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 166
+        TRANSPARENT TRUE
+        VALUE "Desconto"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX oDesconto
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 292
+        FONTCOLOR { 0 , 0 , 255 }
+        HEIGHT 27
+        MAXLENGTH 10
+        NUMERIC TRUE
+        ONCHANGE (form_dados_tbox_Onchange( ))
+        PICTURE "@E 999,999.99"
+        ROW 190
+        VALUE 0
+        WIDTH 94
+    END GETBOX
+
+    DEFINE LABEL lbl_4
+        AUTOSIZE TRUE
+        COL 387
+        FONTBOLD TRUE
+        FONTCOLOR { 160 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 167
+        TRANSPARENT TRUE
+        VALUE "Vr Total"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX oVrTotal
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 387
+        FONTCOLOR { 0 , 0 , 255 }
+        HEIGHT 27
+        MAXLENGTH 10
+        NUMERIC TRUE
+        PICTURE "@E 999,999.99"
+        ROW 190
+        VALUE 0
+        WIDTH 94
+    END GETBOX
+
+    DEFINE LABEL lbl_006
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 228
+        TRANSPARENT TRUE
+        VALUE "Observação"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_006
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 30
+        ROW 251
+        UPPERCASE TRUE
+        WIDTH 474
+    END TEXTBOX
+
+    DEFINE LABEL linha_rodape
+        BACKCOLOR { 0 , 0 , 0 }
+        COL 0
+        HEIGHT 1
+        ROW 306
+        TRANSPARENT FALSE
+        WIDTH 493
+    END LABEL
+
+    DEFINE BUTTONEX button_ok
+        ACTION (gravar(parametro))
+        CAPTION "Ok, gravar"
+        COL 265
+        FONTBOLD TRUE
+        HEIGHT 50
+        NOXPSTYLE TRUE
+        PICTURE "img_gravar"
+        ROW 312
+        TOOLTIP "Confirmar as informações digitadas"
+        WIDTH 120
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_cancela
+        ACTION (form_dados.release)
+        CAPTION "Voltar"
+        COL 390
+        FONTBOLD TRUE
+        HEIGHT 50
+        NOXPSTYLE TRUE
+        PICTURE "img_voltar"
+        ROW 312
+        TOOLTIP "Sair desta tela sem gravar informações"
+        WIDTH 90
+    END BUTTONEX
+
+    DEFINE IMAGE oflag
+        COL 260
+        HEIGHT 27
+        PICTURE "img_pedido"
+        ROW 135
+        STRETCH TRUE
+        WIDTH 25
+    END IMAGE
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+

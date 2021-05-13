@@ -1,0 +1,219 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 13/05/2021-15:47:24 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_cpag}
+*{Modulo:cpag.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 110, 272 WIDTH 1000 HEIGHT 684  TITLE "Contas a Pagar" ICON "icone" MODAL NOSIZE ON INIT (atualizar())
+
+    DEFINE BUTTONEX button_incluir
+        ACTION (dados(1))
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "F5 Incluir"
+        COL 5
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "incluir"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_alterar
+        ACTION (dados(3))
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "F6 Alterar"
+        COL 107
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "alterar"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_excluir
+        ACTION (excluir())
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "F7 Excluir"
+        COL 209
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "excluir"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_atualizar
+        ACTION (atualizar())
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "Atualizar"
+        COL 311
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "atualizar"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_sair
+        ACTION (form_crec.release)
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION "ESC Voltar"
+        COL 413
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 100
+        NOXPSTYLE TRUE
+        PICTURE "sair"
+        ROW 2
+        VERTICAL TRUE
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE GRID Grid_Pesquisa
+        BACKCOLOR { 255 , 255 , 225 }
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEADERS { "id" , "Vencimento" , "Fornecedor" , "Forma Pagamento" , "Valor R$" , "Nº Documento" , "Observação" }
+        HEIGHT 500
+        ONDBLCLICK (dados(2))
+        ROW 105
+        VALUE 0
+        WIDTH 980
+        WIDTHS { 4 , 120 , 300 , 200 , 120 , 120 , 200 }
+    END GRID
+
+    DEFINE LABEL rodape_001
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 128 , 128 , 128 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 615
+        TRANSPARENT TRUE
+        VALUE "Escolha o período"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL rodape_002
+        AUTOSIZE TRUE
+        COL 250
+        FONTBOLD TRUE
+        FONTCOLOR { 128 , 128 , 128 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 615
+        TRANSPARENT TRUE
+        VALUE "até"
+        WIDTH 120
+    END LABEL
+
+    DEFINE DATEPICKER dp_inicio
+        COL 140
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 615
+        VALUE date()
+        WIDTH 100
+    END DATEPICKER
+
+    DEFINE DATEPICKER dp_final
+        COL 280
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 615
+        VALUE date()
+        WIDTH 100
+    END DATEPICKER
+
+    DEFINE BUTTONEX botao_filtrar
+        ACTION (atualizar())
+        CAPTION "Filtrar"
+        COL 588
+        FONTBOLD TRUE
+        HEIGHT 30
+        PICTURE "Minigui_edit_find"
+        ROW 610
+        TOOLTIP "Clique aqui para mostrar as informações com base no período selecionado"
+        WIDTH 100
+    END BUTTONEX
+
+    DEFINE LABEL rodape_003
+        AUTOSIZE TRUE
+        COL 730
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 89 , 45 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 615
+        TRANSPARENT TRUE
+        VALUE "DUPLO CLIQUE : Alterar informação"
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX oFiltroPag
+        COL 393
+        HEIGHT 300
+        LISTWIDTH 190
+        ROW 615
+        WIDTH 190
+    END COMBOBOX
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+
