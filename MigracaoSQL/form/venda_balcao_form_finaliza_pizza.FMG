@@ -1,0 +1,79 @@
+*Form extraido do arquivo E:\Prgplus\Git\SuperChef\MigracaoSQL\venda_balcao.prg
+* linha 1229 à 1299
+
+#include <Var.ch>
+Local xxxxwidth := 1000
+Local xxxHeight := 400
+
+*{Name:form_finaliza_pizza}
+*{Modulo:venda_balcao.prg}
+
+define window form_finaliza_pizza; 
+at 000,000; 
+width 1000; 
+height 400; 
+title 'Finalizar pizza'; 
+icon path_imagens+'icone.ico'; 
+modal; 
+nosize 
+@ 005,005 label lbl_001; 
+of form_finaliza_pizza; 
+value '1- Selecione o tamanho da pizza'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 025,005 label lbl_002; 
+of form_finaliza_pizza; 
+value '2- Você poderá escolher entre o menor e o maior preço à ser cobrado, no caso de ter mais de 1 sabor na mesma pizza'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 045,005 label lbl_003; 
+of form_finaliza_pizza; 
+value '3- Caso deseje, ao fechamento deste pedido, poderá conceder um desconto especial ao cliente'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 065,005 label lbl_004; 
+of form_finaliza_pizza; 
+value '4- Para finalizar esta pizza e continuar vendendo, dê duplo-clique ou enter sobre o tamanho/preço escolhido'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor BLUE; 
+transparent 
+@ 085,005 label lbl_005; 
+of form_finaliza_pizza; 
+value '5- ESC fecha esta janela e retorna para a tela de vendas'; 
+autosize; 
+font 'tahoma' size 010; 
+bold; 
+fontcolor _vermelho_002; 
+transparent 
+define grid grid_finaliza_pizza 
+parent form_finaliza_pizza 
+col 005 
+row 105 
+width 985 
+height 260 
+headers {'id','Pizza',_tamanho_001,_tamanho_002,_tamanho_003,_tamanho_004,_tamanho_005,_tamanho_006} 
+widths {001,250,120,120,120,120,120,120} 
+value 1 
+celled .T. 
+fontname 'verdana' 
+fontsize 010 
+fontbold .T. 
+backcolor _cinza_005 
+fontcolor _preto_001 
+ondblclick pega_tamanho_valor_pizza() 
+end grid 
+on key escape action thiswindow.release 
+end window 
+
+

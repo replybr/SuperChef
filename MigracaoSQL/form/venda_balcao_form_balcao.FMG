@@ -1,0 +1,444 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 14/05/2021-17:16:24 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_balcao}
+*{Modulo:venda_balcao.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 4, 93 WIDTH 1536 HEIGHT 864  TITLE "Venda Balcão" ICON "icone" MODAL ON INIT (zera_tabelas())
+
+    DEFINE LABEL label_fechar_pedido
+        BACKCOLOR { 0 , 0 , 0 }
+        CENTERALIGN TRUE
+        COL 0
+        FONTBOLD TRUE
+        FONTCOLOR { 128 , 128 , 128 }
+        FONTNAME "verdana"
+        FONTSIZE 22
+        HEIGHT 40
+        ROW 764
+        VALUE "F9-fechar este pedido  ESC-sair"
+        WIDTH 1536
+    END LABEL
+
+    DEFINE LABEL label_separador
+        BACKCOLOR { 192 , 192 , 192 }
+        COL 400
+        HEIGHT 764
+        ROW 0
+        TRANSPARENT FALSE
+        WIDTH 2
+    END LABEL
+
+    DEFINE LABEL label_telefone
+        AUTOSIZE TRUE
+        COL 10
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "courier new"
+        FONTSIZE 12
+        HEIGHT 24
+        ROW 10
+        TRANSPARENT TRUE
+        VALUE "Telefone"
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX tbox_telefone
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 10
+        DISPLAYEDIT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 300
+        ONCHANGE (form_balcao_tbox_telefone_Onchange())
+        ONENTER (form_balcao_tbox_telefone_Onenter())
+        ONLISTDISPLAY (form_balcao_tbox_telefone_Onlistdisplay())
+        ROW 35
+        VALUE 0
+        WIDTH 150
+    END COMBOBOX
+
+    DEFINE BUTTONEX botao_cadastrar_cliente
+        ACTION (cadastrar_novo_cliente())
+        CAPTION "Cadastrar novo cliente"
+        COL 170
+        HEIGHT 40
+        NOTABSTOP TRUE
+        PICTURE "cadastrar_cliente"
+        ROW 26
+        TOOLTIP "Clique aqui para cadastrar um cliente novo, sem precisar sair desta tela"
+        WIDTH 220
+    END BUTTONEX
+
+    DEFINE LABEL label_nome_cliente
+        AUTOSIZE TRUE
+        COL 10
+        FONTBOLD TRUE
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 24
+        ROW 70
+        TRANSPARENT TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL label_endereco_001
+        AUTOSIZE TRUE
+        COL 10
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "courier new"
+        FONTSIZE 14
+        HEIGHT 24
+        ROW 100
+        TRANSPARENT TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL label_endereco_002
+        AUTOSIZE TRUE
+        COL 10
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "courier new"
+        FONTSIZE 14
+        HEIGHT 24
+        ROW 120
+        TRANSPARENT TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL label_endereco_003
+        AUTOSIZE TRUE
+        COL 10
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "courier new"
+        FONTSIZE 14
+        HEIGHT 24
+        ROW 140
+        TRANSPARENT TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE GRID grid_historico
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 10
+        FONTBOLD TRUE
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEADERS { "id cliente" , "Onde" , "Data" , "Hora" , "Valor R$" }
+        HEIGHT 200
+        ONCHANGE (mostra_detalhamento_2())
+        ROW 180
+        SHOWHEADERS TRUE
+        VALUE 0
+        WIDTH 380
+        WIDTHS { 4 , 100 , 100 , 75 , 90 }
+    END GRID
+
+    DEFINE GRID grid_detalhamento
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 10
+        FONTBOLD TRUE
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 120
+        ROW 390
+        SHOWHEADERS TRUE
+        VALUE 0
+        WIDTH 380
+        headers {'Qtd.','Produto','Valor R$'}
+        widths {080,190,100}
+    END GRID
+
+    DEFINE LABEL label_pizza
+        AUTOSIZE TRUE
+        COL 410
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "courier new"
+        FONTSIZE 12
+        HEIGHT 24
+        ROW 3
+        TRANSPARENT TRUE
+        VALUE "Pizza"
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX tbox_pizza
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 410
+        DISPLAYEDIT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 300
+        ONENTER (form_balcao_tbox_pizza_Onenter())
+        ONLISTDISPLAY (form_balcao_tbox_pizza_Onlistdisplay())
+        ROW 28
+        VALUE 0
+        WIDTH 400
+    END COMBOBOX
+
+    DEFINE BUTTONEX botao_confirmar_pizza
+        ACTION (gravar_adicionar())
+        CAPTION "Selecionar pizza"
+        COL 850
+        HEIGHT 40
+        PICTURE "adicionar"
+        ROW 30
+        TOOLTIP "Clique aqui para confirmar a pizza selecionada"
+        WIDTH 165
+    END BUTTONEX
+
+    DEFINE LABEL label_pizza_selecionada
+        AUTOSIZE TRUE
+        COL 410
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "courier new"
+        FONTSIZE 12
+        HEIGHT 24
+        ROW 60
+        TRANSPARENT TRUE
+        VALUE "Pizzas selecionadas"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GRID grid_pizzas
+        BACKCOLOR { 255 , 255 , 225 }
+        COL 410
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEADERS { "id produto" , "Seq." , "Nome" , "Tamanho" , "Preço R$" }
+        HEIGHT 200
+        ROW 80
+        SHOWHEADERS TRUE
+        VALUE 1
+        WIDTH 1116
+        WIDTHS { 4 , 100 , 190 , 180 , 100 }
+    END GRID
+
+    DEFINE LABEL label_observacoes
+        AUTOSIZE TRUE
+        COL 410
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "courier new"
+        FONTSIZE 12
+        HEIGHT 24
+        ROW 285
+        TRANSPARENT TRUE
+        VALUE "Observações para a montagem da(s) pizza(s)"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_observacoes
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 410
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "courier new"
+        FONTSIZE 12
+        HEIGHT 30
+        MAXLENGTH 30
+        ROW 308
+        UPPERCASE TRUE
+        WIDTH 420
+    END TEXTBOX
+
+    DEFINE BUTTONEX botao_excluir_pizza
+        ACTION (excluir_pizza())
+        CAPTION "Excluir ítem"
+        COL 850
+        HEIGHT 40
+        NOTABSTOP TRUE
+        PICTURE "excluir_item"
+        ROW 298
+        TOOLTIP "Clique aqui para excluir uma pizza selecionada acima"
+        WIDTH 165
+    END BUTTONEX
+
+    DEFINE LABEL label_instrucao_001
+        AUTOSIZE TRUE
+        COL 410
+        FONTBOLD TRUE
+        FONTCOLOR { 128 , 128 , 128 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 340
+        TRANSPARENT TRUE
+        VALUE "tecle F5 após completar a composição de 1 (uma) pizza, para finalizá-la,"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL label_instrucao_002
+        AUTOSIZE TRUE
+        COL 410
+        FONTBOLD TRUE
+        FONTCOLOR { 128 , 128 , 128 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 362
+        TRANSPARENT TRUE
+        VALUE "ou, para vender mais de 1 (uma) pizza, finalize uma para começar outra."
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL label_produto
+        AUTOSIZE TRUE
+        COL 410
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "courier new"
+        FONTSIZE 12
+        HEIGHT 24
+        ROW 389
+        TRANSPARENT TRUE
+        VALUE "Produto"
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX tbox_produto
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 410
+        DISPLAYEDIT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 300
+        ONENTER (form_balcao_tbox_produto_Onenter())
+        ONLISTDISPLAY (form_balcao_tbox_produto_Onlistdisplay())
+        ROW 415
+        VALUE 0
+        WIDTH 421
+    END COMBOBOX
+
+    DEFINE LABEL label_quantidade
+        AUTOSIZE TRUE
+        COL 410
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "courier new"
+        FONTSIZE 12
+        HEIGHT 24
+        ROW 450
+        TRANSPARENT TRUE
+        VALUE "Quantidade"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_quantidade
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 410
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 30
+        NUMERIC TRUE
+        ONENTER (verifica_zero())
+        ROW 475
+        WIDTH 100
+    END TEXTBOX
+
+    DEFINE LABEL label_preco
+        AUTOSIZE TRUE
+        COL 530
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "courier new"
+        FONTSIZE 12
+        HEIGHT 24
+        ROW 450
+        TRANSPARENT TRUE
+        VALUE "Preço R$"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX tbox_preco
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 530
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 30
+        NUMERIC TRUE
+        PICTURE "@E 9,999.99"
+        ROW 475
+        VALUE 0
+        WIDTH 130
+    END GETBOX
+
+    DEFINE BUTTONEX botao_confirmar_produto
+        ACTION (gravar_produto())
+        CAPTION "Selecionar produto"
+        COL 670
+        HEIGHT 40
+        PICTURE "adicionar"
+        ROW 465
+        TOOLTIP "Clique aqui para confirmar o produto selecionado"
+        WIDTH 165
+    END BUTTONEX
+
+    DEFINE GRID grid_produtos
+        BACKCOLOR { 255 , 255 , 225 }
+        COL 410
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEADERS { "id produto" , "Qtd" , "Produto" , "Unitário R$" , "Subtotal R$" }
+        HEIGHT 249
+        ROW 510
+        SHOWHEADERS TRUE
+        VALUE 1
+        WIDTH 1116
+        WIDTHS { 4 , 80 , 210 , 140 , 140 }
+    END GRID
+
+    DEFINE BUTTONEX botao_excluir_produto
+        ACTION (excluir_produto())
+        CAPTION "Excluir produto"
+        COL 850
+        HEIGHT 40
+        NOTABSTOP TRUE
+        PICTURE "excluir_item"
+        ROW 465
+        TOOLTIP "Clique aqui para excluir um produto já selecionado"
+        WIDTH 165
+    END BUTTONEX
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+

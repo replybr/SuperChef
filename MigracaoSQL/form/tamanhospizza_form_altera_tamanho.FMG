@@ -1,0 +1,144 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 17/05/2021-14:18:57 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_altera_tamanho}
+*{Modulo:SQLtamanhospizza.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 232, 320 WIDTH 274 HEIGHT 281  TITLE "Alterar" ICON "icone" MODAL NOSIZE
+
+    DEFINE LABEL lbl_001
+        AUTOSIZE TRUE
+        COL 18
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 22
+        TRANSPARENT TRUE
+        VALUE "Nome"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_001
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 18
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 15
+        ROW 45
+        UPPERCASE TRUE
+        WIDTH 232
+    END TEXTBOX
+
+    DEFINE LABEL lbl_002
+        AUTOSIZE TRUE
+        COL 18
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 73
+        TRANSPARENT TRUE
+        VALUE "Nº pedaços"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_002
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 18
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        NUMERIC TRUE
+        ROW 96
+        WIDTH 120
+    END TEXTBOX
+
+    DEFINE LABEL lbl_1
+        AUTOSIZE TRUE
+        COL 18
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 124
+        TRANSPARENT TRUE
+        VALUE "Qtde Max Sabores"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_003
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 18
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        NUMERIC TRUE
+        ROW 147
+        WIDTH 120
+    END TEXTBOX
+
+    DEFINE FRAME oFrame1
+        CAPTION "Tamanhos Pizza"
+        COL 9
+        HEIGHT 182
+        ROW 3
+        WIDTH 249
+    END FRAME
+
+    DEFINE BUTTONEX button_ok
+        ACTION (gravar(parametro))
+        CAPTION "Ok, gravar"
+        COL 40
+        FONTBOLD TRUE
+        HEIGHT 50
+        NOXPSTYLE TRUE
+        PICTURE "img_gravar"
+        ROW 193
+        TOOLTIP "Confirmar as informações digitadas"
+        WIDTH 120
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_cancela
+        ACTION (form_dados.release)
+        CAPTION "Voltar"
+        COL 165
+        FONTBOLD TRUE
+        HEIGHT 50
+        NOXPSTYLE TRUE
+        PICTURE "img_voltar"
+        ROW 193
+        TOOLTIP "Sair desta tela sem gravar informações"
+        WIDTH 90
+    END BUTTONEX
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+

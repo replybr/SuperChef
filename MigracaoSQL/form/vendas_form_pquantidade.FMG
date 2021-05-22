@@ -1,0 +1,70 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 17/05/2021-19:40:41 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_pquantidade}
+*{Modulo:vendas.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 300, 452 WIDTH 300 HEIGHT 120  TITLE "Digitação" ICON "icone.ico" MODAL NOSIZE
+
+    DEFINE LABEL label_1
+        AUTOSIZE TRUE
+        COL 10
+        FONTBOLD TRUE
+        FONTNAME "courier new"
+        FONTSIZE 12
+        HEIGHT 24
+        ROW 10
+        TRANSPARENT TRUE
+        VALUE "Digite a quantidade"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_quantidade
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 230
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "courier new"
+        FONTSIZE 12
+        HEIGHT 30
+        NUMERIC TRUE
+        ROW 10
+        WIDTH 60
+    END TEXTBOX
+
+    DEFINE LABEL label_2
+        CENTERALIGN TRUE
+        COL 10
+        FONTBOLD TRUE
+        FONTNAME "courier new"
+        FONTSIZE 12
+        HEIGHT 24
+        ROW 50
+        TRANSPARENT TRUE
+        VALUE "e tecle ENTER"
+        WIDTH 300
+    END LABEL
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+

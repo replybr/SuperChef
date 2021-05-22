@@ -1,0 +1,456 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210518 1047"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 19/05/2021-18:05:36 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_fecha_pedido}
+*{Modulo:vendas.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 156, 460 WIDTH 500 HEIGHT 575  TITLE "Fechamento do pedido" ICON "icone" MODAL NOSIZE ON INIT (form_fecha_pedido_Oninit())
+
+    DEFINE LABEL label_sep_001
+        BACKCOLOR { 192 , 192 , 192 }
+        COL 0
+        HEIGHT 2
+        ROW 222
+        TRANSPARENT FALSE
+        WIDTH 500
+    END LABEL
+
+    DEFINE LABEL label_sep_002
+        BACKCOLOR { 192 , 192 , 192 }
+        COL 0
+        HEIGHT 2
+        ROW 402
+        TRANSPARENT FALSE
+        WIDTH 500
+    END LABEL
+
+    DEFINE LABEL label_001
+        AUTOSIZE TRUE
+        COL 156
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 12
+        HEIGHT 32
+        ROW 10
+        TRANSPARENT TRUE
+        VALUE "SUBTOTAL PIZZAS"
+        VCENTERALIGN TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL label_001_valor
+        CLIENTEDGE TRUE
+        COL 332
+        FONTBOLD TRUE
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 32
+        RIGHTALIGN TRUE
+        ROW 10
+        TRANSPARENT TRUE
+        VCENTERALIGN TRUE
+        WIDTH 130
+    END LABEL
+
+    DEFINE LABEL label_b001
+        AUTOSIZE TRUE
+        COL 173
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "Tahoma"
+        FONTSIZE 12
+        HEIGHT 32
+        ROW 43
+        TRANSPARENT TRUE
+        VALUE "VALOR DA BORDA"
+        VCENTERALIGN TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL label_b002
+        CLIENTEDGE TRUE
+        COL 332
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "Courier New"
+        FONTSIZE 16
+        HEIGHT 32
+        RIGHTALIGN TRUE
+        ROW 43
+        TRANSPARENT TRUE
+        VCENTERALIGN TRUE
+        WIDTH 130
+    END LABEL
+
+    DEFINE LABEL label_002
+        AUTOSIZE TRUE
+        COL 119
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 12
+        HEIGHT 32
+        ROW 76
+        TRANSPARENT TRUE
+        VALUE "SUBTOTAL PRODUTOS"
+        VCENTERALIGN TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL label_002_valor
+        CLIENTEDGE TRUE
+        COL 332
+        FONTBOLD TRUE
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 32
+        RIGHTALIGN TRUE
+        ROW 76
+        TRANSPARENT TRUE
+        VCENTERALIGN TRUE
+        WIDTH 130
+    END LABEL
+
+    DEFINE LABEL label_003
+        AUTOSIZE TRUE
+        COL 155
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 12
+        HEIGHT 32
+        ROW 108
+        TRANSPARENT TRUE
+        VALUE "TAXA DE ENTREGA"
+        VCENTERALIGN TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX tbox_taxa
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 332
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 32
+        NUMERIC TRUE
+        ONCHANGE (form_fecha_pedido_tbox_taxa_Onchange())
+        PICTURE "@E 9,999.99"
+        ROW 108
+        VALUE 0
+        WIDTH 130
+    END GETBOX
+
+    DEFINE LABEL label_004
+        AUTOSIZE TRUE
+        COL 222
+        FONTBOLD TRUE
+        FONTCOLOR { 160 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 12
+        HEIGHT 32
+        ROW 146
+        TRANSPARENT TRUE
+        VALUE "DESCONTO"
+        VCENTERALIGN TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX tbox_desconto
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 332
+        FONTBOLD TRUE
+        FONTCOLOR { 160 , 0 , 0 }
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 32
+        NUMERIC TRUE
+        ONCHANGE (form_fecha_pedido_tbox_desconto_Onchange())
+        PICTURE "@E 9,999.99"
+        ROW 146
+        VALUE 0
+        WIDTH 130
+    END GETBOX
+
+    DEFINE LABEL label_005
+        AUTOSIZE TRUE
+        COL 123
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 12
+        HEIGHT 32
+        ROW 186
+        TRANSPARENT TRUE
+        VALUE "TOTAL DESTE PEDIDO"
+        VCENTERALIGN TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL label_005_valor
+        CLIENTEDGE TRUE
+        COL 332
+        FONTBOLD TRUE
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 32
+        RIGHTALIGN TRUE
+        ROW 186
+        TRANSPARENT TRUE
+        VCENTERALIGN TRUE
+        WIDTH 130
+    END LABEL
+
+    DEFINE LABEL label_006
+        AUTOSIZE TRUE
+        COL 20
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 12
+        HEIGHT 24
+        ROW 230
+        TRANSPARENT TRUE
+        VALUE "Você pode escolher até 3 formas de recebimento"
+        VCENTERALIGN TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX oFormaPagto1
+        COL 20
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "Courier New"
+        FONTSIZE 14
+        HEIGHT 300
+        ONENTER (form_fecha_pedido_oFormaPagto_Onenter())
+        ONLISTDISPLAY (form_fecha_pedido_oFormaPagto_Onlistdisplay())
+        ROW 258
+        VALUE 0
+        WIDTH 307
+    END COMBOBOX
+
+    DEFINE GETBOX tbox_fr001
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 332
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "courier new"
+        FONTSIZE 14
+        HEIGHT 32
+        NUMERIC TRUE
+        ONCHANGE (form_fecha_pedido_tbox_fr001_Onchange())
+        PICTURE "@E 99,999.99"
+        ROW 258
+        VALUE 0
+        WIDTH 130
+    END GETBOX
+
+    DEFINE COMBOBOX oFormaPagto2
+        COL 20
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "Courier New"
+        FONTSIZE 14
+        HEIGHT 300
+        ONENTER (form_fecha_pedido_oFormaPagto_Onenter())
+        ONLISTDISPLAY (form_fecha_pedido_oFormaPagto_Onlistdisplay())
+        ROW 298
+        VALUE 1
+        WIDTH 307
+    END COMBOBOX
+
+    DEFINE GETBOX tbox_fr002
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 332
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "courier new"
+        FONTSIZE 14
+        HEIGHT 32
+        NUMERIC TRUE
+        ONCHANGE (form_fecha_pedido_tbox_fr002_Onchange())
+        PICTURE "@E 99,999.99"
+        ROW 298
+        VALUE 0
+        WIDTH 130
+    END GETBOX
+
+    DEFINE COMBOBOX oFormaPagto3
+        COL 20
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "Courier New"
+        FONTSIZE 14
+        HEIGHT 300
+        ONENTER (form_fecha_pedido_oFormaPagto_Onenter())
+        ONLISTDISPLAY (form_fecha_pedido_oFormaPagto_Onlistdisplay())
+        ROW 338
+        VALUE 1
+        WIDTH 307
+    END COMBOBOX
+
+    DEFINE GETBOX tbox_fr003
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 332
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "courier new"
+        FONTSIZE 14
+        HEIGHT 32
+        NUMERIC TRUE
+        ONCHANGE (form_fecha_pedido_tbox_fr003_Onchange())
+        PICTURE "@E 99,999.99"
+        ROW 338
+        VALUE 0
+        WIDTH 130
+    END GETBOX
+
+    DEFINE LABEL label_011
+        AUTOSIZE TRUE
+        COL 163
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 12
+        HEIGHT 32
+        ROW 368
+        TRANSPARENT TRUE
+        VALUE "TOTAL RECEBIDO"
+        VCENTERALIGN TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL oRecebido
+        CLIENTEDGE TRUE
+        COL 332
+        FONTBOLD TRUE
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 32
+        RIGHTALIGN TRUE
+        ROW 368
+        TRANSPARENT TRUE
+        VCENTERALIGN TRUE
+        WIDTH 130
+    END LABEL
+
+    DEFINE LABEL label_012
+        AUTOSIZE TRUE
+        COL 257
+        FONTBOLD TRUE
+        FONTCOLOR { 160 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 12
+        HEIGHT 32
+        ROW 412
+        TRANSPARENT TRUE
+        VALUE "TROCO"
+        VCENTERALIGN TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL oTroco
+        CLIENTEDGE TRUE
+        COL 332
+        FONTBOLD TRUE
+        FONTNAME "courier new"
+        FONTSIZE 16
+        HEIGHT 32
+        RIGHTALIGN TRUE
+        ROW 412
+        TRANSPARENT TRUE
+        VCENTERALIGN TRUE
+        WIDTH 130
+    END LABEL
+
+    DEFINE LABEL label_1
+        AUTOSIZE TRUE
+        COL 9
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 12
+        HEIGHT 32
+        ROW 450
+        TRANSPARENT TRUE
+        VALUE "Entrega:"
+        VCENTERALIGN TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX oEntrega
+        COL 93
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "Segoe UI"
+        FONTSIZE 14
+        HEIGHT 301
+        LISTWIDTH 190
+        ONENTER (form_fecha_pedido_oEntrega_Onenter())
+        ONLISTDISPLAY (form_fecha_pedido_oEntrega_Onlistdisplay())
+        ROW 448
+        VALUE 0
+        WIDTH 369
+    END COMBOBOX
+
+    DEFINE BUTTONEX botao_cupom
+        ACTION (imprimir_cupom(['-',x_valor_pizza+x_valor_prod,form_fecha_pedido.tbox_taxa.value,x_preco,form_fecha_pedido.tbox_desconto.value,0]))
+        CAPTION "Imprimir CUPOM"
+        COL 5
+        HEIGHT 40
+        PICTURE "img_relatorio"
+        ROW 494
+        TOOLTIP "Clique aqui imprimir o cupom"
+        WIDTH 155
+    END BUTTONEX
+
+    DEFINE BUTTONEX botao_ok
+        ACTION (fechamento_geral('x_preco'))
+        CAPTION "Fechar pedido"
+        COL 165
+        HEIGHT 40
+        PICTURE "img_pedido"
+        ROW 494
+        TOOLTIP "Clique aqui para finalizar o pedido"
+        WIDTH 140
+    END BUTTONEX
+
+    DEFINE BUTTONEX botao_voltar
+        ACTION (form_fecha_pedido.release)
+        CAPTION "Voltar tela anterior"
+        COL 310
+        HEIGHT 40
+        PICTURE "img_sair"
+        ROW 494
+        TOOLTIP "Clique aqui para voltar a vender"
+        WIDTH 180
+    END BUTTONEX
+
+    DEFINE FRAME oFrame1
+        COL 21
+        HEIGHT 214
+        ROW 1
+        WIDTH 449
+    END FRAME
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+

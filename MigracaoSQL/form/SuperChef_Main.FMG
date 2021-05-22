@@ -1,0 +1,503 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210518 1047"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 21/05/2021-19:05:14 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_main}
+*{Modulo:SuperChef.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 0, 0 WIDTH 1536 HEIGHT 864  TITLE "SuperChef Pizza 4.0" ICON "icone" MAIN NOSHOW NOSIZE ON INIT (login()) BACKCOLOR {071,089,135}
+
+    DEFINE MAIN MENU
+        DEFINE MENU POPUP "Tabelas" NAME form_mainnMenu1
+            MENUITEM "Fornecedores" ACTION fornecedores() NAME MnuFornecedores IMAGE "img_fornecedores"
+            MENUITEM "Grupo de Fornecedores" ACTION grupo_fornecedores() NAME MnuGrupoFornecedores IMAGE "img_grupo_fornecedores"
+            SEPARATOR
+            MENUITEM "Matéria Prima" ACTION materia_prima() NAME MnuMateriaPrima IMAGE "img_materia_prima"
+            SEPARATOR
+            MENUITEM "Categorias de Produtos" ACTION categoria_produtos() NAME MnuCatprodutos IMAGE "img_categorias"
+            MENUITEM "Sub-Categorias de Produtos" ACTION subcategoria_produtos() NAME MnuSubCatProdutos IMAGE "img_subcategorias"
+            SEPARATOR
+            MENUITEM "Formas de Recebimento" ACTION formas_recebimento() NAME MnuFormaRecebimento IMAGE "img_formas_recebimento"
+            MENUITEM "Formas de Pagamento" ACTION formas_pagamento() NAME MnuFormaPagamento IMAGE "img_formas_pagamento"
+            SEPARATOR
+            MENUITEM "Unidades de Medida" ACTION unidades_medida() NAME MnuUnidadesMedida IMAGE "img_medidas"
+            MENUITEM "Contas Bancárias" ACTION contas_bancarias() NAME MnuContasBancarias IMAGE "img_contas_bancarias"
+            MENUITEM "Impostos e Alíquotas" ACTION impostos_aliquotas() NAME MnuImpostos IMAGE "img_impostos"
+            SEPARATOR
+            MENUITEM "Mesas da Pizzaria" ACTION mesas() NAME MnuMesas IMAGE "img_mesas"
+            MENUITEM "Atendentes ou Garçons" ACTION atendentes() NAME MnuAtendentes IMAGE "img_atendentes"
+            MENUITEM "Motoboys ou Entregadores" ACTION motoboys_entregadores() NAME MnuMotoboys IMAGE "img_motoboys"
+            MENUITEM "Operadores do Programa" ACTION operadores() NAME MnuOperadores IMAGE "img_operadores"
+        END POPUP
+        DEFINE MENU POPUP "Relatórios" NAME form_mainnMenu16
+            MENUITEM "Fechamento do dia de trabalho" ACTION fechamento_dia() NAME MnuFechamentoDiario IMAGE "img_relatorios"
+            SEPARATOR
+            MENUITEM "Movimentação do Caixa" ACTION movimentacao_caixa() NAME MnuMovimentoCaixa IMAGE "img_relatorios"
+            MENUITEM "Movimentação Bancária" ACTION movimentacao_bancaria() NAME MnuMovimentoBancario IMAGE "img_relatorios"
+            SEPARATOR
+            MENUITEM "Contas a Pagar por período" ACTION relatorio_cpag_001() NAME MnuContasPagarPeriodo IMAGE "img_relatorios"
+            MENUITEM "Contas a Pagar por fornecedor" ACTION relatorio_cpag_002() NAME MnuContasPagarFornecedores IMAGE "img_relatorios"
+            SEPARATOR
+            MENUITEM "Contas a Receber por período" ACTION relatorio_crec_001() NAME MnuContasReceberPeriodo IMAGE "img_relatorios"
+            MENUITEM "Contas a Receber por cliente" ACTION relatorio_crec_002() NAME MnuContasReceberCliente IMAGE "img_relatorios"
+            SEPARATOR
+            MENUITEM "Pizzas mais vendidas" ACTION relatorio_pizza_001() NAME MnuPizzaMaisVendidas IMAGE "img_relatorios"
+            MENUITEM "Produtos mais vendidos" ACTION relatorio_produto_001() NAME MnuProdutosMaisVendidos IMAGE "img_relatorios"
+            SEPARATOR
+            MENUITEM "Relação estoque mínimo" ACTION relatorio_estoque_minimo() NAME MnuEstoqueMinimo IMAGE "img_relatorios"
+            MENUITEM "Posição do estoque (produtos)" ACTION posicao_estoque() NAME MnuEstoqueProduto IMAGE "img_relatorios"
+            MENUITEM "Posição do estoque (matéria prima)" ACTION posicao_mprima() NAME MnuEstoqueMateriaPrima IMAGE "img_relatorios"
+            SEPARATOR
+            MENUITEM "Comissão Motoboys/Entregadores" ACTION relatorio_motoboy() NAME MnuComissaoMotoboys IMAGE "img_relatorios"
+            MENUITEM "Comissão Atendentes/Garçons" ACTION relatorio_garcon() NAME MnuComissaoAtendentes IMAGE "img_relatorios"
+        END POPUP
+        DEFINE MENU POPUP "Financeiro" NAME form_mainnMenu31
+            MENUITEM "Movimentação do Caixa" ACTION caixa() NAME MnuMovCaixa IMAGE "img_mov_caixa"
+            MENUITEM "Movimentação Bancária" ACTION movimento_bancario() NAME MnuMovBancos IMAGE "img_mov_bancaria"
+            SEPARATOR
+            MENUITEM "Compras / Entrada Estoque" ACTION compras() NAME MnuCompras IMAGE "img_compras"
+            SEPARATOR
+            MENUITEM "Contas a Pagar" ACTION cpag() NAME MnuContasaPagar IMAGE "img_pagar_receber"
+            MENUITEM "Contas a Receber" ACTION crec() NAME MnuContasaReceber IMAGE "img_pagar_receber"
+        END POPUP
+        DEFINE MENU POPUP "Ferramentas" NAME form_mainnMenu37
+            MENUITEM "Cadastro da Pizzaria" ACTION empresa() NAME MnuCadPizzaria IMAGE "img_cadastro"
+            SEPARATOR
+            MENUITEM "Tamanhos de Pizza" ACTION tamanhos_pizza() NAME MnuTamanhoPizzas IMAGE "img_tamanhos"
+            MENUITEM "Bordas de Pizza" ACTION(bordas_pizza()) NAME MnuBordasPizza IMAGE "img_borda"
+            MENUITEM "Configurar Venda de Pizza" ACTION (configurar_venda()) NAME MnuConfiguraVenda IMAGE "img_prevda"
+            SEPARATOR
+            MENUITEM "Incluir ou Excluir Promoção" ACTION promocao() NAME MnuPromocoes IMAGE "img_promocoes"
+            MENUITEM "Reajustar Preços de Produtos" ACTION reajuste() NAME MnuPrecoes IMAGE "img_reajustar"
+            SEPARATOR
+            MENUITEM "Backup do Banco de Dados" ACTION backup() NAME MnuBackup IMAGE "img_backup"
+        END POPUP
+    END MENU
+
+    DEFINE IMAGE img_wallpaper
+        COL 0
+        HEIGHT 864
+        PICTURE "wallpaper"
+        ROW 0
+        STRETCH TRUE
+        WIDTH 1536
+    END IMAGE
+
+    DEFINE LABEL label_demo
+        BACKCOLOR { 190 , 0 , 0 }
+        COL 0
+        FONTBOLD TRUE
+        FONTCOLOR { 255 , 255 , 121 }
+        FONTNAME "tahoma"
+        FONTSIZE 26
+        HEIGHT 45
+        ROW 564
+        TRANSPARENT FALSE
+        VALUE "CÓPIA DE AVALIAÇÃO - CÓPIA DE AVALIAÇÃO - CÓPIA DE AVALIAÇÃO - CÓPIA DE AVALIAÇÃO"
+        WIDTH 1536
+    END LABEL
+
+    DEFINE BUTTONEX venda_delivery
+        ACTION venda_delivery()
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION 'F5'+CRLF+'Venda'+CRLF+'Delivery'
+        COL 0
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 80
+        NOXPSTYLE TRUE
+        PICTURE "delivery"
+        ROW 0
+        WIDTH 170
+    END BUTTONEX
+
+    DEFINE BUTTONEX venda_mesas
+        ACTION venda_mesas()
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION 'F6'+CRLF+'Venda'+CRLF+'Mesas'
+        COL 170
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 80
+        NOXPSTYLE TRUE
+        PICTURE "mesas"
+        ROW 0
+        WIDTH 170
+    END BUTTONEX
+
+    DEFINE BUTTONEX venda_balcao
+        ACTION venda_balcao()
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION 'F7'+CRLF+'Venda'+CRLF+'Balcão'
+        COL 340
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 80
+        NOXPSTYLE TRUE
+        PICTURE "balcao"
+        ROW 0
+        WIDTH 170
+    END BUTTONEX
+
+    DEFINE BUTTONEX clientes
+        ACTION clientes()
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION 'F8'+CRLF+'Cadastro'+CRLF+'Clientes'
+        COL 510
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 80
+        NOXPSTYLE TRUE
+        PICTURE "clientes"
+        ROW 0
+        WIDTH 170
+    END BUTTONEX
+
+    DEFINE BUTTONEX produtos
+        ACTION produtos()
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION 'F9'+CRLF+'Cadastro'+CRLF+'Produtos'
+        COL 680
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 80
+        NOXPSTYLE TRUE
+        PICTURE "produtos"
+        ROW 0
+        WIDTH 170
+    END BUTTONEX
+
+    DEFINE BUTTONEX sair_programa
+        ACTION (form_main.release)
+        BACKCOLOR { 255 , 255 , 255 }
+        CAPTION 'ESC'+CRLF+'Sair do'+CRLF+'Programa'
+        COL 850
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTCOLOR { 160 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 80
+        NOXPSTYLE TRUE
+        PICTURE "sair_programa"
+        ROW 0
+        WIDTH 172
+    END BUTTONEX
+
+    DEFINE FRAME frame_main
+        COL 1356
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 300
+        OPAQUE TRUE
+        ROW 82
+        TRANSPARENT FALSE
+        WIDTH 175
+    END FRAME
+
+    DEFINE LABEL acompanhamento_001
+        ACTION (mostra_entregas())
+        AUTOSIZE TRUE
+        COL 1361
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 95
+        TRANSPARENT TRUE
+        VALUE "tecla F10"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL acompanhamento_002
+        ACTION (mostra_entregas())
+        AUTOSIZE TRUE
+        COL 1361
+        FONTBOLD TRUE
+        FONTCOLOR { 226 , 226 , 226 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 110
+        TRANSPARENT TRUE
+        VALUE "Acompanhamento dos"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL acompanhamento_003
+        ACTION (mostra_entregas())
+        AUTOSIZE TRUE
+        COL 1361
+        FONTBOLD TRUE
+        FONTCOLOR { 226 , 226 , 226 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 125
+        TRANSPARENT TRUE
+        VALUE "pedidos feitos"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL acompanhamento_004
+        ACTION (mostra_entregas())
+        AUTOSIZE TRUE
+        COL 1361
+        FONTBOLD TRUE
+        FONTCOLOR { 226 , 226 , 226 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 140
+        TRANSPARENT TRUE
+        VALUE "em : venda delivery"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL acompanhamento_005
+        ACTION (mostra_entregas())
+        AUTOSIZE TRUE
+        COL 1361
+        FONTBOLD TRUE
+        FONTCOLOR { 226 , 226 , 226 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 155
+        TRANSPARENT TRUE
+        VALUE "em : venda balcão"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL operador_001
+        AUTOSIZE TRUE
+        COL 1361
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 185
+        TRANSPARENT TRUE
+        VALUE "Operador atual"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL operador_002
+        AUTOSIZE TRUE
+        COL 1361
+        FONTBOLD TRUE
+        FONTCOLOR { 226 , 226 , 226 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 200
+        TRANSPARENT TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL operador_003
+        AUTOSIZE TRUE
+        COL 1361
+        FONTBOLD TRUE
+        FONTCOLOR { 226 , 226 , 226 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 215
+        TRANSPARENT TRUE
+        VALUE "21/05/2021 as 19:01h"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL numero_serie_001
+        AUTOSIZE TRUE
+        COL 1366
+        FONTBOLD TRUE
+        FONTCOLOR { 255 , 255 , 255 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 330
+        TRANSPARENT TRUE
+        VALUE "Número de Série"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL numero_serie_002
+        AUTOSIZE TRUE
+        COL 1366
+        FONTBOLD TRUE
+        FONTCOLOR { 215 , 255 , 255 }
+        FONTNAME "verdana"
+        FONTSIZE 12
+        HEIGHT 24
+        ROW 350
+        TRANSPARENT TRUE
+        VALUE "SCP62431348BR"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL nome_cliente_001
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 215 , 255 , 255 }
+        FONTNAME "courier new"
+        FONTSIZE 30
+        HEIGHT 80
+        ROW 734
+        TRANSPARENT TRUE
+        WIDTH 600
+    END LABEL
+
+    DEFINE LABEL nome_programa_001
+        COL 1226
+        FONTBOLD TRUE
+        FONTCOLOR { 128 , 128 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 22
+        HEIGHT 50
+        ROW 634
+        TRANSPARENT TRUE
+        VALUE "SuperChef"
+        WIDTH 200
+    END LABEL
+
+    DEFINE LABEL nome_programa_002
+        COL 1386
+        FONTBOLD TRUE
+        FONTCOLOR { 255 , 163 , 70 }
+        FONTNAME "tahoma"
+        FONTSIZE 22
+        HEIGHT 50
+        ROW 634
+        TRANSPARENT TRUE
+        VALUE "pizza"
+        WIDTH 200
+    END LABEL
+
+    DEFINE LABEL softhouse_001
+        AUTOSIZE TRUE
+        COL 1226
+        FONTBOLD TRUE
+        FONTCOLOR { 255 , 255 , 255 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 674
+        TRANSPARENT TRUE
+        VALUE "Este software foi desenvolvido por"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL softhouse_002
+        AUTOSIZE TRUE
+        COL 1226
+        FONTBOLD TRUE
+        FONTCOLOR { 255 , 255 , 225 }
+        FONTNAME "verdana"
+        FONTSIZE 14
+        HEIGHT 24
+        ROW 689
+        TRANSPARENT TRUE
+        VALUE "xxxxxxxxxxxx"
+        WIDTH 120
+    END LABEL
+
+    DEFINE IMAGE brasil
+        COL 1386
+        HEIGHT 38
+        PICTURE "bandeira_brasil.jpg"
+        ROW 689
+        STRETCH TRUE
+        WIDTH 54
+    END IMAGE
+
+    DEFINE IMAGE suporte
+        COL 1176
+        HEIGHT 48
+        PICTURE "suporte"
+        ROW 729
+        STRETCH TRUE
+        WIDTH 48
+    END IMAGE
+
+    DEFINE LABEL suporte_001
+        AUTOSIZE TRUE
+        COL 1226
+        FONTBOLD TRUE
+        FONTCOLOR { 255 , 255 , 255 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 729
+        TRANSPARENT TRUE
+        VALUE "Para obter suporte técnico deste produto"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL suporte_002
+        AUTOSIZE TRUE
+        COL 1226
+        FONTBOLD TRUE
+        FONTCOLOR { 226 , 226 , 226 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 744
+        TRANSPARENT TRUE
+        VALUE "Telefone: (99) 9999-9999"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL suporte_003
+        AUTOSIZE TRUE
+        COL 1226
+        FONTBOLD TRUE
+        FONTCOLOR { 226 , 226 , 226 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 759
+        TRANSPARENT TRUE
+        VALUE "E-mail:xxxxxx@xxxxxxxx.com.br"
+        WIDTH 120
+    END LABEL
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+

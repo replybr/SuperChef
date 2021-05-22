@@ -1,0 +1,120 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 17/05/2021-14:32:18 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_altera_borda}
+*{Modulo:SqlBordas.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 220, 313 WIDTH 289 HEIGHT 205  TITLE "Alterar" ICON "icone" MODAL NOSIZE
+
+    DEFINE LABEL lbl_001
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 5
+        TRANSPARENT TRUE
+        VALUE "Descrição"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_001
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 15
+        ROW 25
+        UPPERCASE TRUE
+        WIDTH 245
+    END TEXTBOX
+
+    DEFINE LABEL lbl_002
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 55
+        TRANSPARENT TRUE
+        VALUE "Preço R$"
+        WIDTH 120
+    END LABEL
+
+    DEFINE TEXTBOX tbox_002
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 5
+        FONTCOLOR { 0 , 0 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 27
+        INPUTMASK "99,999.99"
+        NUMERIC TRUE
+        ROW 75
+        WIDTH 100
+    END TEXTBOX
+
+    DEFINE LABEL linha_rodape
+        BACKCOLOR { 0 , 0 , 0 }
+        COL 0
+        HEIGHT 1
+        ROW 110
+        TRANSPARENT FALSE
+        WIDTH 325
+    END LABEL
+
+    DEFINE BUTTONEX button_ok
+        ACTION (gravar(parametro))
+        CAPTION "Ok, gravar"
+        COL 60
+        FONTBOLD TRUE
+        HEIGHT 50
+        NOXPSTYLE TRUE
+        PICTURE "img_gravar"
+        ROW 119
+        TOOLTIP "Confirmar as informações digitadas"
+        WIDTH 120
+    END BUTTONEX
+
+    DEFINE BUTTONEX button_cancela
+        ACTION (form_dados.release)
+        CAPTION "Voltar"
+        COL 185
+        FONTBOLD TRUE
+        HEIGHT 50
+        NOXPSTYLE TRUE
+        PICTURE "img_voltar"
+        ROW 119
+        TOOLTIP "Sair desta tela sem gravar informações"
+        WIDTH 90
+    END BUTTONEX
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+

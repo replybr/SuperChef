@@ -1,0 +1,116 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 15/05/2021-08:53:26 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_finaliza_pizza}
+*{Modulo:vendas.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 180, 309 WIDTH 1000 HEIGHT 400  TITLE "Finalizar pizza" ICON "icone.ico" MODAL NOSIZE
+
+    DEFINE LABEL lbl_001
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 5
+        TRANSPARENT TRUE
+        VALUE "1- Selecione o tamanho da pizza"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL lbl_002
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 25
+        TRANSPARENT TRUE
+        VALUE "2- Você poderá escolher entre o menor e o maior preço à ser cobrado, no caso de ter mais de 1 sabor na mesma pizza"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL lbl_003
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 45
+        TRANSPARENT TRUE
+        VALUE "3- Caso deseje, ao fechamento deste pedido, poderá conceder um desconto especial ao cliente"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL lbl_004
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 65
+        TRANSPARENT TRUE
+        VALUE "4- Para finalizar esta pizza e continuar vendendo, dê duplo-clique ou enter sobre o tamanho/preço escolhido"
+        WIDTH 120
+    END LABEL
+
+    DEFINE LABEL lbl_005
+        AUTOSIZE TRUE
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 160 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 85
+        TRANSPARENT TRUE
+        VALUE "5- ESC fecha esta janela e retorna para a tela de vendas"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GRID grid_finaliza_pizza
+        BACKCOLOR { 245 , 245 , 245 }
+        COL 5
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEADERS { "id" , "Pizza" , "" , "" , "" , "" , "" , "" }
+        HEIGHT 260
+        ONDBLCLICK (pega_tamanho_valor_pizza())
+        ROW 105
+        VALUE 1
+        WIDTH 985
+        WIDTHS { 4 , 250 , 120 , 120 , 120 , 120 , 120 , 120 }
+    END GRID
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+

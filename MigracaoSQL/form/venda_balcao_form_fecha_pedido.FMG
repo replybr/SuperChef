@@ -1,0 +1,211 @@
+*Form extraido do arquivo E:\Prgplus\Git\SuperChef\MigracaoSQL\venda_balcao.prg
+* linha 1421 à 1638
+
+#include <Var.ch>
+Local xxxxwidth := 500
+Local xxxHeight := 540
+
+*{Name:form_fecha_pedido}
+*{Modulo:venda_balcao.prg}
+
+define window form_fecha_pedido; 
+at 000,000; 
+width 500; 
+height 540; 
+title 'Fechamento do pedido'; 
+icon path_imagens+'icone.ico'; 
+modal; 
+nosize 
+define label label_sep_001 
+col 000 
+row 190 
+value '' 
+width 500 
+height 002 
+transparent .F. 
+backcolor _cinza_002 
+end label 
+define label label_sep_002 
+col 000 
+row 390 
+value '' 
+width 500 
+height 002 
+transparent .F. 
+backcolor _cinza_002 
+end label 
+@ 010,020 label label_001; 
+of form_fecha_pedido; 
+value 'SUBTOTAL PIZZAS'; 
+autosize; 
+font 'verdana' size 012; 
+bold; 
+fontcolor BLUE; 
+transparent 
+@ 010,250 label label_001_valor; 
+of form_fecha_pedido; 
+value trans(x_valor_pizza,'@E 999,999.99'); 
+autosize; 
+font 'courier new' size 016; 
+bold; 
+fontcolor BLUE; 
+transparent 
+@ 040,020 label label_002; 
+of form_fecha_pedido; 
+value 'SUBTOTAL PRODUTOS'; 
+autosize; 
+font 'verdana' size 012; 
+bold; 
+fontcolor BLUE; 
+transparent 
+@ 040,250 label label_002_valor; 
+of form_fecha_pedido; 
+value trans(x_valor_prod,'@E 999,999.99'); 
+autosize; 
+font 'courier new' size 016; 
+bold; 
+fontcolor BLUE; 
+transparent 
+@ 110,020 label label_004; 
+of form_fecha_pedido; 
+value 'DESCONTO'; 
+autosize; 
+font 'verdana' size 012; 
+bold; 
+fontcolor _vermelho_002; 
+transparent 
+@ 110,250 getbox tbox_desconto; 
+of form_fecha_pedido; 
+height 030; 
+width 130; 
+value 0; 
+font 'courier new' size 016; 
+bold; 
+backcolor _fundo_get; 
+fontcolor _vermelho_002; 
+picture '@E 9,999.99'; 
+on change setproperty('form_fecha_pedido','label_005_valor','value',trans((x_valor_pizza+x_valor_prod)-form_fecha_pedido.tbox_desconto.value,'@E 999,999.99')); 
+on lostfocus setproperty('form_fecha_pedido','label_005_valor','value',trans((x_valor_pizza+x_valor_prod)-form_fecha_pedido.tbox_desconto.value,'@E 999,999.99')) 
+@ 150,020 label label_005; 
+of form_fecha_pedido; 
+value 'TOTAL DESTE PEDIDO'; 
+autosize; 
+font 'verdana' size 012; 
+bold; 
+fontcolor BLUE; 
+transparent 
+@ 150,250 label label_005_valor; 
+of form_fecha_pedido; 
+value ''; 
+autosize; 
+font 'courier new' size 016; 
+bold; 
+fontcolor BLUE; 
+transparent 
+@ 200,020 label label_006; 
+of form_fecha_pedido; 
+value 'Você pode escolher até 3 formas de recebimento'; 
+autosize; 
+font 'verdana' size 012; 
+bold; 
+fontcolor _preto_001; 
+transparent 
+@ 230,020 combobox combo_1; 
+itemsource formas_recebimento->nome; 
+valuesource formas_recebimento->codigo; 
+value 1; 
+width 250; 
+font 'courier new' size 010 
+@ 230,300 getbox tbox_fr001; 
+of form_fecha_pedido; 
+height 030; 
+width 130; 
+value 0; 
+font 'courier new' size 014; 
+bold; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+picture '@E 99,999.99' 
+@ 270,020 combobox combo_2; 
+itemsource formas_recebimento->nome; 
+valuesource formas_recebimento->codigo; 
+value 1; 
+width 250; 
+font 'courier new' size 010 
+@ 270,300 getbox tbox_fr002; 
+of form_fecha_pedido; 
+height 030; 
+width 130; 
+value 0; 
+font 'courier new' size 014; 
+bold; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+picture '@E 99,999.99' 
+@ 310,020 combobox combo_3; 
+itemsource formas_recebimento->nome; 
+valuesource formas_recebimento->codigo; 
+value 1; 
+width 250; 
+font 'courier new' size 010 
+@ 310,300 getbox tbox_fr003; 
+of form_fecha_pedido; 
+height 030; 
+width 130; 
+value 0; 
+font 'courier new' size 014; 
+bold; 
+backcolor _fundo_get; 
+fontcolor _letra_get_1; 
+picture '@E 99,999.99'; 
+on lostfocus calcula_final() 
+@ 360,020 label label_011; 
+of form_fecha_pedido; 
+value 'TOTAL RECEBIDO'; 
+autosize; 
+font 'verdana' size 012; 
+bold; 
+fontcolor BLUE; 
+transparent 
+@ 360,250 label label_011_valor; 
+of form_fecha_pedido; 
+value ''; 
+autosize; 
+font 'courier new' size 016; 
+bold; 
+fontcolor BLUE; 
+transparent 
+@ 400,020 label label_012; 
+of form_fecha_pedido; 
+value 'TROCO'; 
+autosize; 
+font 'verdana' size 012; 
+bold; 
+fontcolor _vermelho_002; 
+transparent 
+@ 400,250 label label_012_valor; 
+of form_fecha_pedido; 
+value ''; 
+autosize; 
+font 'courier new' size 016; 
+bold; 
+fontcolor BLUE; 
+transparent 
+@ 460,115 buttonex botao_ok; 
+parent form_fecha_pedido; 
+caption 'Fechar pedido'; 
+width 150 height 040; 
+picture path_imagens+'img_pedido.bmp'; 
+action fechamento_geral(); 
+tooltip 'Clique aqui para finalizar o pedido' 
+@ 460,270 buttonex botao_voltar; 
+parent form_fecha_pedido; 
+caption 'Voltar para tela anterior'; 
+width 220 height 040; 
+picture path_imagens+'img_sair.bmp'; 
+action form_fecha_pedido.release; 
+tooltip 'Clique aqui para voltar a vender' 
+on key escape action thiswindow.release 
+end window 
+
+

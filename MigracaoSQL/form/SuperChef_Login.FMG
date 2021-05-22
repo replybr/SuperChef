@@ -1,0 +1,170 @@
+/*  SOBRE A IDE
+    ==============================================================================================
+    Gerado pela IDE Designer
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210518 1047"
+    https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
+    Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
+    Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
+    Compilador : MinGW GNU C 11.1 (32-bit)
+    ----------------------------------------------------------------------------------------------
+    SOBRE ESTE CÓDIGO GERADO:
+    Última alteração : 21/05/2021-20:31:16 Máquina: IMA2018 Usuário:ivani
+    Código do formulário ajustado
+    ----------------------------------------------------------------------------------------------
+    Projeto : SuperChefSQL
+    */
+
+    #ifndef TRUE
+      # DEFINE TRUE .T.
+    #endif
+
+*{Name:form_login}
+*{Modulo:SuperChef.prg}
+
+
+DEFINE WINDOW TEMPLATE AT 240, 307 WIDTH 480 HEIGHT 250  TITLE "Acesso ao programa (senha = 9999)" ICON "icone" MODAL NOAUTORELEASE NOSIZE NOSYSMENU
+
+    DEFINE LABEL lbl_top
+        BACKCOLOR { 0 , 73 , 148 }
+        COL 0
+        FONTBOLD TRUE
+        FONTCOLOR { 128 , 128 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 22
+        HEIGHT 45
+        ROW 0
+        TRANSPARENT FALSE
+        VALUE "SuperChef"
+        WIDTH 600
+    END LABEL
+
+    DEFINE LABEL lbl_top1
+        BACKCOLOR { 0 , 73 , 148 }
+        COL 170
+        FONTBOLD TRUE
+        FONTCOLOR { 255 , 163 , 70 }
+        FONTNAME "tahoma"
+        FONTSIZE 22
+        HEIGHT 45
+        ROW 0
+        TRANSPARENT TRUE
+        VALUE "pizza"
+        WIDTH 350
+    END LABEL
+
+    DEFINE LABEL lbl_top2
+        BACKCOLOR { 0 , 73 , 148 }
+        COL 300
+        FONTBOLD TRUE
+        FONTCOLOR { 255 , 255 , 255 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 20
+        ROW 10
+        TRANSPARENT TRUE
+        VALUE "v.4.0, 2011"
+        WIDTH 350
+    END LABEL
+
+    DEFINE LABEL label_login1
+        COL 115
+        FONTBOLD TRUE
+        FONTCOLOR { 128 , 128 , 128 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 65
+        TRANSPARENT TRUE
+        VALUE "Usuário:"
+        WIDTH 62
+    END LABEL
+
+    DEFINE COMBOBOX oUsuario
+        COL 192
+        DISPLAYEDIT TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "Segoe UI"
+        FONTSIZE 12
+        HEIGHT 300
+        LISTWIDTH 190
+        ONENTER (form_login_oUsuario_Onenter())
+        ONLISTDISPLAY (form_login_oUsuario_Onlistdisplay())
+        ROW 65
+        VALUE 0
+        WIDTH 250
+    END COMBOBOX
+
+    DEFINE LABEL label_login
+        COL 50
+        FONTBOLD TRUE
+        FONTCOLOR { 128 , 128 , 128 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 102
+        TRANSPARENT TRUE
+        VALUE "Digite sua senha:"
+        WIDTH 128
+    END LABEL
+
+    DEFINE TEXTBOX oSenha
+        BACKCOLOR { 255 , 255 , 255 }
+        COL 192
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "verdana"
+        FONTSIZE 10
+        HEIGHT 27
+        MAXLENGTH 10
+        PASSWORD TRUE
+        ROW 102
+        WIDTH 250
+    END TEXTBOX
+
+    DEFINE LABEL linha_rodape
+        BACKCOLOR { 0 , 0 , 0 }
+        COL 0
+        HEIGHT 1
+        ROW 165
+        TRANSPARENT FALSE
+        WIDTH 478
+    END LABEL
+
+    DEFINE BUTTONEX btn_ok
+        ACTION (confirma_entrada())
+        BACKCOLOR WHITE
+        CAPTION "Ok"
+        COL 273
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 40
+        NOXPSTYLE TRUE
+        PICTURE "img_ok"
+        ROW 170
+        TOOLTIP "Confirma a entrada no programa"
+        WIDTH 60
+    END BUTTONEX
+
+    DEFINE BUTTONEX btnex_cancela
+        ACTION (form_main.release)
+        BACKCOLOR WHITE
+        CAPTION "Cancela"
+        COL 343
+        FLAT TRUE
+        FONTBOLD TRUE
+        FONTNAME "verdana"
+        FONTSIZE 9
+        HEIGHT 40
+        NOXPSTYLE TRUE
+        PICTURE "img_cancela"
+        ROW 170
+        TOOLTIP "Cancela a entrada ao programa"
+        WIDTH 100
+    END BUTTONEX
+
+END WINDOW
+
+SendMessageString( GetFormToolTipHandle ( _HMG_TempWindowName ), TTM_SETTITLE,TTI_NONE ,"Dica")
+/*Fim*/
+
