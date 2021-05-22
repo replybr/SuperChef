@@ -1,14 +1,14 @@
 /*  SOBRE A IDE
     ==============================================================================================
     Gerado pela IDE Designer
-    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210518 1047"
     https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
     Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
     Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
     Compilador : MinGW GNU C 11.1 (32-bit)
     ----------------------------------------------------------------------------------------------
     SOBRE ESTE CÓDIGO GERADO:
-    Última alteração : 07/05/2021-09:07:23 Máquina: IMA2018 Usuário:ivani
+    Última alteração : 19/05/2021-17:54:34 Máquina: IMA2018 Usuário:ivani
     Código do formulário ajustado
     ----------------------------------------------------------------------------------------------
     Projeto : SuperChefSQL
@@ -320,6 +320,14 @@ DEFINE WINDOW TEMPLATE AT 250, 318 WIDTH 585 HEIGHT 360  TITLE "(titulo)" ICON "
         ROW 186
         WIDTH 450
     END TEXTBOX
+
+    DEFINE CHECKBOX oAtivo
+        CAPTION "ativo?"
+        COL 477
+        HEIGHT 18
+        ROW 189
+        WIDTH 80
+    END CHECKBOX
 
     DEFINE LABEL lbl_013
         AUTOSIZE TRUE
