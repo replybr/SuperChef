@@ -27,7 +27,7 @@
 Declare Cursor SQLADO rs
 memvar Rs
 
-function clientes()
+function clientes(lNew)
     Local nReg:=0,aHeader:={'Código','Nome','Telefone fixo','Telefone celular'}
     Private Rs:=Rs.New()
     if App.cargo["demonstracao"]
@@ -35,23 +35,37 @@ function clientes()
         Rs.Open()
         nReg :=Rs.field.reg.value
     endif
-    Load window Form_Pesquisa as Form_Clientes
-        Form_Clientes.Title := "Clientes"
-        If App.cargo["demonstracao"] .and. nReg >= App.cargo["limiteregistro"]
-            Form_Clientes.button_incluir.enabled := FALSE
-            Form_Clientes.button_incluir.tooltip := "Limite de registros esgotado"
-        endif
-        on key F5      of Form_Clientes action dados(1)
-        on key F6      of Form_Clientes action dados(2)
-        on key F7      of Form_Clientes action excluir()
-        on key F8      of Form_Clientes action relacao()
-        on key escape  of Form_Clientes action thiswindow.release        
-        Form_Clientes.center
-    Form_Clientes.activate
+    
+    //Criação de novo cliente chamado diretamente sem a tela de pesquisa.
+    lNew:=IIF(lNew=Nil,FALSE,lNew)
+    
+    if !lNew
+        Load window Form_Pesquisa as Form_Clientes
+            Form_Clientes.Title := "Clientes"
+            If App.cargo["demonstracao"] .and. nReg >= App.cargo["limiteregistro"]
+                Form_Clientes.button_incluir.enabled := FALSE
+                Form_Clientes.button_incluir.tooltip := "Limite de registros esgotado"
+            endif
+            on key F5      of Form_Clientes action dados(1)
+            on key F6      of Form_Clientes action dados(2)
+            on key F7      of Form_Clientes action excluir()
+            on key F8      of Form_Clientes action relacao()
+            on key escape  of Form_Clientes action thiswindow.release        
+            Form_Clientes.center
+        Form_Clientes.activate
+    else
+        dados(1)
+    endif
     return(nil)
     *-------------------------------------------------------------------------------
 static function dados(parametro)
-    local cId := Form_clientes.Grid_Pesquisa.Item(Form_clientes.Grid_Pesquisa.value)[1]
+    local cId 
+    if _isWindowdefined("form_clientes")
+        if Form_clientes.Grid_Pesquisa.value = 0
+            return .F.
+        endif
+        cId := Form_clientes.Grid_Pesquisa.Item(Form_clientes.Grid_Pesquisa.value)[1]
+    endif
 
     Load Window clientes_form_dados as form_dados
         form_dados.title := IIF(parametro=1,"Incluir","Alterar")
@@ -75,6 +89,8 @@ static function dados(parametro)
             endif
         else
             form_dados.tbox_009.value := "PR"
+            Rs.SQL:="Select * from Clientes where 1=2"
+            Rs.Open()            
         endif
         sethandcursor(getcontrolhandle('button_ok','form_dados'))
         sethandcursor(getcontrolhandle('button_cancela','form_dados'))
@@ -194,7 +210,9 @@ static function gravar(parametro)
         Return .F.
     endif    
     form_dados.release
-    atualizar()
+    IF _isWindowdefined("form_clientes")
+        atualizar()
+    endif
     return(nil)
     *-------------------------------------------------------------------------------
 static function atualizar()
