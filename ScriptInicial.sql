@@ -55,7 +55,8 @@ Create Table empresa(
    site Varchar(50),
    forma_pagamento int,
    );
-   
+
+Insert into empresa (nome,fixo_1,endereco,numero,bairro,cidade,site,forma_pagamento) values ('Empresa Demonstração','99999999','Rua vazia','','Bairro','Cidade','wwww.empresademo.com.br',1);
 ---------------------------------------------------------
 --config eliminada, 
 --Create Table config(
@@ -72,8 +73,52 @@ Create Table empresa(
 Create Table grupo_apoio(
    codigo COUNTER primary key,
    tabela integer not null,
+   categoria integer,
    nome Varchar(20)
    );
+
+
+Insert into grupo_apoio (tabela,nome) values (1,'BEBIDA');
+Insert into grupo_apoio (tabela,nome) values (1,'MASSAS');
+
+Insert into grupo_apoio (tabela,categoria,nome) values (2,1,'CERVEJAS');
+Insert into grupo_apoio (tabela,categoria,nome) values (2,1,'REFRIGERANTES');
+Insert into grupo_apoio (tabela,categoria,nome) values (2,1,'SUCOS');
+Insert into grupo_apoio (tabela,categoria,nome) values (2,2,'PIZZAS');
+Insert into grupo_apoio (tabela,categoria,nome) values (2,2,'LANCHES');
+Insert into grupo_apoio (tabela,categoria,nome) values (2,2,'PORCOES');
+
+Insert into grupo_apoio (tabela,nome) values (3,'KILO');
+Insert into grupo_apoio (tabela,nome) values (3,'LITRO');
+Insert into grupo_apoio (tabela,nome) values (3,'PEÇA');
+Insert into grupo_apoio (tabela,nome) values (3,'GRAMAS');
+
+Insert into grupo_apoio (tabela,nome) values (4,'SUPERMERCADO');
+Insert into grupo_apoio (tabela,nome) values (4,'HIPERMERCADO');
+Insert into grupo_apoio (tabela,nome) values (4,'ATACADISTA');
+
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 01');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 02');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 03');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 04');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 05');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 06');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 07');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 08');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 09');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 10');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 11');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 12');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 13');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 14');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 15');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 16');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 17');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 18');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 19');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 20');
+Insert into grupo_apoio (tabela,nome) values (5,'MESA 21');
+
 
 --Create Table categoria_produtos(
 --   codigo INTEGER,
@@ -137,7 +182,8 @@ Create Table motoboys(
    cidade Varchar(20),
    uf Varchar(2),
    cep Varchar(8),
-   email Varchar(40)
+   email Varchar(40),
+   ativo BIT
    );
  ---------------------------------------------------------
 --Definido operadores código auto-incremento e primary key
@@ -298,11 +344,45 @@ Create Table impostos(
 Create Table materia_prima(
    codigo COUNTER primary key,
    nome Varchar(20),
+   medida decimal(10,6),
    unidade INTEGER,
    preco Decimal(10,2),
    qtd_estoque integer,
    CONSTRAINT FKmateriaprima_grupo_apoio FOREIGN KEY (unidade) REFERENCES grupo_apoio
    );   
+
+Insert into materia_prima (nome,medida,unidade) values ('Mussarela', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Presunto', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Calabresa', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Tomate', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Cebola', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Azeitona verde', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Azeitona preta', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Atum', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Peito de frango', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Bacon', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Molho Hassin', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Milho', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Ervilha', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Parmesão', 1,1);
+Insert into materia_prima (nome,medida,unidade) values ('Requeijão cremoso', 1,1);
+
+
+--Inclusão da coluna codigo tipo autoincremento e primary key
+--a ideia inicial era deixar pedacos como chave, mas brotinho e pequena tem 2 pedacos.
+Create Table tamanhos(
+   codigo COUNTER primary key,
+   nome Varchar(15),
+   pedacos INTEGER,
+   sabores integer
+   );
+
+Insert into tamanhos (nome,pedacos,sabores) values ('Broto 18cm'   , 2,2);
+Insert into tamanhos (nome,pedacos,sabores) values ('Pequena 25cm' , 4,2);
+Insert into tamanhos (nome,pedacos,sabores) values ('Média 30cm'   , 6,3);
+Insert into tamanhos (nome,pedacos,sabores) values ('Grande 35cm'  , 8,3);
+Insert into tamanhos (nome,pedacos,sabores) values ('Família 40cm' ,10,4);
+ ---------------------------------------------------------     
 ---------------------------------------------------------
 --Definido produtos código de varchar(10) para auto-incremento e primary key
 --Executado
@@ -322,9 +402,14 @@ Create Table produtos(
    vlr_venda Decimal(12,2),
    promocao BIT,
    pizza BIT,
-   CONSTRAINT FKprodutos_grupo_apoio1 FOREIGN KEY (categoria) REFERENCES grupo_apoio,
+   medida decimal(10,2),
+   unidade INTEGER,   
+   pedacos integer,
+   CONSTRAINT FKprodutos_grupo_apoio1 FOREIGN KEY (categoria)  REFERENCES grupo_apoio,
    CONSTRAINT FKprodutos_grupo_apoio2 FOREIGN KEY (scategoria) REFERENCES grupo_apoio,
-   CONSTRAINT FKprodutos_impostos     FOREIGN KEY (imposto) REFERENCES impostos
+   CONSTRAINT FKprodutos_grupo_apoio3 FOREIGN KEY (unidade)    REFERENCES grupo_apoio,
+   CONSTRAINT FKprodutos_impostos     FOREIGN KEY (imposto)    REFERENCES impostos,
+   CONSTRAINT FKprodutos_tamanhos     FOREIGN KEY (pedacos)    REFERENCES tamanhos
    );
 ---------------------------------------------------------
 --Ajuste de produto de varchar para integer
@@ -332,7 +417,7 @@ Create Table produtos(
 Create Table produto_composto(
    produto integer,
    materia_prima INTEGER,
-   quantidade Decimal(12,3),
+   quantidade Decimal(12,6),
    Primary key (produto,materia_prima),
    CONSTRAINT FKproduto_composto_produtos FOREIGN KEY (produto) REFERENCES produtos,
    CONSTRAINT FKproduto_composto_materia_prima FOREIGN KEY (materia_prima) REFERENCES materia_prima
@@ -408,9 +493,8 @@ Create Table contas(
    juros decimal(12,2),
    desconto decimal(12,2),
    forma INTEGER,
-   fornec INTEGER,
+   fornecliente INTEGER,
    obs Varchar(30),
-   CONSTRAINT FKcontas_fornecedores FOREIGN KEY (fornec) REFERENCES fornecedores,
    CONSTRAINT FKcontas_forma_pag_rec FOREIGN KEY (forma) REFERENCES forma_pag_rec
 );
 
@@ -461,7 +545,10 @@ Create Table contas(
 --data alterado para dtmovimento, data=reservado.
 Create Table caixa(
    codigo COUNTER primary key,
+   usuario integer,
    dtmovimento DateTime,
+   editable bit,
+   forma integer,
    historico Varchar(30),
    entrada Decimal(12,2),
    saida Decimal(12,2)
@@ -479,32 +566,75 @@ Create Table movimento_bancario(
    CONSTRAINT FKmovimento_bancario_bancos FOREIGN KEY (banco) REFERENCES bancos
    );
  ---------------------------------------------------------  
-
-
-
+--Alteração da coluna ID para codigo, tipo autoincremento e primary key
 Create Table bordas(
+   codigo COUNTER primary key,
    nome Varchar(15),
    preco Decimal(10,2)
    );
+Insert into bordas (nome,preco) values ("Nenhuma",0);
 
-Create Table detalhamento_compras(
-   id_cliente INTEGER,
-   data DateTime,
-   hora Varchar(8),
-   id_prod Varchar(10),
-   qtd INTEGER,
-   unitario Decimal(10,2),
-   subtotal Decimal(12,2)
-   );
-
-Create Table ultimas_compras(
-   id_cliente INTEGER,
-   data DateTime,
-   hora Varchar(8),
+ ---------------------------------------------------------  
+--Alteração de tabela ultimas_compras
+--renomeada para Vendas
+--inclusão de codigo para chave primaria
+--id_cliente renomeada para cliente
+--inclusao taxaentrega/desconto
+--campo hora eliminado
+--campo data renomeado para datahora tipo datetime
+--onde = //1=delivery 2=mesa 3=balcão
+Create Table vendas(
+   codigo COUNTER primary key,
+   cliente INTEGER,
+   datahora DateTime,
    onde INTEGER,
-   valor Decimal(12,2)
+   valor Decimal(12,2),
+   taxaentrega decimal(12,2),
+   desconto decimal(12,2),
+   motoboy integer,
+   CONSTRAINT FKvendas_motoboys FOREIGN KEY (motoboy) REFERENCES motoboys,
+   CONSTRAINT FKvendas_clientes FOREIGN KEY (cliente) REFERENCES clientes
    );
-
+ ---------------------------------------------------------  
+--Alteração de tabela detalhamento_compras
+--inclusao venda=codigo da venda
+--inclusao ordem
+--eliminado id_cliente/data/hora/subtotal
+--alterado id_prod para produto e varchar(10) para integer
+--alterado de qtd para qtde
+Create Table vendas_detalhe(
+   venda INTEGER,
+   ordem int,
+   produto integer,
+   qtde INTEGER,
+   valor Decimal(10,2),
+   primary key (venda,ordem),
+   CONSTRAINT FKvendas_vendas_detalhe FOREIGN KEY (venda) REFERENCES vendas,
+   CONSTRAINT FKvendas_produtos FOREIGN KEY (produto) REFERENCES produtos
+   );
+ ---------------------------------------------------------  
+--Inclusao tabela vendas_detalhe_pizza=
+Create Table vendas_detalhe_pizza(
+   venda INTEGER,
+   ordem int,
+   produto integer,
+   fator int,
+   valor Decimal(10,2),
+   primary key (venda,ordem,produto),
+   CONSTRAINT FKvendas_vendas_detalhe_pizza FOREIGN KEY (venda,ordem) REFERENCES vendas_detalhe,
+   CONSTRAINT FKvendas_detalhe_pizza_produtos FOREIGN KEY (produto) REFERENCES produtos
+   );
+--Inclusao tabela vendas_detalhe_borda
+Create Table vendas_detalhe_borda(
+   venda INTEGER,
+   ordem int,
+   borda integer,
+   valor Decimal(10,2),
+   primary key (venda,ordem,borda),
+   CONSTRAINT FKvendas_detalhe_borda_vendas_detalhe FOREIGN KEY (venda,ordem) REFERENCES vendas_detalhe,
+   CONSTRAINT FKvendas_detalhe_borda_bordas FOREIGN KEY (borda) REFERENCES bordas
+   );
+ ---------------------------------------------------------  
 Create Table comissao_mesa(
    id INTEGER,
    data DateTime,
@@ -545,10 +675,6 @@ Create Table montagem(
 
 
 
-Create Table tamanhos(
-   nome Varchar(15),
-   pedacos INTEGER
-   );
 
 
 
