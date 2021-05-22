@@ -28,7 +28,7 @@ Declare Cursor SQLADO rs
 memvar Rs
 
 function caixa()
-    Local aHeader:={'Código','Data','Histórico','Entradas','Saídas'}
+    Local aHeader:={'Código','Data','Histórico','Entradas','Saídas',"Editável"}
     Private Rs:=Rs.New()
     Load Window form_pesquisa as form_caixa
         form_caixa.title:="Movimentação do Caixa"
@@ -40,7 +40,7 @@ function caixa()
         form_caixa.button_atualizar.col := 311
         form_caixa.button_sair.col      := 413
         
-        
+        form_caixa.Grid_Pesquisa.Onchange := {||Grid_PesquisaOnchange()}
         DEFINE DATEPICKER dp_inicio
             parent form_caixa
             COL 140
@@ -97,27 +97,46 @@ function caixa()
     form_caixa.activate
     return(nil)
     *-------------------------------------------------------------------------------
+Static function Grid_PesquisaOnchange()
+    Local aItem:=Form_caixa.Grid_Pesquisa.item(Form_caixa.Grid_Pesquisa.value)
+    Local lEditable := aItem[6]="SIM"
+    if val(aItem[1]) = 0
+        return .F.
+    endif
+    form_caixa.button_alterar.caption := IIF(lEditable,"Alterar","Visualizar")
+    form_caixa.button_excluir.enabled := lEditable
+    Return .T.
+    
+    *-------------------------------------------------------------------------------
 static function dados(parametro)
-    local cId := Form_Caixa.Grid_Pesquisa.Item(Form_Caixa.Grid_Pesquisa.value)[1]
+    local cId := Form_Caixa.Grid_Pesquisa.Item(Form_Caixa.Grid_Pesquisa.value)[1],lEditable:=.T.
     Load Window caixa_form_dados as form_dados
-        form_dados.title := IIF(parametro=1,"Incluir","Alterar")
         if parametro=2
             Rs.SQL:="Select * from caixa where codigo="+cId
             Rs.Open()
             if !Rs.ErrorSQL().and.!Rs.Eof()
-                form_dados.tbox_001.value := Rs.Field.dtMovimento.value
-                form_dados.tbox_002.value := Rs.Field.historico.value
-                form_dados.tbox_003.value := Rs.Field.entrada.value
-                form_dados.tbox_004.value := Rs.Field.saida.value
+                lEditable := rs.field.editavel.value
+                form_dados.tbox_001.value   := Rs.Field.dtMovimento.value
+                form_dados.tbox_002.value   := Rs.Field.historico.value
+                form_dados.tbox_003.value   := Rs.Field.entrada.value
+                form_dados.tbox_004.value   := Rs.Field.saida.value
+                
+                form_dados.tbox_001.enabled := lEditable
+                form_dados.tbox_002.enabled := lEditable
+                form_dados.tbox_003.enabled := lEditable
+                form_dados.tbox_004.enabled := lEditable
+                form_dados.button_ok.enabled:= lEditable
+                
             endif    
         else
             rs.sql:="select * from caixa where 1=2"
             rs.Open()
             form_dados.tbox_001.value := Date()
         endif
+        form_dados.title := IIF(parametro=1,"Incluir",IIF(lEditable,"Alterar","Visualizar"))
         form_dados.tbox_002.setfocus()
-        form_dados_tbox_003_Onchange( )
-        form_dados_tbox_004_Onchange( )        
+        form_dados_tbox_003_Onchange(lEditable )
+        form_dados_tbox_004_Onchange(lEditable )        
         sethandcursor(getcontrolhandle('button_ok','form_dados'))
         sethandcursor(getcontrolhandle('button_cancela','form_dados'))
         form_dados.center
@@ -130,10 +149,14 @@ static function excluir()
     if val(cId)=0
         Return .F.
     endif
+    if !Form_caixa.Grid_Pesquisa.Item(Form_caixa.Grid_Pesquisa.value)[1]="SIM"
+        msgInfo("Lançamento automático não pode ser excluido por aqui!")
+        Return .F.
+    endif
     if !msgYesNo("Historico :"+Form_caixa.Grid_Pesquisa.Item(Form_caixa.Grid_Pesquisa.value)[3],"Excluir")
         Return .F.
     endif
-    Rs.Execute("Delete from caixa where codigo="+cId)
+    Rs.Execute("Delete from caixa where codigo="+cId+" and editavel")
     if Rs.ErrorSQL()
         Return .F.
     endif
@@ -182,7 +205,8 @@ static function atualizar()
                   dtoc(Rs.Field.dtMovimento.value),;
                   Rs.Field.historico.value,;
                   trans(Rs.Field.entrada.value,'@E 999,999.99'),;
-                  trans(Rs.Field.saida.value,'@E 999,999.99')} to Grid_Pesquisa of form_caixa
+                  trans(Rs.Field.saida.value,'@E 999,999.99'),;
+                  IIF(rs.field.editavel,"SIM","NÃO")} to Grid_Pesquisa of form_caixa
         Rs.MoveNext()
     end
     form_caixa.Grid_Pesquisa.ColumnsAutoFit()
@@ -195,13 +219,13 @@ static function relacao()
     ***********************************************
     ///////////////////////////////////////////////
     ***********************************************
-Static Function form_dados_tbox_003_Onchange( )
-    form_dados.tbox_004.enabled := form_dados.tbox_003.value=0
+Static Function form_dados_tbox_003_Onchange( lEditable)
+    form_dados.tbox_004.enabled := lEditable.and.form_dados.tbox_003.value=0
     Return .T.
 
     ***********************************************
     ///////////////////////////////////////////////
     ***********************************************
-Static Function form_dados_tbox_004_Onchange( )
-    form_dados.tbox_003.enabled := form_dados.tbox_004.value=0
+Static Function form_dados_tbox_004_Onchange(lEditable )
+    form_dados.tbox_003.enabled := lEditable.and.form_dados.tbox_004.value=0
     Return .T.
