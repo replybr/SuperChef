@@ -47,9 +47,55 @@ function mesas()
     *************************************************************************
     //////////////////////////////////////////////////////////////////////////
 Static function GrupoApoio(nTabela,cTitle)
-    Local aHeader:={'Código','Nome'}
+    Local aHeader:={'Código','Nome'},hItem
     Private Rs:=Rs.New()
     Load window Form_Pesquisa as form_apoio
+        if nTabela=2
+            
+            form_apoio.Grid_Pesquisa.HEIGHT := 389
+            form_apoio.Grid_Pesquisa.ROW    := 142
+        
+            DEFINE LABEL oLabel1
+                PARENT form_apoio
+                COL 11
+                FONTBOLD TRUE
+                FONTCOLOR { 0 , 0 , 0 }
+                FONTNAME "Segoe UI"
+                FONTSIZE 12
+                HEIGHT 20
+                ROW 111
+                VALUE "Categoria:"
+                VCENTERALIGN TRUE
+                WIDTH 87
+            END LABEL
+
+            DEFINE COMBOBOX oCategoria
+                PARENT form_apoio
+                COL 102
+                FONTCOLOR { 0 , 0 , 0 }
+                FONTNAME "Segoe UI"
+                FONTSIZE 12
+                HEIGHT 300
+                LISTWIDTH 190
+                ROW 111
+                VALUE 0
+                WIDTH 310
+            END COMBOBOX   
+            form_apoio.oCategoria.cargo:={}
+            rs.sql := "select codigo,nome from grupo_apoio where tabela=1 order by nome"
+            rs.Open()
+            While !rs.eof()
+                hItem:=hash()
+                hItem["codigo"]:= rs.field.codigo.value
+                hItem["nome"]  := rs.field.nome.value
+                form_apoio.oCategoria.addItem(hItem["nome"])
+                AADD(form_apoio.oCategoria.cargo,hItem)
+                rs.MoveNext()
+            enddo
+            form_apoio.oCategoria.value := 1
+            form_apoio.oCategoria.onchange := {||atualizar()}
+
+        endif
         form_apoio.cargo := nTabela
         form_apoio.Title := cTitle
         on key F5      of form_apoio action dados(1)
@@ -168,6 +214,9 @@ static function gravar(parametro)
     if parametro == 1
         Rs.AddNew()
         Rs.field.tabela.value := form_apoio.cargo
+        if form_apoio.cargo=2
+            rs.field.categoria.value := form_apoio.oCategoria.cargo[form_apoio.oCategoria.value]["codigo"]
+        endif
     endif
     rs.field.nome.value := form_dados.tbox_001.value
     Rs.Update()
@@ -179,9 +228,19 @@ static function gravar(parametro)
     return(nil)    
     *-------------------------------------------------------------------------------
 static function atualizar()
+    Local cCategoria:=""
+    if form_apoio.cargo =2
+        if form_apoio.oCategoria.value=0
+            MsgInfo("Seleciona uma categoria!")
+            form_apoio.oCategoria.setfocus()
+            return .F.
+        endif
+        cCategoria := " and categoria="+hb_ntos(form_apoio.oCategoria.cargo[form_apoio.oCategoria.value]["codigo"])
+    endif
+
     form_apoio.grid_Pesquisa.disableupdate
     delete item all from grid_Pesquisa of form_apoio
-    Rs.SQL:="Select * from grupo_apoio where tabela="+hb_ntos(form_apoio.cargo)+" and nome like '"+form_apoio.tbox_pesquisa.value+"%' order by nome"
+    Rs.SQL:="Select * from grupo_apoio where tabela="+hb_ntos(form_apoio.cargo)+cCategoria+" and nome like '"+form_apoio.tbox_pesquisa.value+"%' order by nome"
     Rs.Open()
     if Rs.ErrorSQL()
         Return .F.
