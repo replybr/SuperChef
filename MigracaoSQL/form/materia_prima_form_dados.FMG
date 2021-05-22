@@ -8,7 +8,7 @@
     Compilador : MinGW GNU C 11.1 (32-bit)
     ----------------------------------------------------------------------------------------------
     SOBRE ESTE CÓDIGO GERADO:
-    Última alteração : 13/05/2021-19:33:43 Máquina: IMA2018 Usuário:ivani
+    Última alteração : 17/05/2021-18:36:32 Máquina: IMA2018 Usuário:ivani
     Código do formulário ajustado
     ----------------------------------------------------------------------------------------------
     Projeto : SuperChefSQL
@@ -77,7 +77,7 @@ DEFINE WINDOW TEMPLATE AT 193, 334 WIDTH 325 HEIGHT 300  TITLE "(titulo)" ICON "
         ONLISTDISPLAY (form_dados_tbox_002_Onlistdisplay())
         ROW 84
         VALUE 0
-        WIDTH 310
+        WIDTH 210
     END COMBOBOX
 
     DEFINE LABEL lbl_003
@@ -110,7 +110,7 @@ DEFINE WINDOW TEMPLATE AT 193, 334 WIDTH 325 HEIGHT 300  TITLE "(titulo)" ICON "
 
     DEFINE LABEL lbl_004
         AUTOSIZE TRUE
-        COL 135
+        COL 192
         FONTBOLD TRUE
         FONTCOLOR { 0 , 0 , 0 }
         FONTNAME "tahoma"
@@ -124,7 +124,7 @@ DEFINE WINDOW TEMPLATE AT 193, 334 WIDTH 325 HEIGHT 300  TITLE "(titulo)" ICON "
 
     DEFINE GETBOX tbox_004
         BACKCOLOR { 255 , 255 , 255 }
-        COL 135
+        COL 192
         FONTCOLOR { 0 , 0 , 255 }
         FONTNAME "tahoma"
         FONTSIZE 10
@@ -170,6 +170,30 @@ DEFINE WINDOW TEMPLATE AT 193, 334 WIDTH 325 HEIGHT 300  TITLE "(titulo)" ICON "
         TOOLTIP "Sair desta tela sem gravar informações"
         WIDTH 90
     END BUTTONEX
+
+    DEFINE LABEL lbl_1
+        AUTOSIZE TRUE
+        COL 220
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 61
+        TRANSPARENT TRUE
+        VALUE "Medida"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX oMedida
+        COL 219
+        HEIGHT 27
+        MAXLENGTH 10
+        NUMERIC TRUE
+        ROW 84
+        VALUE 0
+        WIDTH 94
+    END GETBOX
 
 END WINDOW
 
