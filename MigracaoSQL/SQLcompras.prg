@@ -57,11 +57,11 @@ static function gravar_produto()
         form_compras.oTipoProduto.setfocus()
         return .F.
     endif
-    if form_compras.tbox_002.value=0
-        MsgStop("Você deve fornecer a quantidade...")
-        form_compras.tbox_002.setfocus()
-        return .F.
-    endif
+    *if form_compras.tbox_002.value=0
+    *    MsgStop("Você deve fornecer a quantidade...")
+    *    form_compras.tbox_002.setfocus()
+    *    return .F.
+    *endif
     if form_compras.tbox_003.value=0
         MsgStop("Você deve fornecer o valor unitário...")
         form_compras.tbox_003.setfocus()
