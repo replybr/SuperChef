@@ -1,14 +1,14 @@
 /*  SOBRE A IDE
     ==============================================================================================
     Gerado pela IDE Designer
-    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210518 1047"
     https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
     Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
     Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
     Compilador : MinGW GNU C 11.1 (32-bit)
     ----------------------------------------------------------------------------------------------
     SOBRE ESTE CÓDIGO GERADO:
-    Última alteração : 10/05/2021-19:56:03 Máquina: IMA2018 Usuário:ivani
+    Última alteração : 18/05/2021-13:36:35 Máquina: IMA2018 Usuário:ivani
     Código do formulário ajustado
     ----------------------------------------------------------------------------------------------
     Projeto : SuperChefSQL
@@ -19,10 +19,10 @@
     #endif
 
 *{Name:form_compor}
-*{Modulo:produtos.prg}
+*{Modulo:SQLprodutos.prg}
 
 
-DEFINE WINDOW TEMPLATE AT 154, 323 WIDTH 600 HEIGHT 500  TITLE 'Compor produto : ' ICON "icone" MODAL NOSIZE
+DEFINE WINDOW TEMPLATE AT 154, 323 WIDTH 600 HEIGHT 500  TITLE "Compor produto :" ICON "icone" MODAL NOSIZE
 
     DEFINE BUTTONEX button_incluir
         ACTION (incluir_composicao())
