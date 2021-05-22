@@ -94,7 +94,17 @@ static function dados(parametro)
     Load Window produtos_form_dados as form_dados
         form_dados.title := IIF(parametro=1,"Incluir","Alterar")
         form_dados.tbox_001.enabled := .F.
-        form_dados.tbox_010.enabled  := .F. //lancamento automatico
+        form_dados.tbox_010.enabled := .F. //lancamento automatico
+        form_dados.Opedacos.enabled := .F.
+        rs1.sql :="select * from tamanhos order by pedacos,nome"
+        rs1.open()
+        form_dados.opedacos.cargo:={}
+        while !rs1.eof()
+            form_dados.opedacos.additem(rs1.field.nome.value+"("+hb_ntos(rs1.field.pedacos.value)+")")
+            AADD(form_dados.opedacos.cargo,rs1.field.codigo.value)
+            rs1.movenext()
+        enddo
+
         if parametro=2
             Rs.SQL:="Select * from produtos where codigo="+cId
             Rs.Open()
@@ -114,18 +124,31 @@ static function dados(parametro)
                 form_dados.tbox_015.value := rs.field.vlr_venda.value
                 form_dados.tbox_006.value := rs.field.promocao.value
                 form_dados.tbox_005.value := rs.field.pizza.value
-                
+                form_dados.oPedacos.value := Default(rs.field.pedacos.value,0)
+                form_dados.oMedida.value  := Default(rs.field.Medida.value,0)
+                form_dados.opedacos.enabled:= rs.field.pizza.value
+                if !Empty(rs.field.pedacos.value)
+                    form_dados.opedacos.value := Ascan(form_dados.opedacos.cargo,rs.field.pedacos.value)
+                endif
                 rs1.SQL:="Select codigo,nome from grupo_apoio where codigo="+hb_ntos(rs.field.categoria.value)
                 rs1.Open()
-                if !Rs.Eof()
+                if !Rs1.Eof()
                     form_dados.tbox_008.additem(rs1.field.nome.value)
                     form_dados.tbox_008.cargo := {rs1.field.codigo.value}
                     form_dados.tbox_008.value := 1
                 endif
                 
+                rs1.SQL:="Select codigo,nome from grupo_apoio where codigo="+hb_ntos(rs.field.unidade.value)
+                rs1.Open()
+                if !Rs1.Eof()
+                    form_dados.oUnidade.additem(rs1.field.nome.value)
+                    form_dados.oUnidade.cargo := {rs1.field.codigo.value}
+                    form_dados.oUnidade.value := 1
+                endif                
+                
                 rs1.SQL:="Select codigo,nome from grupo_apoio where codigo="+hb_ntos(rs.field.scategoria.value)
                 rs1.Open()
-                if !Rs.Eof()
+                if !Rs1.Eof()
                     form_dados.tbox_009.additem(rs1.field.nome.value)
                     form_dados.tbox_009.cargo := {rs1.field.codigo.value}
                     form_dados.tbox_009.value := 1
@@ -133,7 +156,7 @@ static function dados(parametro)
                 
                 rs1.SQL:="Select codigo,nome from impostos where codigo="+hb_ntos(rs.field.imposto.value)
                 rs1.Open()
-                if !Rs.Eof()
+                if !Rs1.Eof()
                     form_dados.tbox_013.additem(rs1.field.nome.value)
                     form_dados.tbox_013.cargo := {rs1.field.codigo.value}
                     form_dados.tbox_013.value := 1
@@ -339,6 +362,25 @@ static function gravar(parametro)
             cFocus:="tbox_013"
         endif
     endif
+    if form_dados.oUnidade.value=0
+        cMsg += "Selecione a unidade de medida"+CRLF
+        if empty(cFocus)
+            cFocus:="omedida"
+        endif
+    endif
+    if form_dados.oMedida.value=0
+        cMsg += "Selecione a medida"+CRLF
+        if empty(cFocus)
+            cFocus:="omedida"
+        endif
+    endif    
+    //se for pizza não grava nada.
+    if form_dados.tbox_005.value
+        form_dados.tbox_010.value := 0 //qtd_estqoue
+        form_dados.tbox_011.value := 0 //qtd_min
+        form_dados.tbox_012.value := 0 //qtd_max 
+    endif
+        
     if !empty(cMsg)
         MsgStop(cMsg,"Atenção")
         Form_dados.&(cFocus).SetFocus()
@@ -354,13 +396,20 @@ static function gravar(parametro)
     rs.field.scategoria.value := form_dados.tbox_009.cargo[form_dados.tbox_009.value]
     rs.field.imposto.value    := form_dados.tbox_013.cargo[form_dados.tbox_013.value]
     rs.field.baixa.value      := form_dados.tbox_007.value
-    rs.field.qtd_estoque.value  := form_dados.tbox_010.value
+    rs.field.qtd_estoque.value:= form_dados.tbox_010.value
     rs.field.qtd_min.value    := form_dados.tbox_011.value
     rs.field.qtd_max.value    := form_dados.tbox_012.value
     rs.field.vlr_custo.value  := form_dados.tbox_014.value
     rs.field.vlr_venda.value  := form_dados.tbox_015.value
     rs.field.promocao.value   := form_dados.tbox_006.value
     rs.field.pizza.value      := form_dados.tbox_005.value
+    rs.field.medida.value     := form_dados.oMedida.value
+    rs.field.unidade.value    := form_dados.oUnidade.cargo[form_dados.oUnidade.value]
+    if form_dados.tbox_005.value .and. form_dados.oPedacos.value >0
+        rs.field.pedacos.value := form_dados.opedacos.cargo[form_dados.oPedacos.value]
+    else
+        rs.field.pedacos.value := Nil
+    endif
     Rs.Update()
     if Rs.ErrorSQL()
         Return .F.
@@ -531,4 +580,48 @@ Static Function form_inccpo_tbox_001_Onenter( )
     endif
     PostMessage(form_inccpo.tbox_001.handle,(320+15),1,0)
     form_inccpo.tbox_001.setfocus() 
+    Return .T.
+
+    ***********************************************
+    ///////////////////////////////////////////////
+    ***********************************************
+Static Function form_dados_tbox_005_Onchange( )
+    form_dados.oPedacos.enabled := form_dados.tbox_005.value 
+    form_dados.tbox_010.enabled := !form_dados.tbox_005.value 
+    form_dados.tbox_011.enabled := !form_dados.tbox_005.value 
+    form_dados.tbox_012.enabled := !form_dados.tbox_005.value 
+    if !form_dados.tbox_005.value 
+        form_dados.oPedacos.value := 0
+    else
+        form_dados.tbox_010.value := 0 //qtd_estqoue
+        form_dados.tbox_011.value := 0 //qtd_min
+        form_dados.tbox_012.value := 0 //qtd_max    
+    endif
+    Return .T.
+
+    ***********************************************
+    ///////////////////////////////////////////////
+    ***********************************************
+Static Function form_dados_oUnidade_Onlistdisplay( )
+    Local rs1.new()
+    Rs1.SQL:="Select top 30 * from grupo_apoio where tabela=3 and nome like '"+form_dados.oUnidade.displayvalue+"%' order by nome"
+    Rs1.Open()
+    form_dados.oUnidade.DeleteAllItems()
+    form_dados.oUnidade.cargo:={}
+    While !rs1.eof()
+        form_dados.oUnidade.additem(rs1.field.nome.value)
+        AADD(form_dados.oUnidade.cargo,rs1.field.codigo.value)
+        rs1.moveNext()
+    Enddo    
+    Return .T.
+
+    ***********************************************
+    ///////////////////////////////////////////////
+    ***********************************************
+Static Function form_dados_oUnidade_Onenter( )
+    if form_dados.oUnidade.value >0
+        return .T.
+    endif
+    PostMessage(form_dados.oUnidade.handle,(320+15),1,0)
+    form_dados.oUnidade.setfocus()
     Return .T.
