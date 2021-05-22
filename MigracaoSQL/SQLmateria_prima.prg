@@ -29,7 +29,7 @@ Declare Cursor SQLADO rs1
 memvar Rs
 
 function materia_prima()
-    Local aHeader:={'Código','Nome','Unidade','Preço R$','Qtd.'}
+    Local aHeader:={'Código','Nome','Unidade','Medida','Preço R$','Qtd.'}
     Private Rs:=Rs.New()
     Load window Form_Pesquisa as form_materia_prima
         form_materia_prima.button_sair.col:=617
@@ -65,7 +65,7 @@ function materia_prima()
 static function dados(parametro)
     local cId := form_materia_prima.Grid_Pesquisa.Item(form_materia_prima.Grid_Pesquisa.value)[1]
     local rs1.new()
-    if form_materia_prima.Grid_Pesquisa.value=0
+    if parametro>1  .and. form_materia_prima.Grid_Pesquisa.value=0
         MsgInfo("Selecione uma linha para visualizar/editar")
         Return .F.
     endif
@@ -78,7 +78,8 @@ static function dados(parametro)
             if !Rs.ErrorSQL().and.!Rs.Eof()
                 form_dados.tbox_001.value := rs.field.nome.value
                 form_dados.tbox_003.value := rs.field.preco.value
-                form_dados.tbox_004.value := rs.field.qtd_estoque.value      
+                form_dados.tbox_004.value := rs.field.qtd_estoque.value 
+                form_dados.oMedida.value  := defa(Rs.field.medida.value,0)
                 if !Empty(rs.field.unidade.value)
                     Rs1.SQL:="Select * from grupo_apoio where codigo="+hb_ntos(rs.field.unidade.value)
                     Rs1.Open()
@@ -203,12 +204,12 @@ static function gravar(parametro)
             cFocus:="tbox_003"
         endif
     endif
-    if empty(form_dados.tbox_004.value)
-        cMsg += "Falta preencher Qtde"+CRLF
-        if empty(cFocus)
-            cFocus:="tbox_004"
-        endif
-    endif
+    *if empty(form_dados.tbox_004.value)
+    *    cMsg += "Falta preencher Qtde"+CRLF
+    *    if empty(cFocus)
+    *        cFocus:="tbox_004"
+    *    endif
+    *endif
     
     if !Empty(cMsg)
         msgalert(cMsg,'Atenção')
@@ -219,10 +220,11 @@ static function gravar(parametro)
     if parametro == 1
         Rs.Addnew()
     endif
-    Rs.Field.nome.value     := form_dados.tbox_001.value
-    Rs.Field.unidade.value  := form_dados.tbox_002.cargo[form_dados.tbox_002.value]
-    Rs.Field.preco.value    := form_dados.tbox_003.value
-    Rs.Field.qtd_estoque.value      := form_dados.tbox_004.value
+    Rs.Field.nome.value        := form_dados.tbox_001.value
+    Rs.Field.unidade.value     := form_dados.tbox_002.cargo[form_dados.tbox_002.value]
+    Rs.Field.preco.value       := form_dados.tbox_003.value
+    Rs.Field.qtd_estoque.value := form_dados.tbox_004.value
+    rs.field.medida.value      := form_dados.oMedida.value
     Rs.Update()
     if Rs.ErrorSQL()
         Return .F.
@@ -234,14 +236,19 @@ static function gravar(parametro)
 static function atualizar()
     form_materia_prima.grid_Pesquisa.disableupdate
     delete item all from grid_Pesquisa of form_materia_prima
-    Rs.SQL := "SELECT M.codigo, M.nome, A.nome as nomeunidade, M.preco, M.qtd_estoque FROM grupo_apoio as A INNER JOIN materia_prima as M ON A.codigo = M.unidade"
+    Rs.SQL := "SELECT M.codigo, M.nome, A.nome as nomeunidade, M.preco, M.qtd_estoque,M.medida FROM grupo_apoio as A INNER JOIN materia_prima as M ON A.codigo = M.unidade"
     Rs.SQL += " where M.nome like '"+form_materia_prima.tbox_pesquisa.value+"%' order by M.nome"
     Rs.Open()
     if Rs.ErrorSQL()
         Return .F.
     Endif
     while !Rs.Eof()
-        add item {str(Rs.Field.codigo.value,4),Rs.Field.nome.value,Rs.Field.nomeunidade.value,trans(rs.field.preco.value,'@E 999,999.99'),trans(rs.field.qtd_estoque.value,'@R 99,999.999')} to Grid_Pesquisa of form_materia_prima
+        add item {str(Rs.Field.codigo.value,4),;
+                  Rs.Field.nome.value,;
+                  Rs.Field.nomeunidade.value,;
+                  cStr(rs.field.medida.value),;
+                  trans(rs.field.preco.value,'@E 999,999.99'),;
+                  trans(rs.field.qtd_estoque.value,'@R 99,999.999')} to Grid_Pesquisa of form_materia_prima
         Rs.MoveNext()
     end
     form_materia_prima.Grid_Pesquisa.ColumnsAutoFit()
