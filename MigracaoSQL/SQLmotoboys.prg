@@ -45,6 +45,7 @@ static function dados(parametro)
                 form_dados.tbox_010.value := Rs.field.cep.value
                 form_dados.tbox_011.value := Rs.field.email.value
                 form_dados.tbox_013.value := Rs.field.diaria.value  
+                form_dados.oAtivo.value   := Rs.field.ativo.value
             else
                 form_dados.tbox_009.value := "PR"
             endif        
@@ -175,6 +176,7 @@ static function gravar(parametro)
     rs.field.cep.value      := form_dados.tbox_010.value
     rs.field.email.value    := form_dados.tbox_011.value
     rs.field.diaria.value   := form_dados.tbox_013.value
+    rs.field.ativo.value    := form_dados.oAtivo.value
     Rs.Update()
     if Rs.ErrorSQL()
         Return .F.
