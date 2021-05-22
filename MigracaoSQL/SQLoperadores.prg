@@ -182,7 +182,7 @@ static function gravar(parametro)
     
     if parametro == 1
         rs.addNew()
-        rs.field.acesso.value := replicate("0",100)
+        rs.field.acesso.value := replicate("0",43)
     endif
     rs.field.nome.value  := form_dados.tbox_001.value
     rs.field.senha.value := form_dados.tbox_002.value
