@@ -1,14 +1,14 @@
 /*  SOBRE A IDE
     ==============================================================================================
     Gerado pela IDE Designer
-    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210505 1602"
+    #Define VERSION_PRODUCT "0.99.23.28 RELEASE CANDIDATE (RC) 210518 1047"
     https://github.com/ivanilmarcelino/designer by IVANIL MARCELINO <ivanil.marcelino@yahoo.com.br>
     Versão Minigui:  Harbour MiniGUI Extended Edition 21.03.3 (32-bit) ANSI  Grigory Filatov <gfilatov@inbox.ru>
     Versão Harbour/xHarbour: Harbour 3.2.0dev (r2104281802)
     Compilador : MinGW GNU C 11.1 (32-bit)
     ----------------------------------------------------------------------------------------------
     SOBRE ESTE CÓDIGO GERADO:
-    Última alteração : 10/05/2021-21:03:13 Máquina: IMA2018 Usuário:ivani
+    Última alteração : 18/05/2021-13:42:42 Máquina: IMA2018 Usuário:ivani
     Código do formulário ajustado
     ----------------------------------------------------------------------------------------------
     Projeto : SuperChefSQL
@@ -19,18 +19,17 @@
     #endif
 
 *{Name:form_dados}
-*{Modulo:produtos.prg}
+*{Modulo:SQLprodutos.prg}
 
 
-DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "icone" MODAL NOSIZE
+DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 609  TITLE "(titulo)" ICON "icone" MODAL NOSIZE
 
     DEFINE FRAME frame_geral
-        CAPTION "Informações do cadastro"
         COL 5
         FONTBOLD TRUE
         FONTNAME "verdana"
         FONTSIZE 10
-        HEIGHT 440
+        HEIGHT 494
         OPAQUE TRUE
         ROW 5
         WIDTH 510
@@ -151,30 +150,31 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         FONTNAME "verdana"
         FONTSIZE 10
         HEIGHT 28
+        ONCHANGE (form_dados_tbox_005_Onchange())
         ROW 130
         WIDTH 150
     END CHECKBOX
 
     DEFINE CHECKBOX tbox_006
         CAPTION "Em Promoção ?"
-        COL 175
+        COL 16
         FONTBOLD TRUE
         FONTNAME "verdana"
         FONTSIZE 10
         HEIGHT 28
-        ROW 130
+        ROW 159
         WIDTH 130
     END CHECKBOX
 
     DEFINE CHECKBOX tbox_007
         CAPTION "Baixa o estoque ?"
-        COL 315
+        COL 282
         FONTBOLD TRUE
         FONTNAME "verdana"
         FONTSIZE 10
         HEIGHT 28
-        ROW 130
-        WIDTH 180
+        ROW 159
+        WIDTH 155
     END CHECKBOX
 
     DEFINE LABEL lbl_008
@@ -185,7 +185,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         FONTNAME "tahoma"
         FONTSIZE 10
         HEIGHT 24
-        ROW 180
+        ROW 190
         TRANSPARENT TRUE
         VALUE "Categoria"
         WIDTH 120
@@ -201,7 +201,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         HEIGHT 300
         ONENTER (form_dados_tbox_008_Onenter())
         ONLISTDISPLAY (form_dados_tbox_008_Onlistdisplay())
-        ROW 203
+        ROW 213
         VALUE 0
         WIDTH 486
     END COMBOBOX
@@ -214,7 +214,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         FONTNAME "tahoma"
         FONTSIZE 10
         HEIGHT 24
-        ROW 231
+        ROW 241
         TRANSPARENT TRUE
         VALUE "Sub Categoria"
         WIDTH 120
@@ -230,10 +230,60 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         HEIGHT 300
         ONENTER (form_dados_tbox_009_Onenter())
         ONLISTDISPLAY (form_dados_tbox_009_Onlistdisplay())
-        ROW 254
+        ROW 264
         VALUE 0
         WIDTH 486
     END COMBOBOX
+
+    DEFINE LABEL lbl_2
+        AUTOSIZE TRUE
+        COL 15
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 288
+        TRANSPARENT TRUE
+        VALUE "Unidade"
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX oUnidade
+        COL 15
+        DISPLAYEDIT TRUE
+        HEIGHT 300
+        LISTWIDTH 190
+        ONENTER (form_dados_oUnidade_Onenter())
+        ONLISTDISPLAY (form_dados_oUnidade_Onlistdisplay())
+        ROW 311
+        VALUE 0
+        WIDTH 350
+    END COMBOBOX
+
+    DEFINE LABEL lbl_3
+        AUTOSIZE TRUE
+        COL 400
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 24
+        ROW 288
+        TRANSPARENT TRUE
+        VALUE "Medida"
+        WIDTH 120
+    END LABEL
+
+    DEFINE GETBOX oMedida
+        COL 400
+        HEIGHT 27
+        MAXLENGTH 10
+        NUMERIC TRUE
+        ROW 311
+        VALUE 0
+        WIDTH 100
+    END GETBOX
 
     DEFINE LABEL lbl_010
         AUTOSIZE TRUE
@@ -243,7 +293,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         FONTNAME "tahoma"
         FONTSIZE 10
         HEIGHT 24
-        ROW 290
+        ROW 340
         TRANSPARENT TRUE
         VALUE "Qtd. em estoque"
         WIDTH 120
@@ -257,7 +307,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         FONTSIZE 10
         HEIGHT 27
         NUMERIC TRUE
-        ROW 313
+        ROW 363
         WIDTH 100
     END TEXTBOX
 
@@ -269,7 +319,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         FONTNAME "tahoma"
         FONTSIZE 10
         HEIGHT 24
-        ROW 290
+        ROW 340
         TRANSPARENT TRUE
         VALUE "Qtd. mínima"
         WIDTH 120
@@ -283,7 +333,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         FONTSIZE 10
         HEIGHT 27
         NUMERIC TRUE
-        ROW 313
+        ROW 363
         WIDTH 100
     END TEXTBOX
 
@@ -295,7 +345,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         FONTNAME "tahoma"
         FONTSIZE 10
         HEIGHT 24
-        ROW 290
+        ROW 340
         TRANSPARENT TRUE
         VALUE "Qtd. máxima"
         WIDTH 120
@@ -309,7 +359,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         FONTSIZE 10
         HEIGHT 27
         NUMERIC TRUE
-        ROW 313
+        ROW 363
         WIDTH 100
     END TEXTBOX
 
@@ -321,7 +371,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         FONTNAME "tahoma"
         FONTSIZE 10
         HEIGHT 24
-        ROW 341
+        ROW 391
         TRANSPARENT TRUE
         VALUE "Imposto"
         WIDTH 120
@@ -337,7 +387,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         HEIGHT 300
         ONENTER (form_dados_tbox_013_Onenter())
         ONLISTDISPLAY (form_dados_tbox_013_Onlistdisplay())
-        ROW 364
+        ROW 414
         VALUE 0
         WIDTH 486
     END COMBOBOX
@@ -350,7 +400,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         FONTNAME "tahoma"
         FONTSIZE 10
         HEIGHT 24
-        ROW 390
+        ROW 440
         TRANSPARENT TRUE
         VALUE "Valor CUSTO R$"
         WIDTH 120
@@ -365,7 +415,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         HEIGHT 27
         NUMERIC TRUE
         PICTURE "@E 999,999.99"
-        ROW 413
+        ROW 463
         VALUE 0
         WIDTH 150
     END GETBOX
@@ -377,7 +427,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         FONTNAME "tahoma"
         FONTSIZE 10
         HEIGHT 24
-        ROW 390
+        ROW 440
         TRANSPARENT TRUE
         VALUE "Valor VENDA R$"
         WIDTH 120
@@ -392,7 +442,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         HEIGHT 27
         NUMERIC TRUE
         PICTURE "@E 999,999.99"
-        ROW 413
+        ROW 463
         VALUE 0
         WIDTH 150
     END GETBOX
@@ -401,7 +451,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         BACKCOLOR { 0 , 0 , 0 }
         COL 0
         HEIGHT 1
-        ROW 460
+        ROW 507
         TRANSPARENT FALSE
         WIDTH 830
     END LABEL
@@ -414,7 +464,7 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         HEIGHT 50
         NOXPSTYLE TRUE
         PICTURE "img_gravar"
-        ROW 465
+        ROW 515
         TOOLTIP "Confirmar as informações digitadas"
         WIDTH 120
     END BUTTONEX
@@ -427,10 +477,34 @@ DEFINE WINDOW TEMPLATE AT 151, 348 WIDTH 532 HEIGHT 550  TITLE "(titulo)" ICON "
         HEIGHT 50
         NOXPSTYLE TRUE
         PICTURE "img_voltar"
-        ROW 465
+        ROW 515
         TOOLTIP "Sair desta tela sem gravar informações"
         WIDTH 90
     END BUTTONEX
+
+    DEFINE LABEL lbl_1
+        AUTOSIZE TRUE
+        COL 182
+        FONTBOLD TRUE
+        FONTCOLOR { 0 , 0 , 0 }
+        FONTNAME "tahoma"
+        FONTSIZE 10
+        HEIGHT 28
+        ROW 130
+        TRANSPARENT TRUE
+        VALUE "Quantidade de pedaços:"
+        VCENTERALIGN TRUE
+        WIDTH 120
+    END LABEL
+
+    DEFINE COMBOBOX oPedacos
+        COL 343
+        DISPLAYEDIT TRUE
+        HEIGHT 300
+        ROW 130
+        VALUE 0
+        WIDTH 160
+    END COMBOBOX
 
 END WINDOW
 
