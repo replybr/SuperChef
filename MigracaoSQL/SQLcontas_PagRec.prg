@@ -68,7 +68,7 @@ static function dados(parametro)
                 form_dados.tbox_003.value  := rs.field.vencimento.value
                 form_dados.tbox_004.value  := rs.field.valor.value
                 form_dados.tbox_002.value  := rs.field.forma.value
-                form_dados.tbox_001.value  := rs.field.fornec.value
+                form_dados.tbox_001.value  := rs.field.fornecliente.value
                 form_dados.tbox_005.value  := rs.field.num_doc.value
                 form_dados.tbox_006.value  := rs.field.obs.value
                 form_dados.oMulta.value    := Default(rs.field.multa.value,0)
@@ -84,12 +84,12 @@ static function dados(parametro)
                     form_dados.tbox_002.cargo:={rs.field.forma.value}
                     form_dados.tbox_002.value := 1
                 endif
-                rs1.sql:="select codigo,nome from "+IIF(form_crec.cargo="P","Fornecedores","Clientes")+" where codigo="+hb_ntos(rs.field.fornec.value)
+                rs1.sql:="select codigo,nome from "+IIF(form_crec.cargo="P","Fornecedores","Clientes")+" where codigo="+hb_ntos(rs.field.fornecliente.value)
                 rs1.open()
                 if !rs1.Eof()
                     form_dados.tbox_001.DeleteAllItems()
                     form_dados.tbox_001.addItem(rs1.field.nome.value)
-                    form_dados.tbox_001.cargo:={rs.field.fornec.value}
+                    form_dados.tbox_001.cargo:={rs.field.fornecliente.value}
                     form_dados.tbox_001.value := 1
                 endif
             endif    
@@ -145,7 +145,7 @@ static function excluir()
     return(nil)
     *-------------------------------------------------------------------------------
 static function gravar(parametro)
-    local cMsg:="",cFocus
+    local cMsg:="",cFocus,nId
     
     if empty(form_dados.tbox_001.value)
         cMsg += "Falta selecionar o "+IIF(form_cRec.cargo="P","Fornecedor","Cliente")+CRLF
@@ -187,10 +187,11 @@ static function gravar(parametro)
         return(nil)
     endif
     
+    rs:BeginTrans()
     if parametro == 1
         Rs.Addnew()
     endif
-    Rs.Field.fornec.value      := form_dados.tbox_001.cargo[form_dados.tbox_001.value]
+    Rs.Field.fornecliente.value:= form_dados.tbox_001.cargo[form_dados.tbox_001.value]
     Rs.Field.forma.value       := form_dados.tbox_002.cargo[form_dados.tbox_002.value]
     Rs.Field.vencimento.value  := form_dados.tbox_003.value
     Rs.Field.valor.value       := form_dados.tbox_004.value
@@ -207,8 +208,53 @@ static function gravar(parametro)
     endif
     Rs.Update()
     if Rs.ErrorSQL()
+        rs:Roolbacktrans()
         Return .F.
     endif
+    
+    //obtendo o codigo deste lancamento
+    if parametro=1
+        rs.sql:="select @@IDENTITY as [ID]"
+        rs.Open()
+        nId := rs.field.id.value
+    else
+        nId := rs.field.codigo.value
+    endif
+
+    if Parametro >1 
+       rs.Execute("Delete from caixa where historico='"+IIF(form_crec.cargo="P","CONTAS_PAG","CONTAS_REC")+":"+hb_ntos(nID) + "';")
+        if Rs.ErrorSQL()
+            rs:Roolbacktrans()
+            Return .F.
+        endif        
+    endif
+
+
+    //Lancamento caixa
+    if !Empty(Form_dados.oPagamento.value)
+        rs.Sql:="select * from caixa where 1=2"
+        rs.open()
+        rs.addnew()
+        rs.field.dtmovimento.value := Datetime()
+        rs.field.forma.value       := form_dados.tbox_002.cargo[form_dados.tbox_002.value]
+        if form_crec.cargo="P"
+            rs.field.historico.value := "CONTAS_PAG:"+hb_ntos(nID)
+            rs.field.saida.value     := form_dados.tbox_004.value + form_dados.oMulta.value + form_dados.oJuros.value - form_dados.oDesconto.value
+            rs.field.entrada.value   := 0
+        else
+            rs.field.historico.value := "CONTAS_REC:"+hb_ntos(nID)
+            rs.field.entrada.value     := form_dados.tbox_004.value + form_dados.oMulta.value + form_dados.oJuros.value - form_dados.oDesconto.value
+            rs.field.saida.value       := 0
+        endif
+        rs.field.usuario.value     := App.cargo["usuario"]["codigo"]  
+        rs.field.editavel.value    := FALSE
+        Rs.Update()
+        if Rs.ErrorSQL()
+            rs:Roolbacktrans()
+            Return .F.
+        endif        
+    endif
+    rs:CommitTrans()
     form_dados.release
     atualizar()
     return(nil)    
@@ -218,7 +264,7 @@ static function atualizar()
     form_crec.grid_Pesquisa.disableupdate
     delete item all from grid_Pesquisa of form_crec
     rs1.sql := "SELECT PR.codigo, PR.vencimento, CF.nome as clifor, FO.nome as nomeforma, PR.valor, PR.Num_doc,PR.obs "
-    rs1.sql += " FROM forma_pag_rec as FO INNER JOIN (clientes as CF INNER JOIN contas as PR ON CF.codigo = PR.fornec) ON FO.codigo = PR.forma"
+    rs1.sql += " FROM forma_pag_rec as FO INNER JOIN (clientes as CF INNER JOIN contas as PR ON CF.codigo = PR.fornecliente) ON FO.codigo = PR.forma"
     rs1.SQL += " where PR.tipo='"+form_crec.cargo+"' and vencimento>="+Rs:DataSQL(form_crec.dp_inicio.value)+" and vencimento<="+Rs:DataSQL(form_crec.dp_final.value)
     if form_crec.ofiltroPag.value=1
         rs.sql += " and pagamento is null"
