@@ -38,7 +38,8 @@ function relatorio_cpag_002()
                           font 'tahoma' size 010;
                           bold;
                           fontcolor _preto_001;
-                          transparent
+                          transparent;
+                          
                 @ 080,010 label lbl_002;
                           of form_mov_cpag_forn;
                           value 'Escolha o fornecedor';
@@ -239,3 +240,4 @@ static function rodape()
        @ 276,010 PRINT 'impresso em '+dtoc(date())+' as '+time() FONT 'courier new' SIZE 008
 
        return(nil)
+
