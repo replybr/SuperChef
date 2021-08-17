@@ -1,0 +1,45 @@
+NOME DA PIZZARIA                                
+                                        ,       
+                    /                           
+                                                
+------------------------------------------------
+         CUPOM PARA SIMPLES CONFERENCIA         
+             NAO E DOCUMENTO FISCAL             
+================================================
+CLIENTE : 48-CLIENTE                            
+,                                               
+,                                               
+CEP :                                           
+ENTREGADOR: 1.IVANIL                            
+DATA      : 27/05/2021           HORA: 15:57:58 
+------------------------------------------------
+PRODUTO                  QTD UNITARIO SUB-TOTAL 
+
+1/1 CALABRESA                                   
+                   TOTAL   1    55,00     55,00
+
+
+================================================
+              TOTAL PEDIDO :      55,00
+           TAXA DE ENTREGA :       0,00
+                     BORDA :       0,00
+                  DESCONTO :       0,00
+                     TOTAL :      55,00
+
+------------------------------------------------
+Agradecemos a preferencia, Volte Sempre !
+
+
+------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+

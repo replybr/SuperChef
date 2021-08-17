@@ -742,6 +742,9 @@ static function imprimir_cupom()
     Fclose(FCreate("LPT1",cTextCupom))
     ShellExecute( 0,"Cupom.txt",,, , 0 )
     form_fecha_pedido.release()
+    
+    //Atualiza a tela
+    Reset_Pedido()
     return(nil)
     *-------------------------------------------------------------------------------
 Function Pede_Quantidade()
